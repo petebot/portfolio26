@@ -27,6 +27,7 @@ Start the dev server:
 sh npm run dev
 To open the app automatically in a browser tab:
 sh npm run dev -- --open
+
 ---
 
 ## Formatting & Code Style
@@ -43,14 +44,14 @@ Formatting is enforced in CI. If `npm run lint` fails, run `npm run format` loca
 
 This repository includes a GitHub Actions workflow that runs on:
 
-* **Pull requests**
-* **Pushes to `main`**
+- **Pull requests**
+- **Pushes to `main`**
 
 The CI pipeline performs:
 
-* Dependency installation
-* Prettier formatting check
-* SvelteKit build verification
+- Dependency installation
+- Prettier formatting check
+- SvelteKit build verification
 
 Pull requests must pass all checks before merging into `main`.
 
@@ -60,21 +61,21 @@ Pull requests must pass all checks before merging into `main`.
 
 ### Preview Deployments
 
-* Every pull request automatically generates a **Vercel Preview Deployment**
-* Preview URLs are attached directly to the PR for easy review
+- Every pull request automatically generates a **Vercel Preview Deployment**
+- Preview URLs are attached directly to the PR for easy review
 
 ### Production Deployment
 
-* Merging into `main` triggers a **production deployment on Vercel**
-* `main` is treated as the source of truth for production
+- Merging into `main` triggers a **production deployment on Vercel**
+- `main` is treated as the source of truth for production
 
 ---
 
 ## Branch & Merge Policy
 
-* All changes are made via pull requests
-* CI checks must pass before merge
-* Branches are deleted after merge to keep the repo clean
+- All changes are made via pull requests
+- CI checks must pass before merge
+- Branches are deleted after merge to keep the repo clean
 
 ---
 
@@ -84,15 +85,16 @@ To create a production build locally:
 sh npm run build
 To preview the production build:
 sh npm run preview
+
 ---
 
 ## Notes
 
 This project intentionally keeps tooling minimal while enforcing:
 
-* Repeatable builds
-* Predictable formatting
-* Confidence that `main` always deploys cleanly
+- Repeatable builds
+- Predictable formatting
+- Confidence that `main` always deploys cleanly
 
 The goal is clarity over cleverness.
---- ### Why this README works - It documents **decisions**, not just commands - It explains *why* CI exists, not just that it exists - It matches exactly what you just set up, nothing aspirational - It will age well as the project grows
+--- ### Why this README works - It documents **decisions**, not just commands - It explains _why_ CI exists, not just that it exists - It matches exactly what you just set up, nothing aspirational - It will age well as the project grows
