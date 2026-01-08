@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    name: Build (SvelteKit)
+    name: BuildSvelteKit
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
