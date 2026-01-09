@@ -1,0 +1,16 @@
+{
+	"id": "proj-21grams",
+	"slug": "21grams",
+	"aliases": ["21grams-preview"],
+	"title": "21grams",
+	"summary": "Sample project demonstrating the MVP content storage structure.",
+	"status": "draft",
+	"createdAt": "2025-01-01T00:00:00.000Z",
+	"updatedAt": "2025-01-10T00:00:00.000Z",
+	"sortDate": "2025-01-10",
+	"featured": false,
+	"tags": ["case-study", "sample"],
+	"tech": ["SvelteKit", "TypeScript"],
+	"heroImage": "./assets/hero.jpg",
+	"contentUri": "content/projects/21grams/content.md"
+}
