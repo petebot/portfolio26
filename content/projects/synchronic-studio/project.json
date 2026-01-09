@@ -11,6 +11,6 @@
 	"featured": false,
 	"tags": ["case-study", "sample"],
 	"tech": ["SvelteKit", "TypeScript"],
-	"heroImage": "/images/projects/synchronic-studio/hero.jpg",
+	"heroImage": "./assets/hero.jpg",
 	"contentUri": "content/projects/synchronic-studio/content.md"
 }

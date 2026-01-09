@@ -39,10 +39,9 @@ It is designed to support SvelteKit routing, portfolio listings, and detailed pr
   ```
 
 - **Linking content:** `contentUri` points to the Markdown file path (e.g. `content/projects/{slug}/content.md`).
-- **Image references:** `heroImage` and any gallery assets use `/images/projects/{slug}/...` under `static/` so they ship with static builds and Vercel previews.
+- **Image references:** `heroImage` and any gallery assets reference project-local files (for example `./assets/hero.jpg`). A build step or bundler import can publish these alongside static output when routes are implemented.
 - **Extensibility:** Structure mirrors CMS-friendly fields, easing future migrations without reworking the codebase.
 - **Examples in repo:** See `content/projects/21grams/` and `content/projects/synchronic-studio/` for populated samples that mirror the MVP model.
-- **Local source assets:** Each project folder can include an `assets/` directory for working files; production-ready images should be mirrored under `static/images/projects/{slug}/` (placeholders are committed for the sample projects).
 
 ---
 
@@ -54,13 +53,13 @@ content/
     21grams/
       project.json
       content.md
-      assets/
-        hero.jpg           # source asset; production copy lives in static/images/projects/21grams/
+        assets/
+          hero.jpg
     synchronic-studio/
       project.json
       content.md
-      assets/
-        hero.jpg           # source asset; production copy lives in static/images/projects/synchronic-studio/
+        assets/
+          hero.jpg
 ```
 
 ---

@@ -11,6 +11,6 @@
 	"featured": false,
 	"tags": ["case-study", "sample"],
 	"tech": ["SvelteKit", "TypeScript"],
-	"heroImage": "/images/projects/21grams/hero.jpg",
+	"heroImage": "./assets/hero.jpg",
 	"contentUri": "content/projects/21grams/content.md"
 }
