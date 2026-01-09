@@ -36,3 +36,15 @@ All design tokens live in `src/lib/styles/tokens.css`. The file is organised by 
 - Import `src/lib/styles/tokens.css` in global styles (issue #23) before consuming tokens in route-level CSS.
 - When introducing new tokens, prefer descriptive semantic names over raw values (e.g. `--color-alert-danger` vs `--color-red-500`). Update this document and cross-reference any dependent components or utilities.
 - Avoid referencing the raw palette tokens (`--color-light-*`, `--color-dark-*`) outside of the theme management block to keep theme swapping predictable.
+
+## Base element styles (issue #19)
+
+Baseline rules live in `src/lib/styles/base.css` and focus on structural HTML elements. Key decisions:
+
+- `html` and `body` set typography defaults, background/text colors, and font smoothing using tokens so every route inherits the same reading experience.
+- Headings map to the typographic scale (`--font-size-800` through `--font-size-200`) with snug line heights; paragraphs, lists, blockquotes, and code snippets use spacing tokens to maintain the 8px rhythm.
+- Anchors adopt accent colors with hover and focus treatments driven by the focus ring tokens and `color-mix` to maintain contrast in light and dark modes.
+- Inline code and pre blocks rely on mono fonts, surface-muted backgrounds, and radius tokens; blockquotes gain thicker border accents for readability.
+- A global `:focus-visible` rule ensures consistent outlines, while the reduced-motion media query clamps transitions and scroll behavior for users who opt out of animation.
+
+Import order matters: load `tokens.css` before `base.css` (handled in issue #23) so variable references resolve correctly. Utility classes and components introduced later should extend rather than reset these foundations.
