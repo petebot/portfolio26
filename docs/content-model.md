@@ -44,6 +44,27 @@ It is designed to support SvelteKit routing, portfolio listings, and detailed pr
 
 ---
 
+## Identity & slug rules (MVP)
+
+- **Primary key:** `id` is immutable once assigned. Prefer the format `proj-{slug}` or a short UUID so the value stays predictable in version control and future CMS migrations.
+- **Canonical URL:** `slug` is the only string used in routes. It must stay unique across all published and draft projects.
+- **Slug format:** lowercase, hyphen-delimited, no special characters beyond `[a-z0-9-]`. Mint it alongside the project and adjust manually when the title changes for readability.
+- **Slug changes:** Avoid when possible. If a change is necessary, keep the old value inside the `aliases` array so redirects remain possible.
+- **Aliases:** Optional array of previous slugs stored with the record. They never appear in listings; they exist solely to detect incoming requests that should redirect to the canonical slug.
+- **Collision checks:** Build-time tooling should assert that `slug` values are unique and that no alias duplicates a current slug.
+
+---
+
+## Routing contract
+
+- **Listing page:** `/projects` reads all published `project.json` files (via `import.meta.glob`) and renders cards sorted by `sortDate` or `weight` when defined.
+- **Detail route:** `/projects/{slug}` loads a matching `project.json` plus its `content.md`. If the slug is not found, but appears in an `aliases` array, respond with a permanent redirect to the canonical slug.
+- **Layouts:** `src/routes/+layout.svelte` remains responsible for shared chrome. A dedicated `src/routes/projects/+layout.ts` can preload the project manifest so child pages reuse the data.
+- **Static builds:** Because data lives in the repo, routing works identically for local previews, Vite static adapter output, and Vercel deployments.
+- **Future sections:** Additional collections (experiments, writing) should mirror this pattern: immutable `id`, canonical `slug`, optional `aliases`, and a dedicated directory under `content/`.
+
+---
+
 ## Core Fields
 
 | Field     | Type   | Required | Visibility | Rationale                                                                      |
@@ -112,14 +133,16 @@ It is designed to support SvelteKit routing, portfolio listings, and detailed pr
 | ------------- | ------ | :------: | :--------: | ---------------------------------------------------------- |
 | internalNotes | string | Optional |  Internal  | Editorial notes, migration hints, or reminders.            |
 | metadata      | object | Optional |  Internal  | Arbitrary internal metadata (sync IDs, import provenance). |
+| aliases       | array<string> | Optional |  Internal  | Historical slugs used to issue redirects to the canonical slug. |
 
 ---
 
 ## Example Project Record
 
 ````{
-      "id": "proj-001",
+      "id": "proj-minimal-design-system",
       "slug": "minimal-design-system",
+      "aliases": ["minimal-design-library"],
       "title": "Minimal Design System",
       "summary": "A compact, accessible design system for small teams.",
       "status": "published",
@@ -143,7 +166,7 @@ It is designed to support SvelteKit routing, portfolio listings, and detailed pr
       ],
       "liveUrl": "https://example.com/minimal",
       "repoUrl": "https://github.com/example/minimal-design-system",
-      "contentUri": "content/projects/minimal-design-system.md"
+      "contentUri": "content/projects/minimal-design-system/content.md"
     }```
 
 ---
@@ -153,7 +176,6 @@ It is designed to support SvelteKit routing, portfolio listings, and detailed pr
 - Localization strategy (duplicate records vs field-level translations)
 - Structured content blocks vs Markdown
 - Image hosting and transformation strategy
-- Slug generation and uniqueness enforcement
 - Versioning and draft workflows
 - Whether collaborators should evolve into a first-class author model
 

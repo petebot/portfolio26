@@ -1,6 +1,7 @@
 {
-	"id": "example-project",
+	"id": "proj-example-project",
 	"slug": "example-project",
+	"aliases": ["example-project-preview"],
 	"title": "Example Project",
 	"summary": "Sample project demonstrating the MVP content storage structure.",
 	"status": "draft",
