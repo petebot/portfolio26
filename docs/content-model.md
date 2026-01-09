@@ -129,10 +129,10 @@ It is designed to support SvelteKit routing, portfolio listings, and detailed pr
 
 ## Internal-Only Metadata
 
-| Field         | Type   | Required | Visibility | Rationale                                                  |
-| ------------- | ------ | :------: | :--------: | ---------------------------------------------------------- |
-| internalNotes | string | Optional |  Internal  | Editorial notes, migration hints, or reminders.            |
-| metadata      | object | Optional |  Internal  | Arbitrary internal metadata (sync IDs, import provenance). |
+| Field         | Type          | Required | Visibility | Rationale                                                       |
+| ------------- | ------------- | :------: | :--------: | --------------------------------------------------------------- |
+| internalNotes | string        | Optional |  Internal  | Editorial notes, migration hints, or reminders.                 |
+| metadata      | object        | Optional |  Internal  | Arbitrary internal metadata (sync IDs, import provenance).      |
 | aliases       | array<string> | Optional |  Internal  | Historical slugs used to issue redirects to the canonical slug. |
 
 ---
