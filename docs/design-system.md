@@ -117,3 +117,12 @@ Usage notes:
 - Always specify a native `type` attribute on `<button>` elements to avoid unintended form submission.
 - When displaying validation errors, pair `aria-invalid="true"` on the control with an `aria-describedby` reference to a `.form-message` element to announce contextually.
 - Rely on the shared transition tokens; additional component-level animations must respect `prefers-reduced-motion` just as the base implementations do.
+
+## Global integration (issue #23)
+
+The root layout wires the full style stack so tokens and component rules cascade across every route:
+
+- `src/routes/+layout.svelte` imports the CSS files in order: tokens → base → layout → controls → a11y. This guarantees custom properties exist before any utility rules consume them.
+- The skip link in the layout now picks up token-driven colors without inline overrides, and future routes inherit baseline typography, layout helpers, and control styling automatically.
+- When contributing new styles, extend the shared files instead of re-importing them downstream to avoid duplicate bundles. Route-level CSS should be reserved for scoped overrides.
+- Sanity check changes with `npm run lint`, `npm run check`, and a quick local preview to confirm the reduced-motion and focus treatments remain intact.
