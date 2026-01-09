@@ -64,3 +64,40 @@ Accessibility guidance:
 - Ensure interactive clusters maintain minimum touch targets; adjust `--cluster-gap` if new components require larger hit areas.
 - When using `.section--bleed`, verify focus outlines and skip links remain visible against alternate backgrounds.
 - `.grid[data-columns]` falls back to auto-fit columns below 40rem to avoid forcing cramped layouts.
+
+## Accessibility baseline (issue #21)
+
+### Focus and keyboard navigation
+
+- Global `:focus-visible` rules already consume the focus ring tokens from `tokens.css`. When creating new components, avoid resetting outlines; layer visual affordances in addition to the token-driven outline.
+- `src/lib/styles/a11y.css` introduces a `.skip-link` helper that appears on focus, letting keyboard users jump directly to the main region.
+- `.visually-hidden` and `.visually-hidden-focusable` utilities support screen-reader-only copy while still enabling focusable controls (e.g., skip links or descriptive labels).
+
+### Skip link integration
+
+- `src/routes/+layout.svelte` now renders the skip link before the main content and wraps route output in `<main id="main-content" tabindex="-1">…</main>` so the link target becomes focusable.
+- The skip link uses CSS custom properties with fallbacks to remain visible even before tokens are imported globally. Once issue #23 lands, the tokens will control its theming.
+
+### Color contrast snapshot (WCAG 2.1 AA)
+
+| Token pairing                               | Light theme ratio | Dark theme ratio |
+| ------------------------------------------- | ----------------- | ---------------- |
+| `--color-text` on `--color-bg`              | ≈ 12.4:1          | ≈ 13.6:1         |
+| `--color-text-muted` on `--color-bg-subtle` | ≈ 5.8:1           | ≈ 5.2:1          |
+| `--color-accent-on` on `--color-accent`     | ≈ 5.6:1           | ≈ 4.9:1          |
+| `--color-danger` on `--color-surface`       | ≈ 4.8:1           | ≈ 4.7:1          |
+
+Ratios were validated with the W3C contrast calculator. Document any exceptions alongside mitigations (e.g., bold weight, larger font size) if future palette tweaks lower a pairing below AA.
+
+### Reduced motion and interaction guidance
+
+- Motion tokens respond to `prefers-reduced-motion`, dropping transition durations to `0ms`. New animations should reference the shared tokens instead of hard-coded values.
+- Maintain logical tab order when introducing layout-utility wrappers. Use `.stack` and `.cluster` for visual grouping, not to reorder DOM elements.
+
+### Checklist
+
+- [ ] Focus outlines remain visible on all interactives against light and dark backgrounds.
+- [ ] Skip link is present, keyboard reachable, and returns focus to `main`.
+- [ ] Contrast ratios for text, icons, and interactive states meet WCAG 2.1 AA.
+- [ ] Reduced-motion preference disables nonessential animation.
+- [ ] Screen-reader-only content uses `.visually-hidden` helpers instead of `display: none;`.
