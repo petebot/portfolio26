@@ -6,7 +6,7 @@
 	const { projects } = data;
 </script>
 
-<section>
+<section class="container section">
 	<header>
 		<h1>Selected Work</h1>
 		<p>Recent projects that are ready to share.</p>
