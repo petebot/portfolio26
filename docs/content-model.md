@@ -35,7 +35,7 @@ It is designed to support SvelteKit routing, portfolio listings, and detailed pr
   static/
     images/
       projects/
-        {slug}/        # Public image assets (referenced by URL paths)
+          {slug}/        # Bundle output path when project assets are copied for deployment
   ```
 
 - **Linking content:** `contentUri` points to the Markdown file path (e.g. `content/projects/{slug}/content.md`).
