@@ -21,6 +21,29 @@ It is designed to support SvelteKit routing, portfolio listings, and detailed pr
 
 ---
 
+## Content storage (MVP)
+
+- **Hybrid format:** JSON metadata plus Markdown body keeps structure machine-readable while leaving longform content author-friendly.
+- **Directory layout:**
+
+  ```
+  content/
+    projects/
+      {slug}/
+        project.json   # Metadata matching the model
+        content.md     # Longform Markdown body
+  static/
+    images/
+      projects/
+        {slug}/        # Public image assets (referenced by URL paths)
+  ```
+
+- **Linking content:** `contentUri` points to the Markdown file path (e.g. `content/projects/{slug}/content.md`).
+- **Image references:** `heroImage` and any gallery assets use `/images/projects/{slug}/...` under `static/` so they ship with static builds and Vercel previews.
+- **Extensibility:** Structure mirrors CMS-friendly fields, easing future migrations without reworking the codebase.
+
+---
+
 ## Core Fields
 
 | Field     | Type   | Required | Visibility | Rationale                                                                      |
