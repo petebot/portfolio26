@@ -48,3 +48,19 @@ Baseline rules live in `src/lib/styles/base.css` and focus on structural HTML el
 - A global `:focus-visible` rule ensures consistent outlines, while the reduced-motion media query clamps transitions and scroll behavior for users who opt out of animation.
 
 Import order matters: load `tokens.css` before `base.css` (handled in issue #23) so variable references resolve correctly. Utility classes and components introduced later should extend rather than reset these foundations.
+
+## Layout primitives (issue #20)
+
+Core layout helpers live in `src/lib/styles/layout.css` and provide predictable spacing without extra tooling:
+
+- `.container` constrains content to the `--container-content` width with responsive inline padding. A `data-width` attribute switches to `compact` or `wide` container tokens as needed.
+- `.section` sets vertical rhythm. Combine with `.section--contained` for in-flow sections or `.section--bleed` to span edge-to-edge while maintaining safe inline padding. Surface variants supply neutral background panels via design tokens.
+- `.stack` arranges children vertically with a configurable gap (default `--space-4`). Use `data-gap="tight"|"loose"` for common variations and `data-align="center"` when aligning content.
+- `.cluster` handles horizontal groups (e.g., pill lists or action bars) with wrapping support. Alignment and spacing rely on custom properties so components can override without new class names.
+- `.grid` creates responsive grids using intrinsic column sizing (`auto-fit` + `minmax`). Data attributes configure gap density, minimum column width, or force fixed column counts on larger breakpoints.
+
+Accessibility guidance:
+
+- Ensure interactive clusters maintain minimum touch targets; adjust `--cluster-gap` if new components require larger hit areas.
+- When using `.section--bleed`, verify focus outlines and skip links remain visible against alternate backgrounds.
+- `.grid[data-columns]` falls back to auto-fit columns below 40rem to avoid forcing cramped layouts.
