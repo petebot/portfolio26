@@ -53,14 +53,24 @@ content/
     21grams/
       project.json
       content.md
-        assets/
-          hero.jpg
+      assets/
+        hero.jpg
     synchronic-studio/
       project.json
       content.md
-        assets/
-          hero.jpg
+      assets/
+        hero.jpg
 ```
+
+---
+
+## Visibility & publishing rules
+
+- **Record shapes:** `project.json` is the canonical record. Derive a separate `ProjectPublic` object for client-side consumption that only includes fields marked Public in the tables below (for example `slug`, `title`, `summary`, `heroImage`, `gallery`, `tags`, `tech`, `category`, `featured`, `weight`, `sortDate`, `intro`, `body`, `timeframe`, `liveUrl`, `repoUrl`, and `seo`).
+- **Internal-only fields:** Keep `id`, `status`, `createdAt`, `updatedAt`, `contentUri`, `aliases`, `internalNotes`, and `metadata` server-only. They may be used during build-time data loading, redirect resolution, or editorial workflows but must not be serialized into responses or embedded in prerendered HTML.
+- **Draft handling:** Records with `status: "draft"` never render on production routes. Include them only in local previews or authenticated tooling. `status: "archived"` can remain addressable by slug but should be excluded from listings by default.
+- **Redirect support:** Use `aliases` during request resolution (e.g. `/projects/:alias`) to issue a permanent redirect to the canonical `slug`, then drop the alias data before responding.
+- **Validation:** Add build-time checks that (1) only Public fields escape to the client bundle, and (2) every exported project respects the status rules above. Fail the build if leakage is detected to keep visibility guarantees enforceable.
 
 ---
 
@@ -178,7 +188,7 @@ content/
         "label": "Spring 2024"
       },
       "heroImage": {
-        "url": "/images/projects/minimal-design-system/hero.jpg",
+        "url": "./assets/hero.jpg",
         "alt": "Design tokens and components"
       },
       "gallery": [
