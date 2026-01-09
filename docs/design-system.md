@@ -101,3 +101,19 @@ Ratios were validated with the W3C contrast calculator. Document any exceptions 
 - [ ] Contrast ratios for text, icons, and interactive states meet WCAG 2.1 AA.
 - [ ] Reduced-motion preference disables nonessential animation.
 - [ ] Screen-reader-only content uses `.visually-hidden` helpers instead of `display: none;`.
+
+## Buttons and form controls (issue #22)
+
+Component styles live in `src/lib/styles/controls.css` and apply to both semantic elements and utility classes:
+
+- `.button` is the base class for buttons and anchor buttons. It uses accent tokens by default, supports `data-variant="secondary" | "ghost" | "danger"`, and honours `data-size="sm" | "lg"` for padding tweaks. Disabled states (`disabled` or `aria-disabled="true"`) neutralise shadows and pointer events while retaining sufficient contrast.
+- Focus states lean on the global `:focus-visible` outline and also adjust `border-color` so buttons and links remain obvious against themed backgrounds.
+- `.form-control` can wrap non-semantic inputs, while native `input`, `textarea`, and `select` elements share the same padding, radius, and transition properties. `aria-invalid="true"` or `data-state="error"` flips borders to the danger token, and `data-state="success"` highlights success feedback.
+- Selects remove default arrows and replace them with a token-driven caret so light/dark modes stay consistent. Disabled controls dim via `--color-bg-subtle` and `--color-text-muted` without sacrificing readability.
+- `.form-message` communicates supporting text or validation copy with matching `data-variant` shades.
+
+Usage notes:
+
+- Always specify a native `type` attribute on `<button>` elements to avoid unintended form submission.
+- When displaying validation errors, pair `aria-invalid="true"` on the control with an `aria-describedby` reference to a `.form-message` element to announce contextually.
+- Rely on the shared transition tokens; additional component-level animations must respect `prefers-reduced-motion` just as the base implementations do.
