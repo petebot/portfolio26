@@ -380,6 +380,56 @@ Case studies should explain what the system enabled, not merely display a catalo
 of parts. Useful outcomes include faster iteration, stronger coherence, fewer
 accessibility defects, easier content management, or clearer collaboration.
 
+### Portfolio handoff
+
+When a project is prepared for inclusion in a portfolio, its maintainer or AI
+agent should produce the following handoff object:
+
+```json
+{
+  "name": "Project System Name",
+  "status": "living",
+  "contractVersion": "1.0.0",
+  "summary": "What the system is designed to accomplish.",
+  "principles": [
+    {
+      "name": "Principle name",
+      "description": "How this principle influences product decisions."
+    },
+    {
+      "name": "Principle name",
+      "description": "How this principle influences product decisions."
+    },
+    {
+      "name": "Principle name",
+      "description": "How this principle influences product decisions."
+    }
+  ],
+  "specimenUrl": null
+}
+```
+
+The handoff must contain three to five principles. `status` must be one of
+`experimental`, `emerging`, `living`, or `maintenance`. `specimenUrl` may be
+`null` when the system specimen is not publicly accessible.
+
+The project should accompany the object with:
+
+- The location of its project-specific design-system document
+- The location of its visual specimen
+- A representative foundation or token artifact
+- One component shown in meaningful states
+- One product-specific pattern shown in context
+- One accessibility or resilience example
+- One propagation, iteration, tradeoff, or exception example
+- Concise captions and alternative text for visual assets
+
+This is an exchange format, not a required source-project file structure. The
+project may return the object in an issue, pull request, generated artifact, or
+other handoff document. The receiving portfolio is responsible for adapting it
+to its own content model, including placing it in `project.json` when that is
+the portfolio's convention.
+
 ## Adoption checklist
 
 - [ ] Copy this contract into the project root.
@@ -393,6 +443,7 @@ accessibility defects, easier content management, or clearer collaboration.
 - [ ] Reference both design-system documents from the project's agent guidance.
 - [ ] Record known exceptions and gaps.
 - [ ] Identify the artifacts to preserve for the portfolio case study.
+- [ ] Produce the portfolio handoff object and evidence package when requested.
 - [ ] Add an upstream version check when the project has continuous integration.
 
 ## Suggested agent-guidance reference
