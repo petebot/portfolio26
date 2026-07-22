@@ -118,6 +118,25 @@ content/
 | body       | string        | Optional |   Public   | Inline long-form content (Markdown/HTML). Use sparingly; choose either body or contentUri. |
 | heroImage  | object        | Optional |   Public   | Primary image object: url, alt, caption (optional).                                        |
 | gallery    | array<object> | Optional |   Public   | Additional project images using the same image object shape.                               |
+| designSystem | object      | Conditional | Public | Required when a case study claims contract adoption; provides the comparable system summary used by the portfolio. |
+
+### Design-system summary
+
+When a project follows `DESIGN_SYSTEM_CONTRACT.md` and the case study presents
+that work, `project.json` must include a public `designSystem` object with:
+
+| Field           | Type          | Required | Rationale |
+| --------------- | ------------- | :------: | --------- |
+| name            | string        |    ✔     | Human-readable name of the project's system. |
+| status          | enum          |    ✔     | `experimental`, `emerging`, `living`, or `maintenance`. |
+| contractVersion | string        |    ✔     | Version of the portable contract adopted by the project. |
+| summary         | string        |    ✔     | Concise explanation of what the system is designed to accomplish. |
+| principles      | array<object> |    ✔     | Three to five objects containing `name` and `description`. |
+| specimenUrl     | url           | Optional | Public system route, Storybook, or durable specimen when available. |
+
+Detailed token inventories, component states, and visual evidence should remain
+in the case-study content and project assets rather than expanding
+`project.json` into a second design-system document.
 
 ---
 
@@ -186,6 +205,26 @@ content/
       "role": "engineer/designer",
       "timeframe": {
         "label": "Spring 2024"
+      },
+      "designSystem": {
+        "name": "Minimal Product System",
+        "status": "living",
+        "contractVersion": "1.0.0",
+        "summary": "A compact system designed for accessible, low-friction product work.",
+        "principles": [
+          {
+            "name": "Clarity before decoration",
+            "description": "Hierarchy and interaction remain legible before expressive detail is added."
+          },
+          {
+            "name": "Complete states",
+            "description": "Components account for interaction, content, and system states together."
+          },
+          {
+            "name": "Resilient by default",
+            "description": "Layouts tolerate varied content, viewports, and input methods."
+          }
+        ]
       },
       "heroImage": {
         "url": "./assets/hero.jpg",
