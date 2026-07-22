@@ -128,7 +128,9 @@ const PROJECTS_DIR = path.resolve(process.cwd(), 'content', 'projects');
 let cachedDataset: ProjectDataset | null = null;
 
 export async function loadProjectDataset(forceReload = false): Promise<ProjectDataset> {
-	if (cachedDataset && !forceReload) {
+	const shouldUseCache = process.env.NODE_ENV === 'production' && !forceReload;
+
+	if (cachedDataset && shouldUseCache) {
 		return cachedDataset;
 	}
 

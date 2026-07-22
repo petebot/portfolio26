@@ -15,6 +15,7 @@
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
+	min-height: var(--target-size-min);
 	gap: var(--button-gap);
 	padding: var(--button-padding-y) var(--button-padding-x);
 	background-color: var(--color-accent);

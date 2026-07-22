@@ -1,4 +1,6 @@
 html {
+	scroll-behavior: smooth;
+	scroll-padding-top: 7rem;
 	font-size: 100%;
 	font-family: var(--font-family-sans);
 	line-height: var(--line-height-normal);
@@ -14,6 +16,11 @@ body {
 	font-weight: var(--font-weight-regular);
 	background-color: var(--color-bg);
 	color: var(--color-text);
+	overflow-x: hidden;
+}
+
+:target {
+	scroll-margin-top: 7rem;
 }
 
 *,
@@ -28,6 +35,10 @@ body > * {
 
 main {
 	display: block;
+}
+
+main:focus-visible {
+	outline: none;
 }
 
 p,
@@ -133,6 +144,11 @@ a {
 	transition: color var(--transition-duration-200) var(--transition-ease-standard);
 }
 
+button,
+a {
+	-webkit-tap-highlight-color: color-mix(in srgb, var(--color-accent) 18%, transparent);
+}
+
 a:hover,
 a:focus-visible {
 	color: var(--color-accent-on);
@@ -140,7 +156,7 @@ a:focus-visible {
 }
 
 a:visited {
-	color: color-mix(in srgb, var(--color-accent) 70%, var(--color-border-strong));
+	color: inherit;
 }
 
 :focus-visible {

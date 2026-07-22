@@ -2,15 +2,25 @@
 	"id": "proj-21grams",
 	"slug": "21grams",
 	"aliases": ["21grams-preview"],
-	"title": "21grams",
-	"summary": "Sample project demonstrating the MVP content storage structure.",
+	"title": "21GRAMS",
+	"summary": "An immersive digital agency experience built around the character and philosophy of 21GRAMS.",
+	"intro": "The previous 21GRAMS site used typography, spatial interaction, and a light-and-dark visual world to introduce the healthcare agency as an experience rather than a conventional corporate site.",
+	"heroImage": {
+		"url": "/images/projects/21grams-home.png",
+		"alt": "21GRAMS landing experience split into light and dark fields around oversized typography and a wireframe head"
+	},
 	"status": "published",
 	"createdAt": "2025-01-01T00:00:00.000Z",
-	"updatedAt": "2025-01-10T00:00:00.000Z",
+	"updatedAt": "2026-07-22T00:00:00.000Z",
 	"sortDate": "2025-01-10",
 	"featured": false,
-	"tags": ["case-study", "sample"],
-	"tech": ["SvelteKit", "TypeScript"],
-	"heroImage": "./assets/hero.jpg",
-	"contentUri": "content/projects/21grams/content.md"
+	"weight": 4,
+	"category": "Agency experience",
+	"tags": ["immersive-web", "agency", "interaction-design"],
+	"tech": ["Svelte", "WebGL"],
+	"role": "Director of Experience · UX direction · Creative development",
+	"timeframe": { "label": "2018—2019" },
+	"liveUrl": "https://21grams.vercel.app/",
+	"contentUri": "content/projects/21grams/content.md",
+	"internalNotes": "Role and dates are supported by Pete's resume. The original site was later replaced by https://21gramsworld.com/. Confirm collaborator credits before adding names or original production assets."
 }

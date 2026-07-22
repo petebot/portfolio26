@@ -2,37 +2,37 @@
 	color-scheme: light dark;
 
 	/* Color palette source values */
-	--color-light-bg: #f9fafb;
-	--color-light-surface: #ffffff;
-	--color-light-subtle: #f1f5f9;
-	--color-light-text: #111827;
-	--color-light-text-muted: #475569;
-	--color-light-border: #cbd5f5;
-	--color-light-border-strong: #94a3b8;
-	--color-light-accent: #2563eb;
-	--color-light-accent-on: #f8fafc;
+	--color-light-bg: #e9e8e2;
+	--color-light-surface: #f4f3ed;
+	--color-light-subtle: #dcdad2;
+	--color-light-text: #20201e;
+	--color-light-text-muted: #62615c;
+	--color-light-border: #bfbdb5;
+	--color-light-border-strong: #73716b;
+	--color-light-accent: #b93420;
+	--color-light-accent-on: #fffaf3;
 	--color-light-success: #15803d;
 	--color-light-warning: #b45309;
 	--color-light-danger: #b91c1c;
-	--color-light-focus: #1d4ed8;
-	--color-light-muted: #e2e8f0;
-	--color-light-contrast-high: #0f172a;
+	--color-light-focus: #9f2b1a;
+	--color-light-muted: #d5d3cb;
+	--color-light-contrast-high: #000000;
 
-	--color-dark-bg: #0f172a;
-	--color-dark-surface: #1e293b;
-	--color-dark-subtle: #111c2f;
-	--color-dark-text: #f8fafc;
-	--color-dark-text-muted: #cbd5f5;
-	--color-dark-border: #334155;
-	--color-dark-border-strong: #475569;
-	--color-dark-accent: #60a5fa;
-	--color-dark-accent-on: #0b1120;
-	--color-dark-success: #4ade80;
-	--color-dark-warning: #fbbf24;
-	--color-dark-danger: #f87171;
-	--color-dark-focus: #93c5fd;
-	--color-dark-muted: #1e293b;
-	--color-dark-contrast-high: #f8fafc;
+	--color-dark-bg: #191918;
+	--color-dark-surface: #242422;
+	--color-dark-subtle: #2d2c29;
+	--color-dark-text: #e9e7df;
+	--color-dark-text-muted: #aaa79d;
+	--color-dark-border: #4b4a45;
+	--color-dark-border-strong: #85827a;
+	--color-dark-accent: #ff7055;
+	--color-dark-accent-on: #1a1715;
+	--color-dark-success: #82b486;
+	--color-dark-warning: #dbaa62;
+	--color-dark-danger: #ff7b6f;
+	--color-dark-focus: #ff8068;
+	--color-dark-muted: #34332f;
+	--color-dark-contrast-high: #ffffff;
 
 	/* Semantic color tokens */
 	--color-bg: var(--color-light-bg);
@@ -52,7 +52,7 @@
 	--color-focus-ring: var(--color-light-focus);
 
 	/* Typography tokens */
-	--font-family-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+	--font-family-sans: 'Helvetica Neue', Helvetica, Arial, system-ui, sans-serif;
 	--font-family-mono: 'JetBrains Mono', 'Fira Code', ui-monospace, SFMono-Regular, Menlo, monospace;
 
 	--font-weight-regular: 400;
@@ -75,6 +75,11 @@
 	--font-size-600: 2rem; /* 32px */
 	--font-size-700: 2.5rem; /* 40px */
 	--font-size-800: 3rem; /* 48px */
+	--font-size-label: 0.8125rem; /* 13px — minimum UI label size */
+	--font-size-body-small: 0.9375rem; /* 15px */
+	--font-size-display: clamp(3.25rem, 7vw, 7.25rem);
+	--letter-spacing-label: 0.055em;
+	--measure-reading: 68ch;
 
 	/* Spacing scale (8px grid with 4px fine control) */
 	--space-0: 0rem;
@@ -95,6 +100,7 @@
 	/* Border and radius tokens */
 	--border-width-hairline: 0.0625rem; /* 1px */
 	--border-width-thick: 0.125rem; /* 2px */
+	--border-width-structure: 0.125rem; /* 2px */
 	--border-radius-none: 0rem;
 	--border-radius-xs: 0.125rem; /* 2px */
 	--border-radius-sm: 0.25rem; /* 4px */
@@ -124,8 +130,11 @@
 	/* Z-index tokens */
 	--z-base: 0;
 	--z-overlay: 10;
+	--z-sticky: 50;
 	--z-modal: 100;
 	--z-toast: 1000;
+	--target-size-min: 2.75rem; /* 44px */
+	--header-bg: color-mix(in srgb, var(--color-bg) 91%, transparent);
 
 	/* Container tokens */
 	--container-compact: 40rem; /* 640px */
