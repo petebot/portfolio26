@@ -111,27 +111,27 @@ content/
 
 ## Content & Presentation
 
-| Field      | Type          | Required | Visibility | Rationale                                                                                  |
-| ---------- | ------------- | :------: | :--------: | ------------------------------------------------------------------------------------------ |
-| intro      | string        | Optional |   Public   | Short introductory paragraph for the project page.                                         |
-| contentUri | string        | Optional |  Internal  | Pointer to long-form content (e.g. Markdown file path). Preferred over embedding content.  |
-| body       | string        | Optional |   Public   | Inline long-form content (Markdown/HTML). Use sparingly; choose either body or contentUri. |
-| heroImage  | object        | Optional |   Public   | Primary image object: url, alt, caption (optional).                                        |
-| gallery    | array<object> | Optional |   Public   | Additional project images using the same image object shape.                               |
-| designSystem | object      | Conditional | Public | Required when a case study claims contract adoption; provides the comparable system summary used by the portfolio. |
+| Field        | Type          |  Required   | Visibility | Rationale                                                                                                          |
+| ------------ | ------------- | :---------: | :--------: | ------------------------------------------------------------------------------------------------------------------ |
+| intro        | string        |  Optional   |   Public   | Short introductory paragraph for the project page.                                                                 |
+| contentUri   | string        |  Optional   |  Internal  | Pointer to long-form content (e.g. Markdown file path). Preferred over embedding content.                          |
+| body         | string        |  Optional   |   Public   | Inline long-form content (Markdown/HTML). Use sparingly; choose either body or contentUri.                         |
+| heroImage    | object        |  Optional   |   Public   | Primary image object: url, alt, caption (optional).                                                                |
+| gallery      | array<object> |  Optional   |   Public   | Additional project images using the same image object shape.                                                       |
+| designSystem | object        | Conditional |   Public   | Required when a case study claims contract adoption; provides the comparable system summary used by the portfolio. |
 
 ### Design-system summary
 
 When a project follows `DESIGN_SYSTEM_CONTRACT.md` and the case study presents
 that work, `project.json` must include a public `designSystem` object with:
 
-| Field           | Type          | Required | Rationale |
-| --------------- | ------------- | :------: | --------- |
-| name            | string        |    ✔     | Human-readable name of the project's system. |
-| status          | enum          |    ✔     | `experimental`, `emerging`, `living`, or `maintenance`. |
-| contractVersion | string        |    ✔     | Version of the portable contract adopted by the project. |
-| summary         | string        |    ✔     | Concise explanation of what the system is designed to accomplish. |
-| principles      | array<object> |    ✔     | Three to five objects containing `name` and `description`. |
+| Field           | Type          | Required | Rationale                                                           |
+| --------------- | ------------- | :------: | ------------------------------------------------------------------- |
+| name            | string        |    ✔     | Human-readable name of the project's system.                        |
+| status          | enum          |    ✔     | `experimental`, `emerging`, `living`, or `maintenance`.             |
+| contractVersion | string        |    ✔     | Version of the portable contract adopted by the project.            |
+| summary         | string        |    ✔     | Concise explanation of what the system is designed to accomplish.   |
+| principles      | array<object> |    ✔     | Three to five objects containing `name` and `description`.          |
 | specimenUrl     | url           | Optional | Public system route, Storybook, or durable specimen when available. |
 
 Detailed token inventories, component states, and visual evidence should remain

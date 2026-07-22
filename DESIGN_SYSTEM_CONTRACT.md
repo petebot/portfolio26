@@ -387,25 +387,25 @@ agent should produce the following handoff object:
 
 ```json
 {
-  "name": "Project System Name",
-  "status": "living",
-  "contractVersion": "1.0.0",
-  "summary": "What the system is designed to accomplish.",
-  "principles": [
-    {
-      "name": "Principle name",
-      "description": "How this principle influences product decisions."
-    },
-    {
-      "name": "Principle name",
-      "description": "How this principle influences product decisions."
-    },
-    {
-      "name": "Principle name",
-      "description": "How this principle influences product decisions."
-    }
-  ],
-  "specimenUrl": null
+	"name": "Project System Name",
+	"status": "living",
+	"contractVersion": "1.0.0",
+	"summary": "What the system is designed to accomplish.",
+	"principles": [
+		{
+			"name": "Principle name",
+			"description": "How this principle influences product decisions."
+		},
+		{
+			"name": "Principle name",
+			"description": "How this principle influences product decisions."
+		},
+		{
+			"name": "Principle name",
+			"description": "How this principle influences product decisions."
+		}
+	],
+	"specimenUrl": null
 }
 ```
 
