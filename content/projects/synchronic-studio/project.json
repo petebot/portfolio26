@@ -20,6 +20,35 @@
 	"tech": ["SvelteKit", "Tauri", "Supabase", "TypeScript"],
 	"role": "Product design · Creative direction · Engineering",
 	"timeframe": { "label": "2025—Now" },
+	"designSystem": {
+		"name": "Synchronic Studio",
+		"status": "emerging",
+		"contractVersion": "1.0.0",
+		"summary": "A calm studio system that combines warm editorial surfaces with precise, accessible interaction across five distinct creative practices.",
+		"principles": [
+			{
+				"name": "Warm, never washed out",
+				"description": "Paper-like quiet supports attention without weakening hierarchy."
+			},
+			{
+				"name": "Color has a job",
+				"description": "Purple carries brand and interaction while pillar colors identify domains with non-color cues."
+			},
+			{
+				"name": "Calm is functional",
+				"description": "Rhythm, restraint, and reduced motion help creative work remain the focus."
+			},
+			{
+				"name": "Editorial voice, practical operation",
+				"description": "Serif type marks identity and reflection while sans serif supports controls, labels, and reading."
+			},
+			{
+				"name": "One system, distinct practices",
+				"description": "Shared foundations keep Reflect, Practice, Roam, Tend, and Observe coherent without erasing their roles."
+			}
+		],
+		"specimenUrl": null
+	},
 	"repoUrl": "https://github.com/petebot/synchronic",
 	"contentUri": "content/projects/synchronic-studio/content.md"
 }

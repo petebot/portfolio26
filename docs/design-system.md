@@ -9,6 +9,15 @@ This document tracks the portfolio’s living design system. A public specimen i
 
 Refer to the linked issues for detailed acceptance criteria. Update this document as the system evolves to keep tokens, conventions, and integration steps current.
 
+## Case-study system stories
+
+Projects that adopt `DESIGN_SYSTEM_CONTRACT.md` expose a compact `designSystem`
+summary in their `project.json`. The reusable `DesignSystemStory` component turns
+that metadata into a comparable case-study chapter: maturity, contract version,
+system intent, principles, and an optional public specimen link. Detailed token
+inventories and component demonstrations remain in each project's evidence
+package rather than being duplicated in portfolio metadata.
+
 ## Token architecture (issue #18)
 
 All design tokens live in `src/lib/styles/tokens.css`. The file is organised by semantic group so future contributors can reason about the system without additional tooling:

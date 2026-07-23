@@ -27,6 +27,35 @@
 			"url": "https://www.murphywork.com/"
 		}
 	],
+	"designSystem": {
+		"name": "Let's Worm Design System",
+		"status": "emerging",
+		"contractVersion": "1.0.0",
+		"summary": "A warm, strange, and accessible editorial system that gives Let's Worm a coherent literary identity while keeping stories resilient across themes, viewports, content lengths, and input methods.",
+		"principles": [
+			{
+				"name": "Editorial before ornamental",
+				"description": "Stories, contributors, and issue context remain clear before the system introduces visual flourish."
+			},
+			{
+				"name": "Warm, strange, and human",
+				"description": "Caslon, Futura, paper tones, mauve, and the worm motif create handmade character without compromising legibility."
+			},
+			{
+				"name": "Movement has meaning",
+				"description": "Motion communicates state and continuity while reduced-motion users receive an equivalent static experience."
+			},
+			{
+				"name": "Resilient by default",
+				"description": "Components tolerate long titles, absent images, narrow containers, zoom, and light or dark environments."
+			},
+			{
+				"name": "Native interaction first",
+				"description": "Links, buttons, forms, headings, and landmarks retain native behavior, visible focus, and clear accessible names."
+			}
+		],
+		"specimenUrl": null
+	},
 	"liveUrl": "https://www.letsworm.com/",
 	"repoUrl": "https://github.com/petebot/letsworm",
 	"contentUri": "content/projects/letsworm/content.md",

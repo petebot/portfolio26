@@ -1,5 +1,6 @@
 <script lang="ts">
 	import ProjectScreenshot from '$lib/components/ProjectScreenshot.svelte';
+	import DesignSystemStory from '$lib/components/DesignSystemStory.svelte';
 	import type { PageData } from './$types';
 
 	let { data }: { data: PageData } = $props();
@@ -102,6 +103,10 @@
 			</section>
 		{/each}
 	</div>
+
+	{#if data.project.designSystem}
+		<DesignSystemStory system={data.project.designSystem} />
+	{/if}
 
 	{#if data.project.liveUrl || data.project.repoUrl}
 		<div class="project-links">

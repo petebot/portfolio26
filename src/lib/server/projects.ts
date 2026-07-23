@@ -2,6 +2,21 @@ import { promises as fs } from 'node:fs';
 import path from 'node:path';
 
 export type ProjectStatus = 'draft' | 'published' | 'archived';
+export type DesignSystemStatus = 'experimental' | 'emerging' | 'living' | 'maintenance';
+
+export interface DesignSystemPrinciple {
+	name: string;
+	description: string;
+}
+
+export interface DesignSystemSummary {
+	name: string;
+	status: DesignSystemStatus;
+	contractVersion: string;
+	summary: string;
+	principles: DesignSystemPrinciple[];
+	specimenUrl?: string | null;
+}
 
 export interface ImageObject {
 	url: string;
@@ -43,6 +58,7 @@ export interface ProjectPublic {
 	repoUrl?: string;
 	canonical?: string;
 	seo?: Record<string, unknown>;
+	designSystem?: DesignSystemSummary;
 }
 
 export interface ProjectInternal {
@@ -107,7 +123,8 @@ const PUBLIC_FIELDS = [
 	'liveUrl',
 	'repoUrl',
 	'canonical',
-	'seo'
+	'seo',
+	'designSystem'
 ] as const;
 
 const INTERNAL_FIELDS = [
@@ -276,6 +293,95 @@ function validateRecord(raw: RawProjectRecord, folderName: string): void {
 		throw new Error(
 			`contentUri mismatch in ${folderName}: expected ${expectedContentUri}, received ${raw.contentUri}`
 		);
+	}
+
+	if (raw.designSystem !== undefined) {
+		validateDesignSystem(raw.designSystem, folderName);
+	}
+}
+
+function validateDesignSystem(value: unknown, folderName: string): void {
+	if (!value || typeof value !== 'object' || Array.isArray(value)) {
+		throw new Error(`designSystem in ${folderName} must be an object`);
+	}
+
+	const system = value as Record<string, unknown>;
+	const allowedFields = new Set([
+		'name',
+		'status',
+		'contractVersion',
+		'summary',
+		'principles',
+		'specimenUrl'
+	]);
+
+	for (const field of Object.keys(system)) {
+		if (!allowedFields.has(field)) {
+			throw new Error(`Unexpected designSystem field "${field}" in project ${folderName}`);
+		}
+	}
+
+	for (const field of ['name', 'contractVersion', 'summary']) {
+		if (typeof system[field] !== 'string' || !(system[field] as string).trim()) {
+			throw new Error(`designSystem.${field} in ${folderName} must be a non-empty string`);
+		}
+	}
+
+	const allowedStatuses: DesignSystemStatus[] = [
+		'experimental',
+		'emerging',
+		'living',
+		'maintenance'
+	];
+	if (!allowedStatuses.includes(system.status as DesignSystemStatus)) {
+		throw new Error(`Invalid designSystem.status "${system.status}" in project ${folderName}`);
+	}
+
+	if (
+		!Array.isArray(system.principles) ||
+		system.principles.length < 3 ||
+		system.principles.length > 5
+	) {
+		throw new Error(`designSystem.principles in ${folderName} must contain three to five items`);
+	}
+
+	for (const [index, principleValue] of system.principles.entries()) {
+		if (!principleValue || typeof principleValue !== 'object' || Array.isArray(principleValue)) {
+			throw new Error(`designSystem.principles[${index}] in ${folderName} must be an object`);
+		}
+
+		const principle = principleValue as Record<string, unknown>;
+		const fields = Object.keys(principle);
+		if (fields.some((field) => field !== 'name' && field !== 'description')) {
+			throw new Error(`Unexpected field in designSystem.principles[${index}] for ${folderName}`);
+		}
+
+		for (const field of ['name', 'description']) {
+			if (typeof principle[field] !== 'string' || !(principle[field] as string).trim()) {
+				throw new Error(
+					`designSystem.principles[${index}].${field} in ${folderName} must be a non-empty string`
+				);
+			}
+		}
+	}
+
+	if (
+		system.specimenUrl !== undefined &&
+		system.specimenUrl !== null &&
+		(typeof system.specimenUrl !== 'string' || !isValidPublicUrl(system.specimenUrl))
+	) {
+		throw new Error(`designSystem.specimenUrl in ${folderName} must be a public URL or root path`);
+	}
+}
+
+function isValidPublicUrl(value: string): boolean {
+	if (value.startsWith('/')) return true;
+
+	try {
+		const url = new URL(value);
+		return url.protocol === 'http:' || url.protocol === 'https:';
+	} catch {
+		return false;
 	}
 }
 
