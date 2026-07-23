@@ -1,0 +1,49 @@
+{
+	"id": "proj-grande-burrito",
+	"slug": "grande-burrito",
+	"aliases": ["grande"],
+	"title": "Grande Burrito",
+	"summary": "A brand-led restaurant site designed to make hours, menu decisions, and the trip to Freeport immediately clear.",
+	"intro": "Grande Burrito pairs a vivid public experience with a constrained Sanity studio that lets an owner update the information customers rely on every day.",
+	"heroImage": {
+		"url": "/images/projects/grande-burrito-home.png",
+		"alt": "Grande Burrito development interface using clearly labeled fictional content to test its responsive restaurant layout"
+	},
+	"status": "published",
+	"createdAt": "2026-07-21T00:00:00.000Z",
+	"updatedAt": "2026-07-22T00:00:00.000Z",
+	"sortDate": "2026-07-22",
+	"featured": true,
+	"weight": 3,
+	"category": "Brand and web system",
+	"tags": ["brand", "content-design", "small-business"],
+	"tech": ["SvelteKit", "Sanity", "TypeScript", "Playwright"],
+	"role": "Strategy · Design system · Engineering",
+	"timeframe": { "label": "2026 · In progress" },
+	"designSystem": {
+		"name": "Grande Burrito Sign & Sheet System",
+		"status": "emerging",
+		"contractVersion": "1.0.0",
+		"summary": "A sign-led, menu-sheet-inspired system that keeps restaurant decisions clear and resilient.",
+		"principles": [
+			{
+				"name": "The sign is the anchor, not wallpaper",
+				"description": "Brand cues establish identity without competing with operational information."
+			},
+			{
+				"name": "Operational facts come first",
+				"description": "Hours, menu, phone, and directions remain useful through degraded states."
+			},
+			{
+				"name": "Borrow the menu's rhythm, improve its scan",
+				"description": "Printed-menu character is translated into accessible digital hierarchy."
+			},
+			{
+				"name": "Build resilience into the default",
+				"description": "Accessibility, responsive content, and service failure are first-class states."
+			}
+		],
+		"specimenUrl": null
+	},
+	"contentUri": "content/projects/grande-burrito/content.md"
+}

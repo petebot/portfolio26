@@ -1,0 +1,63 @@
+{
+	"id": "proj-letsworm",
+	"slug": "letsworm",
+	"aliases": ["lets-worm"],
+	"title": "Let’s Worm",
+	"summary": "A prompt-driven literary art platform where short fiction and illustration take turns leading the way.",
+	"intro": "Let’s Worm is an ongoing collaboration with writer Dan Murphy, pairing strange, compact stories with drawings, paintings, and visual experiments made in response.",
+	"heroImage": {
+		"url": "/images/projects/letsworm-home.png",
+		"alt": "Let’s Worm issue landing page featuring the Moon City title and a large sculptural pink worm"
+	},
+	"status": "published",
+	"createdAt": "2026-07-22T00:00:00.000Z",
+	"updatedAt": "2026-07-22T00:00:00.000Z",
+	"sortDate": "2026-04-08",
+	"featured": true,
+	"weight": 2,
+	"category": "Editorial art platform",
+	"tags": ["illustration", "editorial-design", "creative-collaboration"],
+	"tech": ["SvelteKit", "Sanity", "TypeScript"],
+	"role": "Creative direction · Illustration · Design and engineering",
+	"timeframe": { "label": "2017—Now" },
+	"collaborators": [
+		{
+			"name": "Dan Murphy",
+			"role": "Writer",
+			"url": "https://www.murphywork.com/"
+		}
+	],
+	"designSystem": {
+		"name": "Let's Worm Design System",
+		"status": "emerging",
+		"contractVersion": "1.0.0",
+		"summary": "A warm, strange, and accessible editorial system that gives Let's Worm a coherent literary identity while keeping stories resilient across themes, viewports, content lengths, and input methods.",
+		"principles": [
+			{
+				"name": "Editorial before ornamental",
+				"description": "Stories, contributors, and issue context remain clear before the system introduces visual flourish."
+			},
+			{
+				"name": "Warm, strange, and human",
+				"description": "Caslon, Futura, paper tones, mauve, and the worm motif create handmade character without compromising legibility."
+			},
+			{
+				"name": "Movement has meaning",
+				"description": "Motion communicates state and continuity while reduced-motion users receive an equivalent static experience."
+			},
+			{
+				"name": "Resilient by default",
+				"description": "Components tolerate long titles, absent images, narrow containers, zoom, and light or dark environments."
+			},
+			{
+				"name": "Native interaction first",
+				"description": "Links, buttons, forms, headings, and landmarks retain native behavior, visible focus, and clear accessible names."
+			}
+		],
+		"specimenUrl": null
+	},
+	"liveUrl": "https://www.letsworm.com/",
+	"repoUrl": "https://github.com/petebot/letsworm",
+	"contentUri": "content/projects/letsworm/content.md",
+	"internalNotes": "Pete confirmed ownership of the current site's design and build. Illustration and collaboration credit are also supported by the live site and prior portfolio copy."
+}

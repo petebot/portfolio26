@@ -1,6 +1,6 @@
 # Design System Overview
 
-This document tracks the "Foundation Design System (CSS Variables)" milestone. The work is split across issues #18–#23 and focuses on:
+This document tracks the portfolio’s living design system. A public specimen is available at `/system`, while this file records implementation decisions and accessibility expectations.
 
 - Defining CSS custom property tokens for color, typography, spacing, radii, shadows, borders, focus, and layout.
 - Applying baseline typography, interactive element styles, and layout primitives across the app using vanilla CSS.
@@ -8,6 +8,15 @@ This document tracks the "Foundation Design System (CSS Variables)" milestone. T
 - Documenting usage patterns and examples, including a SvelteKit style-guide route for visual regression checks.
 
 Refer to the linked issues for detailed acceptance criteria. Update this document as the system evolves to keep tokens, conventions, and integration steps current.
+
+## Case-study system stories
+
+Projects that adopt `DESIGN_SYSTEM_CONTRACT.md` expose a compact `designSystem`
+summary in their `project.json`. The reusable `DesignSystemStory` component turns
+that metadata into a comparable case-study chapter: maturity, contract version,
+system intent, principles, and an optional public specimen link. Detailed token
+inventories and component demonstrations remain in each project's evidence
+package rather than being duplicated in portfolio metadata.
 
 ## Token architecture (issue #18)
 
@@ -21,8 +30,8 @@ All design tokens live in `src/lib/styles/tokens.css`. The file is organised by 
 
 ### Light / dark theming
 
-- `:root` defaults to the light palette and declares `color-scheme: light dark` so browsers expose both themes when automatic switching is enabled.
-- `@media (prefers-color-scheme: dark)` overrides semantic tokens with the dark palette while respecting user preferences.
+- `:root` defaults to a warm industrial light palette and declares `color-scheme: light dark` so native browser controls participate in both themes.
+- `@media (prefers-color-scheme: dark)` switches to warm black, graphite, soft ivory, and signal red while preserving the same hierarchy and product-specific artboards.
 - Manual overrides are available via the `.theme-dark`, `.theme-light`, `:root[data-theme="dark"]`, and `:root[data-theme="light"]` selectors. These overrides are CSS-only and can be toggled by applying the class or attribute to `html` or `body`—no JavaScript is required in the MVP.
 
 ### Accessibility considerations
@@ -80,12 +89,11 @@ Accessibility guidance:
 
 ### Color contrast snapshot (WCAG 2.1 AA)
 
-| Token pairing                               | Light theme ratio | Dark theme ratio |
-| ------------------------------------------- | ----------------- | ---------------- |
-| `--color-text` on `--color-bg`              | ≈ 12.4:1          | ≈ 13.6:1         |
-| `--color-text-muted` on `--color-bg-subtle` | ≈ 5.8:1           | ≈ 5.2:1          |
-| `--color-accent-on` on `--color-accent`     | ≈ 5.6:1           | ≈ 4.9:1          |
-| `--color-danger` on `--color-surface`       | ≈ 4.8:1           | ≈ 4.7:1          |
+| Token pairing                        | Light theme ratio | Dark theme ratio |
+| ------------------------------------ | ----------------- | ---------------- |
+| `--color-text` on `--color-bg`       | ≈ 13.29:1         | ≈ 14.21:1        |
+| `--color-text-muted` on `--color-bg` | ≈ 5.06:1          | ≈ 7.31:1         |
+| `--color-accent` on `--color-bg`     | ≈ 4.78:1          | ≈ 6.45:1         |
 
 Ratios were validated with the W3C contrast calculator. Document any exceptions alongside mitigations (e.g., bold weight, larger font size) if future palette tweaks lower a pairing below AA.
 
@@ -96,11 +104,13 @@ Ratios were validated with the W3C contrast calculator. Document any exceptions 
 
 ### Checklist
 
-- [ ] Focus outlines remain visible on all interactives against light and dark backgrounds.
-- [ ] Skip link is present, keyboard reachable, and returns focus to `main`.
-- [ ] Contrast ratios for text, icons, and interactive states meet WCAG 2.1 AA.
-- [ ] Reduced-motion preference disables nonessential animation.
-- [ ] Screen-reader-only content uses `.visually-hidden` helpers instead of `display: none;`.
+- [x] Focus outlines remain visible on all interactives against light and dark backgrounds.
+- [x] Skip link is present, keyboard reachable, and returns focus to `main`.
+- [x] Contrast ratios for text, icons, and interactive states meet WCAG 2.1 AA.
+- [x] Reduced-motion preference disables nonessential animation.
+- [x] Primary navigation provides a minimum 44px target size and remains available while scrolling.
+- [x] Interface labels use a 13px minimum rather than sub-12px display type.
+- [x] Screen-reader-only content uses `.visually-hidden` helpers instead of `display: none;`.
 
 ## Buttons and form controls (issue #22)
 

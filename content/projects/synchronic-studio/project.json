@@ -3,14 +3,52 @@
 	"slug": "synchronic-studio",
 	"aliases": ["synchronic-studio-preview"],
 	"title": "Synchronic Studio",
-	"summary": "Sample project demonstrating the MVP content storage structure.",
-	"status": "draft",
+	"summary": "A local-first creative practice system that helps artists see the thread connecting their daily work.",
+	"intro": "Synchronic brings practice sessions, reflections, excursions, tasks, and gentle guidance into one private workspace built around the rhythms of an artist’s life.",
+	"heroImage": {
+		"url": "/images/projects/synchronic-home.png",
+		"alt": "Synchronic landing page with a dark studio-inspired interface and central invitation for artists"
+	},
+	"status": "published",
 	"createdAt": "2025-01-01T00:00:00.000Z",
-	"updatedAt": "2025-01-10T00:00:00.000Z",
-	"sortDate": "2025-01-10",
-	"featured": false,
-	"tags": ["case-study", "sample"],
-	"tech": ["SvelteKit", "TypeScript"],
-	"heroImage": "./assets/hero.jpg",
+	"updatedAt": "2026-07-22T00:00:00.000Z",
+	"sortDate": "2026-05-17",
+	"featured": true,
+	"weight": 1,
+	"category": "Creative practice system",
+	"tags": ["product-design", "local-first", "creative-tools"],
+	"tech": ["SvelteKit", "Tauri", "Supabase", "TypeScript"],
+	"role": "Product design · Creative direction · Engineering",
+	"timeframe": { "label": "2025—Now" },
+	"designSystem": {
+		"name": "Synchronic Studio",
+		"status": "emerging",
+		"contractVersion": "1.0.0",
+		"summary": "A calm studio system that combines warm editorial surfaces with precise, accessible interaction across five distinct creative practices.",
+		"principles": [
+			{
+				"name": "Warm, never washed out",
+				"description": "Paper-like quiet supports attention without weakening hierarchy."
+			},
+			{
+				"name": "Color has a job",
+				"description": "Purple carries brand and interaction while pillar colors identify domains with non-color cues."
+			},
+			{
+				"name": "Calm is functional",
+				"description": "Rhythm, restraint, and reduced motion help creative work remain the focus."
+			},
+			{
+				"name": "Editorial voice, practical operation",
+				"description": "Serif type marks identity and reflection while sans serif supports controls, labels, and reading."
+			},
+			{
+				"name": "One system, distinct practices",
+				"description": "Shared foundations keep Reflect, Practice, Roam, Tend, and Observe coherent without erasing their roles."
+			}
+		],
+		"specimenUrl": null
+	},
+	"repoUrl": "https://github.com/petebot/synchronic",
 	"contentUri": "content/projects/synchronic-studio/content.md"
 }

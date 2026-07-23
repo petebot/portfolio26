@@ -1,0 +1,20 @@
+{
+	"id": "proj-rascals-karaoke",
+	"slug": "rascals-karaoke",
+	"aliases": [],
+	"title": "Rascals Karaoke",
+	"summary": "A touch-first karaoke club app that turns song collecting, fair queues, and group performance into one shared ritual.",
+	"intro": "Rascals is a cross-platform karaoke product for friend groups: part personal songbook, part live room, and part lightweight game layer.",
+	"status": "draft",
+	"createdAt": "2026-02-18T00:00:00.000Z",
+	"updatedAt": "2026-07-22T00:00:00.000Z",
+	"sortDate": "2026-03-10",
+	"featured": true,
+	"weight": 2,
+	"category": "Social product",
+	"tags": ["mobile", "realtime", "product-design"],
+	"tech": ["React Native", "Expo", "Supabase", "TypeScript"],
+	"role": "Product design · Brand system · Engineering",
+	"timeframe": { "label": "2026" },
+	"contentUri": "content/projects/rascals-karaoke/content.md"
+}
