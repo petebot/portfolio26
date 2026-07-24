@@ -2,23 +2,19 @@
 	const frames = [
 		{
 			src: '/images/projects/synchronic-home.png?v=20260724-motion',
-			label: 'Synchronic Studio',
-			tone: '#aebde8'
+			label: 'Synchronic Studio'
 		},
 		{
 			src: '/images/projects/letsworm-home.png?v=20260724-motion',
-			label: 'Let’s Worm',
-			tone: '#eab0c7'
+			label: 'Let’s Worm'
 		},
 		{
 			src: '/images/projects/grande-burrito-home.png?v=20260724-motion',
-			label: 'Grande Burrito',
-			tone: '#eecc55'
+			label: 'Grande Burrito'
 		},
 		{
 			src: '/images/projects/21grams-home.png?v=20260724-motion',
-			label: '21GRAMS',
-			tone: '#e8a57f'
+			label: '21GRAMS'
 		}
 	];
 </script>
@@ -27,7 +23,7 @@
 	<div class="reel__stage">
 		<div class="reel__frames" aria-hidden="true">
 			{#each frames as frame, index}
-				<figure class="reel__frame" data-reel-frame style={`--frame-tone: ${frame.tone};`}>
+				<figure class="reel__frame" data-reel-frame>
 					<img src={frame.src} alt="" loading="lazy" decoding="async" />
 					<figcaption>
 						<span>0{index + 1}</span>
@@ -84,7 +80,7 @@
 	.reel__frame {
 		margin: 0;
 		opacity: 0;
-		background: var(--frame-tone);
+		background: var(--color-accent);
 	}
 
 	.reel__frame:first-child {
@@ -107,8 +103,8 @@
 		display: flex;
 		gap: 0.7rem;
 		padding: 0.55rem 0.7rem;
-		background: var(--frame-tone);
-		color: var(--color-punch-ink);
+		background: var(--color-accent);
+		color: var(--color-accent-on);
 		font-family: var(--font-family-mono);
 		font-size: var(--font-size-label);
 		letter-spacing: var(--letter-spacing-label);
@@ -163,7 +159,7 @@
 	.reel__tag i {
 		width: 0.7rem;
 		height: 0.18rem;
-		background: var(--color-punch-orange);
+		background: var(--color-dark-accent);
 	}
 
 	.reel h2 {
