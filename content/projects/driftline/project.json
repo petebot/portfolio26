@@ -5,6 +5,12 @@
 	"title": "Driftline",
 	"summary": "An ocean-research decision workspace that makes portfolio bottlenecks, ownership gaps, and next actions visible.",
 	"intro": "Driftline gives research teams a shared view of signals, evaluations, programs, and field operations—then routes attention to the decisions that will move the work forward.",
+	"heroImage": {
+		"url": "/images/projects/driftline-home-light.png",
+		"lightUrl": "/images/projects/driftline-home-light.png",
+		"darkUrl": "/images/projects/driftline-home-dark.png",
+		"alt": "Driftline dashboard showing portfolio flow across signals, evaluations, programs, and field operations"
+	},
 	"status": "published",
 	"createdAt": "2026-07-24T00:00:00.000Z",
 	"updatedAt": "2026-07-24T00:00:00.000Z",
@@ -88,7 +94,13 @@
 			],
 			"productProof": {
 				"title": "The handoff becomes the interface",
-				"description": "Lifecycle flow, attention queues, and role lenses connect portfolio state to a specific person, explanation, and next action."
+				"description": "Lifecycle flow, attention queues, and role lenses connect portfolio state to a specific person, explanation, and next action.",
+				"image": {
+					"url": "/images/projects/driftline-system-light.png",
+					"lightUrl": "/images/projects/driftline-system-light.png",
+					"darkUrl": "/images/projects/driftline-system-dark.png",
+					"alt": "Driftline portfolio workspace showing stage totals, filters, and research records in the viewer's system theme"
+				}
 			},
 			"accessibility": {
 				"title": "Operational density remains navigable",

@@ -65,7 +65,7 @@
 			<div class="swatch subtle"><span>Subtle</span><code>--color-bg-subtle</code></div>
 			<div class="swatch text"><span>Text</span><code>--color-text</code></div>
 			<div class="swatch muted"><span>Muted text</span><code>--color-text-muted</code></div>
-			<div class="swatch accent"><span>Signal</span><code>--color-accent</code></div>
+			<div class="swatch accent"><span>Muted gold</span><code>--color-accent</code></div>
 		</div>
 	</section>
 

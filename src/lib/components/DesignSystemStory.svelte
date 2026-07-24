@@ -119,19 +119,20 @@
 							<picture>
 								{#if system.showcase.productProof.image.darkUrl}
 									<source
-										srcset={`${system.showcase.productProof.image.darkUrl}?v=20260724-screenshots-2`}
+										srcset={`${system.showcase.productProof.image.darkUrl}?v=20260724-screenshots-4`}
 										media="(prefers-color-scheme: dark)"
 									/>
 								{/if}
 								{#if system.showcase.productProof.image.lightUrl}
 									<source
-										srcset={`${system.showcase.productProof.image.lightUrl}?v=20260724-screenshots-2`}
+										srcset={`${system.showcase.productProof.image.lightUrl}?v=20260724-screenshots-4`}
 										media="(prefers-color-scheme: light)"
 									/>
 								{/if}
 								<img
-									src={`${system.showcase.productProof.image.url}?v=20260724-screenshots-2`}
-									alt={system.showcase.productProof.image.alt ?? `${system.name} shown in the product`}
+									src={`${system.showcase.productProof.image.url}?v=20260724-screenshots-4`}
+									alt={system.showcase.productProof.image.alt ??
+										`${system.name} shown in the product`}
 									loading="lazy"
 								/>
 							</picture>

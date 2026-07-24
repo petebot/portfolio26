@@ -390,12 +390,12 @@
 	}
 
 	.project-number {
-		color: color-mix(in srgb, var(--color-accent-on) 68%, transparent);
+		color: color-mix(in srgb, var(--color-accent-on) 78%, transparent);
 	}
 
 	.project-category {
 		margin-bottom: 1rem;
-		color: color-mix(in srgb, var(--color-accent-on) 68%, transparent);
+		color: color-mix(in srgb, var(--color-accent-on) 78%, transparent);
 	}
 
 	.project-copy h3 {
@@ -438,7 +438,7 @@
 		gap: 1rem;
 		padding-top: 1rem;
 		border-top: 1px solid color-mix(in srgb, var(--color-accent-on) 38%, transparent);
-		color: color-mix(in srgb, var(--color-accent-on) 72%, transparent);
+		color: color-mix(in srgb, var(--color-accent-on) 78%, transparent);
 	}
 
 	.color-bridge {
@@ -496,7 +496,7 @@
 	}
 
 	.section-tag--dark {
-		color: color-mix(in srgb, var(--color-accent-on) 72%, transparent);
+		color: color-mix(in srgb, var(--color-accent-on) 78%, transparent);
 	}
 
 	.section-tag--dark i {
@@ -607,7 +607,7 @@
 	}
 
 	.section-tag--light {
-		color: color-mix(in srgb, var(--color-accent-on) 72%, transparent);
+		color: color-mix(in srgb, var(--color-accent-on) 78%, transparent);
 	}
 
 	.section-tag--light i {

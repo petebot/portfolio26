@@ -151,8 +151,8 @@ a {
 
 a:hover,
 a:focus-visible {
-	color: var(--color-accent-on);
-	background-color: color-mix(in srgb, var(--color-accent) 15%, transparent);
+	color: color-mix(in srgb, var(--color-accent) 82%, var(--color-contrast-higher));
+	background-color: color-mix(in srgb, var(--color-accent) 8%, transparent);
 }
 
 a:visited {
@@ -165,7 +165,7 @@ a:visited {
 }
 
 ::selection {
-	background-color: color-mix(in srgb, var(--color-accent) 35%, transparent);
+	background-color: var(--color-accent);
 	color: var(--color-accent-on);
 }
 

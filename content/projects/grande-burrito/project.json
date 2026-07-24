@@ -7,11 +7,11 @@
 	"intro": "Grande Burrito pairs a vivid public experience with a constrained Sanity studio that lets an owner update the information customers rely on every day.",
 	"heroImage": {
 		"url": "/images/projects/grande-burrito-home.png",
-		"alt": "Grande Burrito development interface using clearly labeled fictional content to test its responsive restaurant layout"
+		"alt": "Grande Burrito landing hero with a foil-wrapped burrito positioned over the oversized Grande wordmark"
 	},
 	"status": "published",
 	"createdAt": "2026-07-21T00:00:00.000Z",
-	"updatedAt": "2026-07-22T00:00:00.000Z",
+	"updatedAt": "2026-07-24T00:00:00.000Z",
 	"sortDate": "2026-07-22",
 	"featured": true,
 	"weight": 3,
@@ -88,11 +88,11 @@
 				}
 			],
 			"productProof": {
-				"title": "The visit decision stays in one region",
-				"description": "Current hours, visit actions, and content freshness form one decision panel, while a saved snapshot preserves menu and hours when Sanity is unavailable.",
+				"title": "Printed-menu rhythm becomes a scannable system",
+				"description": "Food categories, descriptions, and prices use a consistent editorial hierarchy that keeps a long made-to-order menu easy to scan.",
 				"image": {
 					"url": "/images/projects/grande-burrito-system.png",
-					"alt": "Grande Burrito operational interface showing visit actions, cached-content status, an independent-concept notice, and the menu entry point"
+					"alt": "Grande Burrito menu showing typographic hierarchy across starters, burritos, descriptions, and prices"
 				}
 			},
 			"accessibility": {

@@ -12,12 +12,12 @@
 		compact = false
 	}: { slug: string; image?: ProjectImage; compact?: boolean } = $props();
 
-	const versionedSource = $derived(image ? `${image.url}?v=20260724-screenshots-2` : undefined);
+	const versionedSource = $derived(image ? `${image.url}?v=20260724-screenshots-4` : undefined);
 	const versionedLightSource = $derived(
-		image?.lightUrl ? `${image.lightUrl}?v=20260724-screenshots-2` : undefined
+		image?.lightUrl ? `${image.lightUrl}?v=20260724-screenshots-4` : undefined
 	);
 	const versionedDarkSource = $derived(
-		image?.darkUrl ? `${image.darkUrl}?v=20260724-screenshots-2` : undefined
+		image?.darkUrl ? `${image.darkUrl}?v=20260724-screenshots-4` : undefined
 	);
 </script>
 
@@ -84,8 +84,18 @@
 		justify-items: start;
 		align-content: end;
 		background:
-			linear-gradient(90deg, transparent 0 24.85%, rgb(125 211 199 / 22%) 25% 25.15%, transparent 25.3% 100%),
-			linear-gradient(0deg, transparent 0 24.85%, rgb(125 211 199 / 16%) 25% 25.15%, transparent 25.3% 100%),
+			linear-gradient(
+				90deg,
+				transparent 0 24.85%,
+				rgb(125 211 199 / 22%) 25% 25.15%,
+				transparent 25.3% 100%
+			),
+			linear-gradient(
+				0deg,
+				transparent 0 24.85%,
+				rgb(125 211 199 / 16%) 25% 25.15%,
+				transparent 25.3% 100%
+			),
 			#0b2427;
 		color: #f2f5f2;
 		font-family: var(--font-family-mono);

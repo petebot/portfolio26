@@ -36,7 +36,7 @@ All design tokens live in `src/lib/styles/tokens.css`. The file is organised by 
 ### Light / dark theming
 
 - `:root` defaults to a warm industrial light palette and declares `color-scheme: light dark` so native browser controls participate in both themes.
-- `@media (prefers-color-scheme: dark)` switches to warm black, graphite, soft ivory, and signal red while preserving the same hierarchy and product-specific artboards.
+- `@media (prefers-color-scheme: dark)` switches to warm black, graphite, soft ivory, and muted gold while preserving the same hierarchy and product-specific artboards.
 - Manual overrides are available via the `.theme-dark`, `.theme-light`, `:root[data-theme="dark"]`, and `:root[data-theme="light"]` selectors. These overrides are CSS-only and can be toggled by applying the class or attribute to `html` or `body`—no JavaScript is required in the MVP.
 
 ### Accessibility considerations
@@ -94,11 +94,14 @@ Accessibility guidance:
 
 ### Color contrast snapshot (WCAG 2.1 AA)
 
-| Token pairing                        | Light theme ratio | Dark theme ratio |
-| ------------------------------------ | ----------------- | ---------------- |
-| `--color-text` on `--color-bg`       | ≈ 13.29:1         | ≈ 14.21:1        |
-| `--color-text-muted` on `--color-bg` | ≈ 5.06:1          | ≈ 7.31:1         |
-| `--color-accent` on `--color-bg`     | ≈ 4.78:1          | ≈ 6.45:1         |
+| Token pairing                           | Light theme ratio | Dark theme ratio |
+| --------------------------------------- | ----------------- | ---------------- |
+| `--color-text` on `--color-bg`          | ≈ 13.29:1         | ≈ 14.21:1        |
+| `--color-text-muted` on `--color-bg`    | ≈ 5.06:1          | ≈ 7.31:1         |
+| `--color-accent` on `--color-bg`        | ≈ 5.28:1          | ≈ 7.86:1         |
+| `--color-accent-on` on `--color-accent` | ≈ 6.25:1          | ≈ 7.97:1         |
+
+The light theme uses antique gold `#735b17`; the dark theme uses softened gold `#c8aa61`. Both exceed the 4.5:1 WCAG AA threshold for normal text in their intended pairings. Gold is reserved for emphasis and interaction, while danger and warning retain separate semantic colors.
 
 Ratios were validated with the W3C contrast calculator. Document any exceptions alongside mitigations (e.g., bold weight, larger font size) if future palette tweaks lower a pairing below AA.
 
