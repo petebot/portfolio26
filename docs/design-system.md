@@ -14,9 +14,14 @@ Refer to the linked issues for detailed acceptance criteria. Update this documen
 Projects that adopt `DESIGN_SYSTEM_CONTRACT.md` expose a compact `designSystem`
 summary in their `project.json`. The reusable `DesignSystemStory` component turns
 that metadata into a comparable case-study chapter: maturity, contract version,
-system intent, principles, and an optional public specimen link. Detailed token
-inventories and component demonstrations remain in each project's evidence
-package rather than being duplicated in portfolio metadata.
+system intent, principles, and an optional public specimen link.
+
+An optional visual fingerprint adds exact semantic swatches, named typography
+roles, documented component-state coverage, one decision-propagation example,
+and one accessibility or resilience proof. The renderer deliberately does not
+load source-project font files or recreate source components. A cropped project
+screen keeps the evidence grounded in the shipped product, while the exhaustive
+token inventory and interactive specimen remain in the source repository.
 
 ## Token architecture (issue #18)
 

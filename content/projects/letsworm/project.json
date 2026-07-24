@@ -54,6 +54,58 @@
 				"description": "Links, buttons, forms, headings, and landmarks retain native behavior, visible focus, and clear accessible names."
 			}
 		],
+		"showcase": {
+			"palette": [
+				{ "name": "Paper", "value": "#f6eee8", "role": "Primary editorial surface" },
+				{ "name": "Warm ink", "value": "#271d09", "role": "Reading text and structure" },
+				{ "name": "Mauve dark", "value": "#8c5061", "role": "Focus and strong accent" },
+				{ "name": "Mauve", "value": "#bf718e", "role": "Primary action and worm identity" },
+				{ "name": "Mauve light", "value": "#d9a5b3", "role": "Dark-theme action and tint" },
+				{ "name": "Cream", "value": "#f5f1e8", "role": "Raised editorial surface" }
+			],
+			"typography": [
+				{
+					"family": "Adobe Caslon Pro",
+					"role": "Reading",
+					"description": "Carries stories and long-form editorial content with a literary voice."
+				},
+				{
+					"family": "Futura PT",
+					"role": "Display and interface",
+					"description": "Marks structure, navigation, metadata, and expressive headlines."
+				},
+				{
+					"family": "Fira Mono",
+					"role": "Technical",
+					"description": "Supports code-like and technical moments without entering story text."
+				}
+			],
+			"components": [
+				{
+					"name": "Action controls",
+					"description": "Native buttons share one action and focus language across editorial and utility flows.",
+					"states": ["Primary", "Secondary", "Disabled", "Pending", "Focus"]
+				},
+				{
+					"name": "Field",
+					"description": "Visible labels, associated guidance, and errors keep forms understandable in every state.",
+					"states": ["Default", "Guidance", "Invalid", "Disabled", "Focus"]
+				},
+				{
+					"name": "Story card",
+					"description": "Editorial cards keep text intact across long titles, absent images, and narrow containers.",
+					"states": ["Standard", "Long title", "Missing image", "Narrow", "Empty"]
+				}
+			],
+			"productProof": {
+				"title": "Editorial character without fragile layouts",
+				"description": "Paper, ink, mauve, Caslon, Futura, and the worm motif adapt across themes while stories, bylines, summaries, and navigation remain structurally clear."
+			},
+			"accessibility": {
+				"title": "Native interaction carries the expressive layer",
+				"description": "A three-pixel focus ring, reduced-motion transitions, mobile-menu focus containment, forced-colors fallback, and responsive reflow protect the reading experience."
+			}
+		},
 		"specimenUrl": null
 	},
 	"liveUrl": "https://www.letsworm.com/",
