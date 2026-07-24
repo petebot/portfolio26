@@ -324,9 +324,13 @@
 		margin: 0;
 	}
 
-	.project-list > li {
+	.project-list {
 		--card-lock-height: clamp(32rem, 66svh, 44rem);
 
+		padding-bottom: clamp(12rem, 34svh, 28rem);
+	}
+
+	.project-list > li {
 		position: sticky;
 		top: calc((100svh - var(--card-lock-height)) / 2 + var(--card-index) * 0.35rem);
 		display: flex;
@@ -334,10 +338,10 @@
 		margin: 0 0 clamp(3.5rem, 9vh, 6.5rem);
 		overflow: hidden;
 		background: var(--color-accent);
-		border: 0.125rem solid var(--color-punch-ink);
+		border: 0.125rem solid var(--color-accent-on);
 		border-radius: 0.7rem;
 		box-shadow:
-			0 0.6rem 0 var(--color-punch-ink),
+			0 0.6rem 0 var(--color-accent-on),
 			0 1.35rem 2.8rem rgb(24 24 23 / 28%);
 	}
 
@@ -390,7 +394,7 @@
 	}
 
 	.project-copy h3 {
-		color: var(--color-punch-ink);
+		color: var(--color-accent-on);
 		font-size: clamp(2.2rem, 4.1vw, 4.4rem);
 		line-height: 0.94;
 		letter-spacing: -0.055em;
@@ -411,7 +415,7 @@
 
 	.project-card:hover .project-copy h3,
 	.project-card:focus-visible .project-copy h3 {
-		color: var(--color-punch-ink);
+		color: var(--color-accent-on);
 		text-decoration: underline;
 		text-decoration-thickness: 0.06em;
 		text-underline-offset: 0.11em;
@@ -618,6 +622,10 @@
 		.project-card {
 			grid-template-columns: 1fr;
 			grid-template-rows: auto;
+		}
+
+		.project-list {
+			padding-bottom: 0;
 		}
 
 		.project-list > li {
