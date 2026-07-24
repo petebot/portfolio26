@@ -11,7 +11,7 @@
 	},
 	"status": "published",
 	"createdAt": "2025-01-01T00:00:00.000Z",
-	"updatedAt": "2026-07-22T00:00:00.000Z",
+	"updatedAt": "2026-07-24T00:00:00.000Z",
 	"sortDate": "2025-01-10",
 	"featured": false,
 	"weight": 4,
@@ -21,6 +21,99 @@
 	"role": "Director of Experience · UX direction · Creative development",
 	"timeframe": { "label": "2018—2019" },
 	"liveUrl": "https://21grams.vercel.app/",
+	"designSystem": {
+		"name": "21GRAMS Rule of 21",
+		"status": "emerging",
+		"contractVersion": "1.0.0",
+		"summary": "A spatial editorial system built on a seven-pixel cadence, the signature Rule of 21, and two complementary visual realms.",
+		"principles": [
+			{
+				"name": "The Rule of 21",
+				"description": "Seven is the base spatial step; twenty-one is the signature unit for geometry, rhythm, and motion."
+			},
+			{
+				"name": "Two realms, one system",
+				"description": "Craft is dark and material while Essence is light and reflective, with shared roles that invert cleanly."
+			},
+			{
+				"name": "Tactile restraint",
+				"description": "Fine offset borders, paper tones, condensed headings, and deliberate motion create character without excess."
+			},
+			{
+				"name": "Navigation is spatial",
+				"description": "Directional movement is part of the experience while routes remain keyboard-operable and semantically linked."
+			},
+			{
+				"name": "Legibility outranks numerology",
+				"description": "The rule guides the work, but accessibility and content fit always have the final word."
+			}
+		],
+		"showcase": {
+			"palette": [
+				{ "name": "Near black", "value": "#191817", "role": "Craft canvas and primary ink" },
+				{ "name": "Charcoal", "value": "#373838", "role": "Dark realm depth" },
+				{ "name": "Muted charcoal", "value": "#4b4b48", "role": "Supporting dark text" },
+				{ "name": "Paper", "value": "#fffcf2", "role": "Essence canvas and inverse text" },
+				{ "name": "Warm paper", "value": "#d4ceba", "role": "Subdued surfaces and detail" },
+				{ "name": "Aged paper", "value": "#aca795", "role": "Muted inverse text" },
+				{ "name": "Focus umber", "value": "#7a4300", "role": "Visible focus on light surfaces" }
+			],
+			"typography": [
+				{
+					"family": "Roboto Condensed",
+					"role": "Display and headings",
+					"description": "A compact voice for oversized statements and directional interface language."
+				},
+				{
+					"family": "Letter Gothic Std",
+					"role": "Body and utility",
+					"description": "A measured mono voice keeps navigation, labels, and supporting copy precise."
+				},
+				{
+					"family": "LTC Bodoni 175",
+					"role": "Editorial quotation",
+					"description": "A reflective serif introduces warmth and contrast inside the geometric framework."
+				}
+			],
+			"components": [
+				{
+					"name": "KeyArrow",
+					"description": "A directional control makes spatial movement visible while retaining a conventional interaction contract.",
+					"states": ["Rest", "Hover", "Focus visible", "Active", "Disabled"]
+				},
+				{
+					"name": "Nav",
+					"description": "The shared navigation maps routes to cardinal directions and remains operable by keyboard.",
+					"states": ["Closed", "Open", "Directional", "Keyboard", "Reduced motion"]
+				},
+				{
+					"name": "TextAnimated",
+					"description": "Staged editorial copy supports cinematic pacing without withholding content when motion is reduced.",
+					"states": ["Reveal", "Complete", "Reduced motion"]
+				},
+				{
+					"name": "Error pattern",
+					"description": "A status-aware dead end removes transition delay and offers one clear route back.",
+					"states": ["404", "Immediate", "Return home"]
+				}
+			],
+			"productProof": {
+				"title": "One system moves between two realms",
+				"description": "The same seven-pixel cadence, condensed voice, and spatial navigation hold together the dark Craft experience and the light Essence experience.",
+				"image": {
+					"url": "/images/projects/21grams-system-light.png",
+					"lightUrl": "/images/projects/21grams-system-light.png",
+					"darkUrl": "/images/projects/21grams-system-dark.png",
+					"alt": "21GRAMS in-product editorial statement rendered in the light Essence realm or dark Craft realm according to the viewer's system theme"
+				}
+			},
+			"accessibility": {
+				"title": "Spatial interaction keeps a semantic path",
+				"description": "Native controls, 49px targets, visible focus, semantic links, and reduced-motion behavior protect the experience; full cross-realm contrast automation remains an active gap."
+			}
+		},
+		"specimenUrl": null
+	},
 	"contentUri": "content/projects/21grams/content.md",
 	"internalNotes": "Role and dates are supported by Pete's resume. The original site was later replaced by https://21gramsworld.com/. Confirm collaborator credits before adding names or original production assets."
 }

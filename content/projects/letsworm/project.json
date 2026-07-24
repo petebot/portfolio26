@@ -99,7 +99,11 @@
 			],
 			"productProof": {
 				"title": "Editorial character without fragile layouts",
-				"description": "Paper, ink, mauve, Caslon, Futura, and the worm motif adapt across themes while stories, bylines, summaries, and navigation remain structurally clear."
+				"description": "Paper, ink, mauve, Caslon, Futura, and the worm motif adapt across themes while stories, bylines, summaries, and navigation remain structurally clear.",
+				"image": {
+					"url": "/images/projects/letsworm-system.png",
+					"alt": "Let’s Worm story page showing editorial typography, contributor credits, issue context, and long-form reading layout"
+				}
 			},
 			"accessibility": {
 				"title": "Native interaction carries the expressive layer",

@@ -30,6 +30,7 @@ export interface DesignSystemComponentEvidence {
 export interface DesignSystemProofPoint {
 	title: string;
 	description: string;
+	image?: ImageObject;
 }
 
 export interface DesignSystemShowcase {
@@ -52,6 +53,8 @@ export interface DesignSystemSummary {
 
 export interface ImageObject {
 	url: string;
+	lightUrl?: string;
+	darkUrl?: string;
 	alt?: string;
 	caption?: string;
 }
@@ -498,7 +501,7 @@ function validateDesignSystemShowcase(value: unknown, folderName: string): void 
 		const proof = expectObject(showcase[field], `designSystem.showcase.${field} in ${folderName}`);
 		assertOnlyFields(
 			proof,
-			['title', 'description'],
+			field === 'productProof' ? ['title', 'description', 'image'] : ['title', 'description'],
 			`designSystem.showcase.${field} in ${folderName}`
 		);
 		assertNonEmptyStrings(
@@ -506,6 +509,39 @@ function validateDesignSystemShowcase(value: unknown, folderName: string): void 
 			['title', 'description'],
 			`designSystem.showcase.${field} in ${folderName}`
 		);
+
+		if (field === 'productProof' && proof.image !== undefined) {
+			const image = expectObject(
+				proof.image,
+				`designSystem.showcase.productProof.image in ${folderName}`
+			);
+			assertOnlyFields(
+				image,
+				['url', 'lightUrl', 'darkUrl', 'alt', 'caption'],
+				`product proof image in ${folderName}`
+			);
+			assertNonEmptyStrings(image, ['url'], `product proof image in ${folderName}`);
+			for (const urlField of ['url', 'lightUrl', 'darkUrl']) {
+				if (
+					image[urlField] !== undefined &&
+					(typeof image[urlField] !== 'string' || !isValidPublicUrl(image[urlField] as string))
+				) {
+					throw new Error(
+						`designSystem.showcase.productProof.image.${urlField} in ${folderName} must be a public URL or root path`
+					);
+				}
+			}
+			for (const optionalField of ['alt', 'caption']) {
+				if (
+					image[optionalField] !== undefined &&
+					(typeof image[optionalField] !== 'string' || !(image[optionalField] as string).trim())
+				) {
+					throw new Error(
+						`designSystem.showcase.productProof.image.${optionalField} in ${folderName} must be a non-empty string when provided`
+					);
+				}
+			}
+		}
 	}
 }
 

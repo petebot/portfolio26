@@ -105,7 +105,7 @@
 	</div>
 
 	{#if data.project.designSystem}
-		<DesignSystemStory system={data.project.designSystem} image={data.project.heroImage} />
+		<DesignSystemStory system={data.project.designSystem} />
 	{/if}
 
 	{#if data.project.liveUrl || data.project.repoUrl}

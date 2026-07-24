@@ -89,7 +89,11 @@
 			],
 			"productProof": {
 				"title": "The visit decision stays in one region",
-				"description": "Current hours, visit actions, and content freshness form one decision panel, while a saved snapshot preserves menu and hours when Sanity is unavailable."
+				"description": "Current hours, visit actions, and content freshness form one decision panel, while a saved snapshot preserves menu and hours when Sanity is unavailable.",
+				"image": {
+					"url": "/images/projects/grande-burrito-system.png",
+					"alt": "Grande Burrito operational interface showing visit actions, cached-content status, an independent-concept notice, and the menu entry point"
+				}
 			},
 			"accessibility": {
 				"title": "Operational information survives degraded states",

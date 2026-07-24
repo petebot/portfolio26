@@ -1,7 +1,7 @@
 <script lang="ts">
-	import type { DesignSystemSummary, ImageObject } from '$lib/server/projects';
+	import type { DesignSystemSummary } from '$lib/server/projects';
 
-	let { system, image }: { system: DesignSystemSummary; image?: ImageObject } = $props();
+	let { system }: { system: DesignSystemSummary } = $props();
 
 	const statusLabel = $derived(system.status.charAt(0).toUpperCase() + system.status.slice(1));
 </script>
@@ -114,13 +114,27 @@
 					</div>
 				</div>
 				<div class="proof-grid">
-					{#if image}
+					{#if system.showcase.productProof.image}
 						<div class="proof-image">
-							<img
-								src={image.url}
-								alt={image.alt ?? `${system.name} shown in the product`}
-								loading="lazy"
-							/>
+							<picture>
+								{#if system.showcase.productProof.image.darkUrl}
+									<source
+										srcset={`${system.showcase.productProof.image.darkUrl}?v=20260724-screenshots-2`}
+										media="(prefers-color-scheme: dark)"
+									/>
+								{/if}
+								{#if system.showcase.productProof.image.lightUrl}
+									<source
+										srcset={`${system.showcase.productProof.image.lightUrl}?v=20260724-screenshots-2`}
+										media="(prefers-color-scheme: light)"
+									/>
+								{/if}
+								<img
+									src={`${system.showcase.productProof.image.url}?v=20260724-screenshots-2`}
+									alt={system.showcase.productProof.image.alt ?? `${system.name} shown in the product`}
+									loading="lazy"
+								/>
+							</picture>
 						</div>
 					{/if}
 					<div class="proof-copy">
@@ -469,11 +483,22 @@
 		background: var(--color-bg-subtle);
 	}
 
+	.proof-image picture,
 	.proof-image img {
 		display: block;
 		width: 100%;
+	}
+
+	.proof-image picture {
 		height: 100%;
-		object-fit: cover;
+		display: flex;
+		align-items: center;
+	}
+
+	.proof-image img {
+		height: auto;
+		aspect-ratio: 16 / 9;
+		object-fit: contain;
 		object-position: top;
 	}
 

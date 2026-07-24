@@ -7,7 +7,9 @@
 	"intro": "Synchronic brings practice sessions, reflections, excursions, tasks, and gentle guidance into one private workspace built around the rhythms of an artist’s life.",
 	"heroImage": {
 		"url": "/images/projects/synchronic-home.png",
-		"alt": "Synchronic landing page with a dark studio-inspired interface and central invitation for artists"
+		"lightUrl": "/images/projects/synchronic-home-light.png",
+		"darkUrl": "/images/projects/synchronic-home-dark.png",
+		"alt": "Synchronic logged-in dashboard showing weekly creative practice summaries and progress modules"
 	},
 	"status": "published",
 	"createdAt": "2025-01-01T00:00:00.000Z",
@@ -89,7 +91,13 @@
 			],
 			"productProof": {
 				"title": "Five practices, one interaction grammar",
-				"description": "Each practice rebinds the semantic accent to its domain color while shared navigation, controls, forms, and state behavior remain consistent."
+				"description": "Each practice rebinds the semantic accent to its domain color while shared navigation, controls, forms, and state behavior remain consistent.",
+				"image": {
+					"url": "/images/projects/synchronic-system.png",
+					"lightUrl": "/images/projects/synchronic-system-light.png",
+					"darkUrl": "/images/projects/synchronic-system-dark.png",
+					"alt": "Synchronic logged-in Practice view showing session history, notes, and actions"
+				}
 			},
 			"accessibility": {
 				"title": "Contrast-safe semantics and visible focus",
