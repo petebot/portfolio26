@@ -325,14 +325,20 @@
 	}
 
 	.project-list > li {
+		--card-lock-height: clamp(32rem, 66svh, 44rem);
+
 		position: sticky;
-		top: calc(5.35rem + var(--card-index) * 0.45rem);
+		top: calc((100svh - var(--card-lock-height)) / 2 + var(--card-index) * 0.35rem);
+		display: flex;
+		height: var(--card-lock-height);
 		margin: 0 0 clamp(3.5rem, 9vh, 6.5rem);
 		overflow: hidden;
 		background: var(--color-accent);
-		border: var(--border-width-structure) solid var(--color-accent);
+		border: 0.125rem solid var(--color-punch-ink);
 		border-radius: 0.7rem;
-		box-shadow: 0 1rem 2.4rem rgb(24 24 23 / 12%);
+		box-shadow:
+			0 0.6rem 0 var(--color-punch-ink),
+			0 1.35rem 2.8rem rgb(24 24 23 / 28%);
 	}
 
 	.project-list > li:last-child {
@@ -342,7 +348,10 @@
 	.project-card {
 		display: grid;
 		grid-template-columns: minmax(0, 1fr) minmax(20rem, 0.95fr);
-		gap: clamp(2rem, 6vw, 7rem);
+		grid-template-rows: minmax(0, 1fr) auto;
+		column-gap: clamp(2rem, 6vw, 7rem);
+		row-gap: clamp(1.5rem, 3vw, 3rem);
+		width: 100%;
 		padding: clamp(1.4rem, 4vw, 3.2rem);
 		color: var(--color-accent-on);
 		text-decoration: none;
@@ -381,6 +390,7 @@
 	}
 
 	.project-copy h3 {
+		color: var(--color-punch-ink);
 		font-size: clamp(2.2rem, 4.1vw, 4.4rem);
 		line-height: 0.94;
 		letter-spacing: -0.055em;
@@ -401,7 +411,7 @@
 
 	.project-card:hover .project-copy h3,
 	.project-card:focus-visible .project-copy h3 {
-		color: var(--color-accent-on);
+		color: var(--color-punch-ink);
 		text-decoration: underline;
 		text-decoration-thickness: 0.06em;
 		text-underline-offset: 0.11em;
@@ -607,6 +617,14 @@
 
 		.project-card {
 			grid-template-columns: 1fr;
+			grid-template-rows: auto;
+		}
+
+		.project-list > li {
+			position: relative;
+			top: auto;
+			display: block;
+			height: auto;
 		}
 
 		.project-meta {
@@ -662,8 +680,6 @@
 		}
 
 		.project-list > li {
-			position: relative;
-			top: auto;
 			margin-bottom: 1.25rem;
 		}
 
