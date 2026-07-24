@@ -1,6 +1,7 @@
 <script lang="ts">
 	import HomeMotion from '$lib/components/HomeMotion.svelte';
 	import ProjectScreenshot from '$lib/components/ProjectScreenshot.svelte';
+	import ScrollReel from '$lib/components/ScrollReel.svelte';
 	import type { PageData } from './$types';
 
 	let { data }: { data: PageData } = $props();
@@ -85,6 +86,8 @@
 			{/each}
 		</ol>
 	</section>
+
+	<ScrollReel />
 
 	<section class="color-bridge" aria-labelledby="bridge-title">
 		<div class="color-bridge__blinds" aria-hidden="true">

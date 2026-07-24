@@ -9,7 +9,9 @@
 			const root = document.querySelector<HTMLElement>('[data-home-motion]');
 			if (!root) return;
 
-			const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+			const reducedMotion =
+				window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
+				new URLSearchParams(window.location.search).get('motion') === 'reduce';
 			if (reducedMotion) {
 				root.dataset.motion = 'reduced';
 				return;
@@ -88,6 +90,59 @@
 						}
 					);
 				});
+
+				const reel = root.querySelector<HTMLElement>('[data-scroll-reel]');
+				const reelFrames = gsap.utils.toArray<HTMLElement>('[data-reel-frame]');
+				const reelProgress = root.querySelector<HTMLElement>('[data-reel-progress]');
+
+				if (reel && reelFrames.length > 1 && reelProgress) {
+					const reelTimeline = gsap.timeline({
+						scrollTrigger: {
+							trigger: reel,
+							start: 'top top',
+							end: 'bottom bottom',
+							scrub: 0.45
+						}
+					});
+
+					reelTimeline.to(
+						reelProgress,
+						{ scaleX: 1, duration: reelFrames.length, ease: 'none' },
+						0
+					);
+
+					reelFrames.forEach((frame, index) => {
+						const image = frame.querySelector('img');
+						const segmentStart = index;
+
+						if (image) {
+							reelTimeline.fromTo(
+								image,
+								{
+									scale: 1.065,
+									xPercent: index % 2 === 0 ? 1.5 : -1.5
+								},
+								{ scale: 1.015, xPercent: 0, duration: 1, ease: 'none' },
+								segmentStart
+							);
+						}
+
+						if (index > 0) {
+							reelTimeline
+								.to(
+									reelFrames[index - 1],
+									{ opacity: 0, duration: 0.16, ease: 'none' },
+									segmentStart
+								)
+								.fromTo(
+									frame,
+									{ opacity: 0 },
+									{ opacity: 1, duration: 0.16, ease: 'none' },
+									segmentStart
+								);
+						}
+					});
+				}
 
 				const blinds = gsap.utils.toArray<HTMLElement>('.color-bridge__blind');
 				const bridgeContent = root.querySelector<HTMLElement>('.color-bridge__content');

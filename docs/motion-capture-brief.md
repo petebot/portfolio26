@@ -1,5 +1,9 @@
 # Scroll-linked portrait film brief
 
+> The homepage currently ships with a scroll-linked visual reel made from the existing project
+> archive. This brief defines the optional portrait shoot that can replace those frames later without
+> changing the section's layout, pacing, reduced-motion behavior, or surrounding copy.
+
 ## The idea
 
 Create a short, quiet portrait loop that feels like a moment from the studio rather than a showreel. The page should reveal Pete at work while the visitor scrolls: a glance toward camera, a small turn, a hand moving across a desk, or a shift from sketchbook to screen.
