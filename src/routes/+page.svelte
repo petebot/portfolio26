@@ -7,10 +7,10 @@
 	let { data }: { data: PageData } = $props();
 
 	const projectCards = [
-		{ tone: '#eecc55', rotation: -0.32 },
-		{ tone: '#eab0c7', rotation: 0.28 },
-		{ tone: '#aebde8', rotation: -0.22 },
-		{ tone: '#e8a57f', rotation: 0.26 }
+		{ rotation: -0.32 },
+		{ rotation: 0.28 },
+		{ rotation: -0.22 },
+		{ rotation: 0.26 }
 	];
 </script>
 
@@ -58,7 +58,7 @@
 		<ol class="project-list">
 			{#each data.projects as project, index}
 				{@const card = projectCards[index % projectCards.length]}
-				<li style={`--card-index: ${index}; --card-tone: ${card.tone};`}>
+				<li style={`--card-index: ${index};`}>
 					<a
 						class="project-card"
 						href={`/projects/${project.slug}`}
@@ -329,8 +329,8 @@
 		top: calc(5.35rem + var(--card-index) * 0.45rem);
 		margin: 0 0 clamp(3.5rem, 9vh, 6.5rem);
 		overflow: hidden;
-		background: var(--card-tone);
-		border: var(--border-width-structure) solid var(--color-punch-ink);
+		background: var(--color-accent);
+		border: var(--border-width-structure) solid var(--color-accent);
 		border-radius: 0.7rem;
 		box-shadow: 0 1rem 2.4rem rgb(24 24 23 / 12%);
 	}
@@ -344,14 +344,14 @@
 		grid-template-columns: minmax(0, 1fr) minmax(20rem, 0.95fr);
 		gap: clamp(2rem, 6vw, 7rem);
 		padding: clamp(1.4rem, 4vw, 3.2rem);
-		color: var(--color-punch-ink);
+		color: var(--color-accent-on);
 		text-decoration: none;
 		transform-origin: center 16%;
 	}
 
 	.project-card:hover,
 	.project-card:focus-visible {
-		color: var(--color-punch-ink);
+		color: var(--color-accent-on);
 		background: transparent;
 	}
 
@@ -372,12 +372,12 @@
 	}
 
 	.project-number {
-		color: rgb(24 24 23 / 64%);
+		color: color-mix(in srgb, var(--color-accent-on) 68%, transparent);
 	}
 
 	.project-category {
 		margin-bottom: 1rem;
-		color: rgb(24 24 23 / 64%);
+		color: color-mix(in srgb, var(--color-accent-on) 68%, transparent);
 	}
 
 	.project-copy h3 {
@@ -391,7 +391,7 @@
 		max-width: 34rem;
 		margin-top: 1.75rem;
 		font-size: clamp(1rem, 1.5vw, 1.25rem);
-		color: rgb(24 24 23 / 72%);
+		color: color-mix(in srgb, var(--color-accent-on) 78%, transparent);
 	}
 
 	.project-arrow {
@@ -401,7 +401,7 @@
 
 	.project-card:hover .project-copy h3,
 	.project-card:focus-visible .project-copy h3 {
-		color: var(--color-punch-ink);
+		color: var(--color-accent-on);
 		text-decoration: underline;
 		text-decoration-thickness: 0.06em;
 		text-underline-offset: 0.11em;
@@ -418,8 +418,8 @@
 		grid-template-columns: 1fr 1fr 2fr;
 		gap: 1rem;
 		padding-top: 1rem;
-		border-top: 1px solid rgb(24 24 23 / 36%);
-		color: rgb(24 24 23 / 68%);
+		border-top: 1px solid color-mix(in srgb, var(--color-accent-on) 38%, transparent);
+		color: color-mix(in srgb, var(--color-accent-on) 72%, transparent);
 	}
 
 	.color-bridge {
