@@ -9,6 +9,38 @@ export interface DesignSystemPrinciple {
 	description: string;
 }
 
+export interface DesignSystemColor {
+	name: string;
+	value: string;
+	role: string;
+}
+
+export interface DesignSystemTypographyRole {
+	family: string;
+	role: string;
+	description: string;
+}
+
+export interface DesignSystemComponentEvidence {
+	name: string;
+	description: string;
+	states: string[];
+}
+
+export interface DesignSystemProofPoint {
+	title: string;
+	description: string;
+	image?: ImageObject;
+}
+
+export interface DesignSystemShowcase {
+	palette: DesignSystemColor[];
+	typography: DesignSystemTypographyRole[];
+	components: DesignSystemComponentEvidence[];
+	productProof: DesignSystemProofPoint;
+	accessibility: DesignSystemProofPoint;
+}
+
 export interface DesignSystemSummary {
 	name: string;
 	status: DesignSystemStatus;
@@ -16,10 +48,13 @@ export interface DesignSystemSummary {
 	summary: string;
 	principles: DesignSystemPrinciple[];
 	specimenUrl?: string | null;
+	showcase?: DesignSystemShowcase;
 }
 
 export interface ImageObject {
 	url: string;
+	lightUrl?: string;
+	darkUrl?: string;
 	alt?: string;
 	caption?: string;
 }
@@ -312,7 +347,8 @@ function validateDesignSystem(value: unknown, folderName: string): void {
 		'contractVersion',
 		'summary',
 		'principles',
-		'specimenUrl'
+		'specimenUrl',
+		'showcase'
 	]);
 
 	for (const field of Object.keys(system)) {
@@ -371,6 +407,173 @@ function validateDesignSystem(value: unknown, folderName: string): void {
 		(typeof system.specimenUrl !== 'string' || !isValidPublicUrl(system.specimenUrl))
 	) {
 		throw new Error(`designSystem.specimenUrl in ${folderName} must be a public URL or root path`);
+	}
+
+	if (system.showcase !== undefined) {
+		validateDesignSystemShowcase(system.showcase, folderName);
+	}
+}
+
+function validateDesignSystemShowcase(value: unknown, folderName: string): void {
+	const showcase = expectObject(value, `designSystem.showcase in ${folderName}`);
+	assertOnlyFields(
+		showcase,
+		['palette', 'typography', 'components', 'productProof', 'accessibility'],
+		`designSystem.showcase in ${folderName}`
+	);
+
+	const palette = expectArray(
+		showcase.palette,
+		4,
+		8,
+		`designSystem.showcase.palette in ${folderName}`
+	);
+	for (const [index, item] of palette.entries()) {
+		const color = expectObject(item, `designSystem.showcase.palette[${index}] in ${folderName}`);
+		assertOnlyFields(color, ['name', 'value', 'role'], `palette item ${index} in ${folderName}`);
+		assertNonEmptyStrings(
+			color,
+			['name', 'value', 'role'],
+			`palette item ${index} in ${folderName}`
+		);
+		if (!/^#[\da-f]{6}$/i.test(color.value as string)) {
+			throw new Error(
+				`designSystem.showcase.palette[${index}].value in ${folderName} must be a six-digit hex color`
+			);
+		}
+	}
+
+	const typography = expectArray(
+		showcase.typography,
+		2,
+		4,
+		`designSystem.showcase.typography in ${folderName}`
+	);
+	for (const [index, item] of typography.entries()) {
+		const role = expectObject(item, `designSystem.showcase.typography[${index}] in ${folderName}`);
+		assertOnlyFields(
+			role,
+			['family', 'role', 'description'],
+			`typography item ${index} in ${folderName}`
+		);
+		assertNonEmptyStrings(
+			role,
+			['family', 'role', 'description'],
+			`typography item ${index} in ${folderName}`
+		);
+	}
+
+	const components = expectArray(
+		showcase.components,
+		2,
+		4,
+		`designSystem.showcase.components in ${folderName}`
+	);
+	for (const [index, item] of components.entries()) {
+		const component = expectObject(
+			item,
+			`designSystem.showcase.components[${index}] in ${folderName}`
+		);
+		assertOnlyFields(
+			component,
+			['name', 'description', 'states'],
+			`component item ${index} in ${folderName}`
+		);
+		assertNonEmptyStrings(
+			component,
+			['name', 'description'],
+			`component item ${index} in ${folderName}`
+		);
+		const states = expectArray(
+			component.states,
+			1,
+			8,
+			`component states ${index} in ${folderName}`
+		);
+		if (states.some((state) => typeof state !== 'string' || !state.trim())) {
+			throw new Error(
+				`designSystem.showcase.components[${index}].states in ${folderName} must contain non-empty strings`
+			);
+		}
+	}
+
+	for (const field of ['productProof', 'accessibility']) {
+		const proof = expectObject(showcase[field], `designSystem.showcase.${field} in ${folderName}`);
+		assertOnlyFields(
+			proof,
+			field === 'productProof' ? ['title', 'description', 'image'] : ['title', 'description'],
+			`designSystem.showcase.${field} in ${folderName}`
+		);
+		assertNonEmptyStrings(
+			proof,
+			['title', 'description'],
+			`designSystem.showcase.${field} in ${folderName}`
+		);
+
+		if (field === 'productProof' && proof.image !== undefined) {
+			const image = expectObject(
+				proof.image,
+				`designSystem.showcase.productProof.image in ${folderName}`
+			);
+			assertOnlyFields(
+				image,
+				['url', 'lightUrl', 'darkUrl', 'alt', 'caption'],
+				`product proof image in ${folderName}`
+			);
+			assertNonEmptyStrings(image, ['url'], `product proof image in ${folderName}`);
+			for (const urlField of ['url', 'lightUrl', 'darkUrl']) {
+				if (
+					image[urlField] !== undefined &&
+					(typeof image[urlField] !== 'string' || !isValidPublicUrl(image[urlField] as string))
+				) {
+					throw new Error(
+						`designSystem.showcase.productProof.image.${urlField} in ${folderName} must be a public URL or root path`
+					);
+				}
+			}
+			for (const optionalField of ['alt', 'caption']) {
+				if (
+					image[optionalField] !== undefined &&
+					(typeof image[optionalField] !== 'string' || !(image[optionalField] as string).trim())
+				) {
+					throw new Error(
+						`designSystem.showcase.productProof.image.${optionalField} in ${folderName} must be a non-empty string when provided`
+					);
+				}
+			}
+		}
+	}
+}
+
+function expectObject(value: unknown, label: string): Record<string, unknown> {
+	if (!value || typeof value !== 'object' || Array.isArray(value)) {
+		throw new Error(`${label} must be an object`);
+	}
+	return value as Record<string, unknown>;
+}
+
+function expectArray(value: unknown, min: number, max: number, label: string): unknown[] {
+	if (!Array.isArray(value) || value.length < min || value.length > max) {
+		throw new Error(`${label} must contain ${min} to ${max} items`);
+	}
+	return value;
+}
+
+function assertOnlyFields(value: Record<string, unknown>, fields: string[], label: string): void {
+	const allowed = new Set(fields);
+	const unexpected = Object.keys(value).find((field) => !allowed.has(field));
+	if (unexpected) throw new Error(`Unexpected field "${unexpected}" in ${label}`);
+}
+
+function assertNonEmptyStrings(
+	value: Record<string, unknown>,
+	fields: string[],
+	label: string
+): void {
+	for (const field of fields) {
+		if (typeof value[field] !== 'string' || !value[field].trim()) {
+			throw new Error(`${label}.${field} must be a non-empty string`);
+		}
 	}
 }
 

@@ -125,18 +125,30 @@ content/
 When a project follows `DESIGN_SYSTEM_CONTRACT.md` and the case study presents
 that work, `project.json` must include a public `designSystem` object with:
 
-| Field           | Type          | Required | Rationale                                                           |
-| --------------- | ------------- | :------: | ------------------------------------------------------------------- |
-| name            | string        |    ✔     | Human-readable name of the project's system.                        |
-| status          | enum          |    ✔     | `experimental`, `emerging`, `living`, or `maintenance`.             |
-| contractVersion | string        |    ✔     | Version of the portable contract adopted by the project.            |
-| summary         | string        |    ✔     | Concise explanation of what the system is designed to accomplish.   |
-| principles      | array<object> |    ✔     | Three to five objects containing `name` and `description`.          |
-| specimenUrl     | url           | Optional | Public system route, Storybook, or durable specimen when available. |
+| Field           | Type          | Required | Rationale                                                                          |
+| --------------- | ------------- | :------: | ---------------------------------------------------------------------------------- |
+| name            | string        |    ✔     | Human-readable name of the project's system.                                       |
+| status          | enum          |    ✔     | `experimental`, `emerging`, `living`, or `maintenance`.                            |
+| contractVersion | string        |    ✔     | Version of the portable contract adopted by the project.                           |
+| summary         | string        |    ✔     | Concise explanation of what the system is designed to accomplish.                  |
+| principles      | array<object> |    ✔     | Three to five objects containing `name` and `description`.                         |
+| specimenUrl     | url           | Optional | Public system route, Storybook, or durable specimen when available.                |
+| showcase        | object        | Optional | Curated palette, typography, component-state, product, and accessibility evidence. |
 
 Detailed token inventories, component states, and visual evidence should remain
 in the case-study content and project assets rather than expanding
 `project.json` into a second design-system document.
+
+When present, `showcase` contains:
+
+- `palette`: four to eight `{ name, value, role }` records using six-digit hex values.
+- `typography`: two to four `{ family, role, description }` records.
+- `components`: two to four `{ name, description, states }` records.
+- `productProof`: one `{ title, description }` decision-propagation example.
+- `accessibility`: one `{ title, description }` accessibility or resilience example.
+
+This is a case-study fingerprint, not a replacement for the source project’s
+specimen or design-system documentation.
 
 ---
 

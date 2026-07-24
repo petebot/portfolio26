@@ -1,6 +1,6 @@
 # Design System Contract
 
-**Version:** 1.0.0
+**Version:** 1.1.0
 
 **Last updated:** 2026-07-22
 
@@ -389,7 +389,7 @@ agent should produce the following handoff object:
 {
 	"name": "Project System Name",
 	"status": "living",
-	"contractVersion": "1.0.0",
+	"contractVersion": "1.1.0",
 	"summary": "What the system is designed to accomplish.",
 	"principles": [
 		{
@@ -405,6 +405,46 @@ agent should produce the following handoff object:
 			"description": "How this principle influences product decisions."
 		}
 	],
+	"showcase": {
+		"palette": [
+			{ "name": "Paper", "value": "#f7f3ed", "role": "Primary application background" },
+			{ "name": "Ink", "value": "#211d1a", "role": "Primary text and hierarchy" },
+			{ "name": "Interaction", "value": "#6846c7", "role": "Brand, focus, and general action" },
+			{ "name": "Surface", "value": "#eee8e1", "role": "Raised content surface" }
+		],
+		"typography": [
+			{
+				"family": "Display family",
+				"role": "Identity and headings",
+				"description": "Where and why the family is used."
+			},
+			{
+				"family": "Interface family",
+				"role": "Controls and reading",
+				"description": "Where and why the family is used."
+			}
+		],
+		"components": [
+			{
+				"name": "Button",
+				"description": "What the component proves about the system.",
+				"states": ["Primary", "Focus", "Disabled"]
+			},
+			{
+				"name": "Product card",
+				"description": "What the component proves about the system.",
+				"states": ["Default", "Long content", "Empty"]
+			}
+		],
+		"productProof": {
+			"title": "A system decision visible in the product",
+			"description": "How foundations and components propagate into a real experience."
+		},
+		"accessibility": {
+			"title": "An encoded accessibility or resilience outcome",
+			"description": "The concrete system behavior and what it protects."
+		}
+	},
 	"specimenUrl": null
 }
 ```
@@ -412,6 +452,23 @@ agent should produce the following handoff object:
 The handoff must contain three to five principles. `status` must be one of
 `experimental`, `emerging`, `living`, or `maintenance`. `specimenUrl` may be
 `null` when the system specimen is not publicly accessible.
+
+`showcase` is optional, but should be included when the receiving portfolio will
+render visual system evidence. It must remain curated rather than exhaustive:
+
+- `palette` contains four to eight six-digit hexadecimal colors with semantic
+  names and roles.
+- `typography` contains two to four family/role records. It describes the real
+  source-project typography without requiring the receiving portfolio to copy
+  licensed font files.
+- `components` contains two to four representative components and the meaningful
+  states demonstrated by the source specimen.
+- `productProof` explains one system decision propagating into the product.
+- `accessibility` explains one concrete accessibility or resilience behavior.
+
+The showcase must be traceable to the accompanying evidence package. It must not
+invent token values, component states, typefaces, or accessibility claims merely
+to make a case study appear complete.
 
 The project should accompany the object with:
 

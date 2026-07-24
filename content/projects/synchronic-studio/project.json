@@ -7,7 +7,9 @@
 	"intro": "Synchronic brings practice sessions, reflections, excursions, tasks, and gentle guidance into one private workspace built around the rhythms of an artist’s life.",
 	"heroImage": {
 		"url": "/images/projects/synchronic-home.png",
-		"alt": "Synchronic landing page with a dark studio-inspired interface and central invitation for artists"
+		"lightUrl": "/images/projects/synchronic-home-light.png",
+		"darkUrl": "/images/projects/synchronic-home-dark.png",
+		"alt": "Synchronic logged-in dashboard showing weekly creative practice summaries and progress modules"
 	},
 	"status": "published",
 	"createdAt": "2025-01-01T00:00:00.000Z",
@@ -47,6 +49,61 @@
 				"description": "Shared foundations keep Reflect, Practice, Roam, Tend, and Observe coherent without erasing their roles."
 			}
 		],
+		"showcase": {
+			"palette": [
+				{ "name": "Studio paper", "value": "#f7f3ed", "role": "Warm application background" },
+				{ "name": "Ink", "value": "#211d1a", "role": "Primary text and hierarchy" },
+				{ "name": "Interaction", "value": "#6846c7", "role": "Brand, focus, and general action" },
+				{ "name": "Observe", "value": "#596675", "role": "Observation and review" },
+				{ "name": "Roam", "value": "#a52269", "role": "Excursions and discovery" },
+				{ "name": "Tend", "value": "#08796f", "role": "Tasks and stewardship" },
+				{ "name": "Reflect", "value": "#75652d", "role": "Writing and reflection" },
+				{ "name": "Practice", "value": "#2458c8", "role": "Sessions and focused work" }
+			],
+			"typography": [
+				{
+					"family": "Behind the Nineties",
+					"role": "Brand serif",
+					"description": "Carries identity, display hierarchy, and reflective moments."
+				},
+				{
+					"family": "Flinders",
+					"role": "Brand sans",
+					"description": "Supports controls, labels, navigation, and sustained interface reading."
+				}
+			],
+			"components": [
+				{
+					"name": "Button",
+					"description": "Shared actions adapt to theme and optional practice accent while preserving native semantics.",
+					"states": ["Primary", "Secondary", "Ghost", "Danger", "Focus", "Disabled"]
+				},
+				{
+					"name": "Toggle",
+					"description": "Binary preferences pair a native checkbox with a visible state label.",
+					"states": ["Checked", "Unchecked", "Focus", "Disabled"]
+				},
+				{
+					"name": "Image uploader",
+					"description": "A resilient media flow communicates progress and recovery with text as well as color.",
+					"states": ["Empty", "Pending", "Uploading", "Failed", "Complete"]
+				}
+			],
+			"productProof": {
+				"title": "Five practices, one interaction grammar",
+				"description": "Each practice rebinds the semantic accent to its domain color while shared navigation, controls, forms, and state behavior remain consistent.",
+				"image": {
+					"url": "/images/projects/synchronic-system.png",
+					"lightUrl": "/images/projects/synchronic-system-light.png",
+					"darkUrl": "/images/projects/synchronic-system-dark.png",
+					"alt": "Synchronic logged-in Practice view showing session history, notes, and actions"
+				}
+			},
+			"accessibility": {
+				"title": "Contrast-safe semantics and visible focus",
+				"description": "Light and dark roles, three-pixel focus treatment, text-backed status, reduced motion, and 44px minimum targets are encoded as system foundations."
+			}
+		},
 		"specimenUrl": null
 	},
 	"repoUrl": "https://github.com/petebot/synchronic",

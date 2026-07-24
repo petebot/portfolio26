@@ -7,11 +7,11 @@
 	"intro": "Grande Burrito pairs a vivid public experience with a constrained Sanity studio that lets an owner update the information customers rely on every day.",
 	"heroImage": {
 		"url": "/images/projects/grande-burrito-home.png",
-		"alt": "Grande Burrito development interface using clearly labeled fictional content to test its responsive restaurant layout"
+		"alt": "Grande Burrito landing hero with a foil-wrapped burrito positioned over the oversized Grande wordmark"
 	},
 	"status": "published",
 	"createdAt": "2026-07-21T00:00:00.000Z",
-	"updatedAt": "2026-07-22T00:00:00.000Z",
+	"updatedAt": "2026-07-24T00:00:00.000Z",
 	"sortDate": "2026-07-22",
 	"featured": true,
 	"weight": 3,
@@ -43,6 +43,63 @@
 				"description": "Accessibility, responsive content, and service failure are first-class states."
 			}
 		],
+		"showcase": {
+			"palette": [
+				{ "name": "Sign ink", "value": "#17141c", "role": "Brand field, text, and focus" },
+				{ "name": "Sign tan", "value": "#a6855f", "role": "Observed storefront identity" },
+				{ "name": "Paper", "value": "#fff9ec", "role": "Primary sheet surface" },
+				{ "name": "Warm paper", "value": "#ead9bc", "role": "Subtle operational panels" },
+				{ "name": "Deep paper", "value": "#d3b483", "role": "Surface emphasis" },
+				{ "name": "Muted ink", "value": "#594a3e", "role": "Supporting copy" },
+				{ "name": "Rule", "value": "#aa9578", "role": "Menu dividers and boundaries" }
+			],
+			"typography": [
+				{
+					"family": "Anton",
+					"role": "Brand",
+					"description": "A self-hosted condensed face reserved for the sign-derived mark."
+				},
+				{
+					"family": "Georgia",
+					"role": "Display",
+					"description": "Brings printed-menu character to food-led headings."
+				},
+				{
+					"family": "System sans serif",
+					"role": "Body and controls",
+					"description": "Keeps hours, prices, actions, and operational copy fast to scan."
+				}
+			],
+			"components": [
+				{
+					"name": "BrandMark",
+					"description": "A responsive reconstruction anchors the identity while its provisional provenance stays explicit.",
+					"states": ["Responsive", "Accessible label", "Provisional"]
+				},
+				{
+					"name": "MenuItem",
+					"description": "Menu rows preserve pricing and availability detail without recreating the printed menu’s density.",
+					"states": ["Fixed price", "Market price", "Sold out", "Dietary", "Heat"]
+				},
+				{
+					"name": "HoursStatus",
+					"description": "Current status, next transition, today’s hours, and exceptions stay answerable together.",
+					"states": ["Open", "Closed", "Exception", "Live update"]
+				}
+			],
+			"productProof": {
+				"title": "Printed-menu rhythm becomes a scannable system",
+				"description": "Food categories, descriptions, and prices use a consistent editorial hierarchy that keeps a long made-to-order menu easy to scan.",
+				"image": {
+					"url": "/images/projects/grande-burrito-system.png",
+					"alt": "Grande Burrito menu showing typographic hierarchy across starters, burritos, descriptions, and prices"
+				}
+			},
+			"accessibility": {
+				"title": "Operational information survives degraded states",
+				"description": "The sign pair measures about 5.33:1, actions meet the 44px target, focus remains visible in forced colors, and status never relies on color alone."
+			}
+		},
 		"specimenUrl": null
 	},
 	"contentUri": "content/projects/grande-burrito/content.md"
