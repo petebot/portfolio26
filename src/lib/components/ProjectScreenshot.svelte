@@ -80,6 +80,32 @@
 		text-transform: capitalize;
 	}
 
+	.visual[data-project='driftline'] .fallback {
+		justify-items: start;
+		align-content: end;
+		background:
+			linear-gradient(90deg, transparent 0 24.85%, rgb(125 211 199 / 22%) 25% 25.15%, transparent 25.3% 100%),
+			linear-gradient(0deg, transparent 0 24.85%, rgb(125 211 199 / 16%) 25% 25.15%, transparent 25.3% 100%),
+			#0b2427;
+		color: #f2f5f2;
+		font-family: var(--font-family-mono);
+		font-size: clamp(2.4rem, 8vw, 7rem);
+		font-weight: 500;
+		letter-spacing: -0.07em;
+		text-transform: none;
+	}
+
+	.visual[data-project='driftline'] .fallback::before {
+		content: 'PORTFOLIO FLOW · MODEL AB-07';
+		position: absolute;
+		top: 1.25rem;
+		left: 1.25rem;
+		color: #7dd3c7;
+		font-size: 0.68rem;
+		font-weight: 500;
+		letter-spacing: 0.12em;
+	}
+
 	@media (prefers-reduced-motion: reduce) {
 		.visual img {
 			transition: none;

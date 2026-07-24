@@ -1,0 +1,102 @@
+{
+	"id": "proj-driftline",
+	"slug": "driftline",
+	"aliases": ["mission-control"],
+	"title": "Driftline",
+	"summary": "An ocean-research decision workspace that makes portfolio bottlenecks, ownership gaps, and next actions visible.",
+	"intro": "Driftline gives research teams a shared view of signals, evaluations, programs, and field operations—then routes attention to the decisions that will move the work forward.",
+	"status": "published",
+	"createdAt": "2026-07-24T00:00:00.000Z",
+	"updatedAt": "2026-07-24T00:00:00.000Z",
+	"sortDate": "2026-07-24",
+	"featured": true,
+	"weight": 1,
+	"category": "Research decision workspace",
+	"tags": ["product-design", "decision-support", "data-visualization"],
+	"tech": ["Next.js", "React", "TypeScript"],
+	"role": "Product strategy · Interaction design · Design system · Engineering",
+	"timeframe": { "label": "2026" },
+	"clientPublicName": "Aster Bay Institute (fictional)",
+	"liveUrl": "https://mission-control-lime-eta.vercel.app/",
+	"designSystem": {
+		"name": "Driftline",
+		"status": "living",
+		"contractVersion": "1.0.0",
+		"summary": "A portable product method expressed as a precise ocean-research instrument: calm enough to scan, explicit enough to act.",
+		"principles": [
+			{
+				"name": "Make flow visible",
+				"description": "Movement and blockage appear before secondary metrics so the state of the portfolio is immediately legible."
+			},
+			{
+				"name": "Explain the prompt",
+				"description": "Every intervention names its rule, evidence, age, owner, and the condition that will clear it."
+			},
+			{
+				"name": "Preserve human judgment",
+				"description": "The system routes attention while people retain responsibility for deciding, delegating, and offering support."
+			},
+			{
+				"name": "Earn the density",
+				"description": "Compact operational information stays readable, structured, keyboard-accessible, and resilient at smaller viewports."
+			}
+		],
+		"showcase": {
+			"palette": [
+				{ "name": "Deep ocean", "value": "#0b2427", "role": "Navigation and instrument field" },
+				{ "name": "Paper", "value": "#f2f5f2", "role": "Application canvas" },
+				{ "name": "Card", "value": "#fbfcfa", "role": "Raised decisions and controls" },
+				{ "name": "Mint", "value": "#7dd3c7", "role": "Healthy movement and primary action" },
+				{ "name": "Amber", "value": "#e8a84e", "role": "Threshold approaching" },
+				{ "name": "Critical", "value": "#c76051", "role": "Intervention required" },
+				{ "name": "Blue", "value": "#6f9ee8", "role": "Program-stage distinction" },
+				{ "name": "Rule", "value": "#cbd7d2", "role": "Boundaries and quiet structure" }
+			],
+			"typography": [
+				{
+					"family": "Geist",
+					"role": "Interface and display",
+					"description": "A compact sans serif carries dense operational hierarchy without making the workspace feel administrative."
+				},
+				{
+					"family": "Geist Mono",
+					"role": "Instrument and metadata",
+					"description": "Rules, identifiers, stages, timestamps, and system status read like a precise research instrument."
+				}
+			],
+			"components": [
+				{
+					"name": "Flow stage",
+					"description": "A lifecycle node combines volume, stall count, median age, and filter state without hiding the underlying records.",
+					"states": ["Moving", "Bottleneck", "Selected", "Keyboard focus"]
+				},
+				{
+					"name": "Attention card",
+					"description": "A decision unit exposes severity, reason, owner, elapsed time, evidence, and one contextual next action.",
+					"states": ["Watch", "Critical", "Selected", "Resolved"]
+				},
+				{
+					"name": "Role lens",
+					"description": "The same portfolio reorganizes around four explicit responsibility boundaries without changing the underlying work.",
+					"states": ["Director", "Steward", "Expedition lead", "Research specialist"]
+				},
+				{
+					"name": "Portfolio record",
+					"description": "Signals, evaluations, programs, and operations share one searchable record grammar while retaining stage-specific evidence.",
+					"states": ["Signal", "Evaluation", "Program", "Operation"]
+				}
+			],
+			"productProof": {
+				"title": "The handoff becomes the interface",
+				"description": "Lifecycle flow, attention queues, and role lenses connect portfolio state to a specific person, explanation, and next action."
+			},
+			"accessibility": {
+				"title": "Operational density remains navigable",
+				"description": "Native controls, visible labels, pressed states, 44px targets, reduced motion, forced-color support, and 200% reflow are treated as system constraints."
+			}
+		},
+		"specimenUrl": "https://mission-control-lime-eta.vercel.app/system"
+	},
+	"contentUri": "content/projects/driftline/content.md",
+	"internalNotes": "The public demo explicitly identifies its organization, people, and portfolio data as fictional. Confirm a source repository URL before publishing one."
+}
