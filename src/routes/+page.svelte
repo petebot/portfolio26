@@ -326,8 +326,13 @@
 
 	.project-list {
 		--card-lock-height: clamp(32rem, 66svh, 44rem);
+	}
 
-		padding-bottom: clamp(12rem, 34svh, 28rem);
+	.project-list::after {
+		content: '';
+		display: block;
+		height: clamp(28rem, 75svh, 56rem);
+		pointer-events: none;
 	}
 
 	.project-list > li {
@@ -624,8 +629,8 @@
 			grid-template-rows: auto;
 		}
 
-		.project-list {
-			padding-bottom: 0;
+		.project-list::after {
+			display: none;
 		}
 
 		.project-list > li {
