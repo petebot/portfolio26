@@ -92,56 +92,61 @@
 				});
 
 				const reel = root.querySelector<HTMLElement>('[data-scroll-reel]');
-				const reelFrames = gsap.utils.toArray<HTMLElement>('[data-reel-frame]');
+				const portraitVideo = root.querySelector<HTMLVideoElement>('[data-portrait-video]');
 				const reelProgress = root.querySelector<HTMLElement>('[data-reel-progress]');
 
-				if (reel && reelFrames.length > 1 && reelProgress) {
+				if (reel && portraitVideo && reelProgress) {
+					const portraitFps = 30;
+					let portraitProgress = 0;
+
+					portraitVideo.pause();
+
+					const syncPortraitFrame = (progress: number) => {
+						portraitProgress = progress;
+
+						if (!Number.isFinite(portraitVideo.duration) || portraitVideo.duration <= 0) return;
+
+						const finalFrameTime = Math.max(0, portraitVideo.duration - 1 / portraitFps);
+						const frame = Math.round(progress * finalFrameTime * portraitFps);
+						const frameTime = frame / portraitFps;
+
+						if (Math.abs(portraitVideo.currentTime - frameTime) > 1 / (portraitFps * 2)) {
+							portraitVideo.currentTime = frameTime;
+						}
+					};
+
+					portraitVideo.addEventListener(
+						'loadedmetadata',
+						() => syncPortraitFrame(portraitProgress),
+						{ once: true }
+					);
+
 					const reelTimeline = gsap.timeline({
 						scrollTrigger: {
 							trigger: reel,
 							start: 'top top',
 							end: 'bottom bottom',
-							scrub: 0.45
+							scrub: true,
+							onUpdate: (self) => syncPortraitFrame(self.progress),
+							onRefresh: (self) => syncPortraitFrame(self.progress)
 						}
 					});
 
-					reelTimeline.to(
-						reelProgress,
-						{ scaleX: 1, duration: reelFrames.length, ease: 'none' },
-						0
-					);
-
-					reelFrames.forEach((frame, index) => {
-						const image = frame.querySelector('img');
-						const segmentStart = index;
-
-						if (image) {
-							reelTimeline.fromTo(
-								image,
-								{
-									scale: 1.065,
-									xPercent: index % 2 === 0 ? 1.5 : -1.5
-								},
-								{ scale: 1.015, xPercent: 0, duration: 1, ease: 'none' },
-								segmentStart
-							);
-						}
-
-						if (index > 0) {
-							reelTimeline
-								.to(
-									reelFrames[index - 1],
-									{ opacity: 0, duration: 0.16, ease: 'none' },
-									segmentStart
-								)
-								.fromTo(
-									frame,
-									{ opacity: 0 },
-									{ opacity: 1, duration: 0.16, ease: 'none' },
-									segmentStart
-								);
-						}
-					});
+					reelTimeline
+						.to(reelProgress, { scaleX: 1, duration: 1, ease: 'none' }, 0)
+						.fromTo(
+							portraitVideo,
+							{ scale: 1.075, xPercent: -1 },
+							{ scale: 1.015, xPercent: 0, duration: 1, ease: 'none' },
+							0
+						)
+						.fromTo(
+							portraitVideo,
+							{ opacity: 0 },
+							{ opacity: 1, duration: 0.08, ease: 'power2.out' },
+							0
+						)
+						.to(portraitVideo, { opacity: 0, duration: 0.08, ease: 'power2.in' }, 0.92);
 				}
 
 				const blinds = gsap.utils.toArray<HTMLElement>('.color-bridge__blind');
@@ -190,6 +195,7 @@
 			ScrollTrigger.refresh();
 
 			dispose = () => {
+				root.querySelector<HTMLVideoElement>('[data-portrait-video]')?.pause();
 				context.revert();
 				root.removeAttribute('data-motion');
 			};
