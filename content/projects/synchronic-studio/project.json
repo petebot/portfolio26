@@ -22,6 +22,7 @@
 	"tech": ["SvelteKit", "Tauri", "Supabase", "TypeScript"],
 	"role": "Product design · Creative direction · Engineering",
 	"timeframe": { "label": "August 2025—Now" },
+	"liveUrl": "https://synchronic.studio/",
 	"designSystem": {
 		"name": "Synchronic Studio",
 		"status": "emerging",

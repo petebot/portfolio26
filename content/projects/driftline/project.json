@@ -15,7 +15,7 @@
 	},
 	"status": "published",
 	"createdAt": "2026-07-24T00:00:00.000Z",
-	"updatedAt": "2026-07-24T00:00:00.000Z",
+	"updatedAt": "2026-07-27T00:00:00.000Z",
 	"sortDate": "2026-07-24",
 	"featured": true,
 	"weight": 1,
@@ -25,6 +25,7 @@
 	"role": "Product strategy · Research synthesis · Interaction design · Design system · Engineering",
 	"timeframe": { "label": "2026" },
 	"liveUrl": "https://mission-control-lime-eta.vercel.app/",
+	"repoUrl": "https://github.com/petebot/driftline",
 	"designSystem": {
 		"name": "Driftline",
 		"status": "living",
