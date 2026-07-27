@@ -227,6 +227,59 @@
 					{/if}
 				</div>
 			</section>
+
+			{#if data.project.startingPoint?.sectionHeading === section.heading}
+				{@const startingPoint = data.project.startingPoint}
+				<aside class="starting-point" aria-labelledby={`starting-point-${data.project.slug}`}>
+					<header class="starting-point__header">
+						<p>{startingPoint.eyebrow}</p>
+						<a
+							href={startingPoint.url}
+							rel="noopener noreferrer"
+							target="_blank"
+							aria-label={`${startingPoint.linkLabel} (opens in a new tab)`}
+						>
+							{startingPoint.linkLabel} <span aria-hidden="true">↗</span>
+						</a>
+					</header>
+
+					<div class="starting-point__intro">
+						<span>Starting point</span>
+						<h3 id={`starting-point-${data.project.slug}`}>{startingPoint.title}</h3>
+						<p>{startingPoint.description}</p>
+					</div>
+
+					<figure class="starting-point__visual">
+						<ProjectScreenshot
+							slug={`${data.project.slug}-original`}
+							image={startingPoint.image}
+							frame="browser"
+							frameLabel="21gramsny.com · April 2023"
+							cursorLabel="Archived original"
+						/>
+						<figcaption>{startingPoint.image.caption}</figcaption>
+					</figure>
+
+					<div class="starting-point__comparison" aria-label="Original and remake comparison">
+						<div>
+							<h4>Preserved</h4>
+							<ul>
+								{#each startingPoint.preserved as item}
+									<li>{item}</li>
+								{/each}
+							</ul>
+						</div>
+						<div>
+							<h4>Reworked</h4>
+							<ul>
+								{#each startingPoint.reworked as item}
+									<li>{item}</li>
+								{/each}
+							</ul>
+						</div>
+					</div>
+				</aside>
+			{/if}
 		{/each}
 	</div>
 
@@ -523,6 +576,134 @@
 		color: var(--color-accent);
 	}
 
+	.starting-point {
+		margin-block: clamp(1rem, 3vw, 3rem) clamp(4rem, 8vw, 7rem);
+		border: var(--border-width-structure) solid var(--color-border);
+		background: var(--color-surface-muted);
+	}
+
+	.starting-point__header {
+		display: flex;
+		min-height: var(--target-size-min);
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
+		padding-inline: clamp(1rem, 2vw, 1.5rem);
+		border-bottom: var(--border-width-structure) solid var(--color-border);
+		font-family: var(--font-family-mono);
+		font-size: var(--font-size-label);
+		letter-spacing: var(--letter-spacing-label);
+		text-transform: uppercase;
+	}
+
+	.starting-point__header p {
+		margin: 0;
+		color: var(--color-accent);
+	}
+
+	.starting-point__header a {
+		display: inline-flex;
+		min-height: var(--target-size-min);
+		align-items: center;
+		gap: 0.4rem;
+		color: var(--color-text);
+		text-decoration: none;
+	}
+
+	.starting-point__header a:hover,
+	.starting-point__header a:focus-visible {
+		color: var(--color-accent);
+		background: transparent;
+	}
+
+	.starting-point__intro {
+		display: grid;
+		grid-template-columns: 4rem minmax(12rem, 0.8fr) minmax(0, 1.4fr);
+		gap: clamp(1.5rem, 4vw, 5rem);
+		padding: clamp(2rem, 5vw, 4.5rem) clamp(1rem, 2.5vw, 2.25rem);
+	}
+
+	.starting-point__intro > span {
+		color: var(--color-accent);
+		font-family: var(--font-family-mono);
+		font-size: var(--font-size-label);
+		letter-spacing: var(--letter-spacing-label);
+		text-transform: uppercase;
+	}
+
+	.starting-point__intro h3 {
+		margin: 0;
+		font-size: clamp(2rem, 4vw, 4rem);
+		line-height: 0.96;
+		letter-spacing: -0.055em;
+	}
+
+	.starting-point__intro p {
+		max-width: 46rem;
+		margin: 0;
+		color: var(--color-text-muted);
+		font-size: clamp(1rem, 1.45vw, 1.22rem);
+	}
+
+	.starting-point__visual {
+		width: min(calc(100% - clamp(2rem, 5vw, 4.5rem)), 72rem);
+		margin: 0 auto;
+	}
+
+	.starting-point__visual figcaption {
+		max-width: 52rem;
+		margin-top: 0.8rem;
+		color: var(--color-text-muted);
+		font-family: var(--font-family-mono);
+		font-size: var(--font-size-label);
+		line-height: 1.5;
+	}
+
+	.starting-point__comparison {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 1px;
+		margin-top: clamp(2rem, 5vw, 4.5rem);
+		border-top: var(--border-width-structure) solid var(--color-border);
+		background: var(--color-border);
+	}
+
+	.starting-point__comparison > div {
+		padding: clamp(1.25rem, 2.5vw, 2rem);
+		background: var(--color-bg);
+	}
+
+	.starting-point__comparison h4 {
+		margin: 0 0 1.5rem;
+		color: var(--color-accent);
+		font-family: var(--font-family-mono);
+		font-size: var(--font-size-label);
+		font-weight: inherit;
+		letter-spacing: var(--letter-spacing-label);
+		text-transform: uppercase;
+	}
+
+	.starting-point__comparison ul {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		border-top: 1px solid var(--color-border);
+	}
+
+	.starting-point__comparison li {
+		position: relative;
+		margin: 0;
+		padding: 0.85rem 0 0.85rem 1.5rem;
+		border-bottom: 1px solid var(--color-border);
+	}
+
+	.starting-point__comparison li::before {
+		content: '↳';
+		position: absolute;
+		left: 0;
+		color: var(--color-accent);
+	}
+
 	.next-project {
 		position: relative;
 		display: block;
@@ -712,6 +893,14 @@
 		.section-content {
 			grid-column: 2;
 		}
+
+		.starting-point__intro {
+			grid-template-columns: 2.5rem 1fr;
+		}
+
+		.starting-point__intro p {
+			grid-column: 2;
+		}
 	}
 
 	@media (max-width: 40rem) {
@@ -733,6 +922,33 @@
 
 		.section-content {
 			grid-column: auto;
+		}
+
+		.starting-point__header {
+			align-items: flex-start;
+			padding-block: 0.75rem;
+		}
+
+		.starting-point__header p {
+			max-width: 10rem;
+		}
+
+		.starting-point__header a {
+			max-width: 11rem;
+			justify-content: flex-end;
+			text-align: right;
+		}
+
+		.starting-point__intro {
+			grid-template-columns: 1fr;
+		}
+
+		.starting-point__intro p {
+			grid-column: auto;
+		}
+
+		.starting-point__comparison {
+			grid-template-columns: 1fr;
 		}
 
 		.project-action {

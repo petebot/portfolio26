@@ -11,7 +11,7 @@
 	},
 	"status": "published",
 	"createdAt": "2025-01-01T00:00:00.000Z",
-	"updatedAt": "2026-07-24T00:00:00.000Z",
+	"updatedAt": "2026-07-27T00:00:00.000Z",
 	"sortDate": "2024-01-12",
 	"featured": false,
 	"weight": 4,
@@ -21,6 +21,31 @@
 	"role": "Director of Experience (original concept) · Independent design and engineering (remake)",
 	"timeframe": { "label": "2023—2024 remake" },
 	"liveUrl": "https://21grams.vercel.app/",
+	"startingPoint": {
+		"sectionHeading": "The original site and the remake",
+		"eyebrow": "Original public site · archived April 2023",
+		"title": "The version I was responding to",
+		"description": "The public site already established the Essence-and-Craft world, spatial structure, geometry, and agency voice. My remake preserved that foundation while revisiting how the experience moved, oriented visitors, and supported different ways of navigating.",
+		"url": "https://web.archive.org/web/20230423085138/https://21gramsny.com/insights.html",
+		"linkLabel": "Explore the archived original",
+		"image": {
+			"url": "/images/projects/21grams-original-2023.png",
+			"alt": "Archived 21GRAMS public homepage from April 2023, divided into light Essence and dark Craft fields around the agency wordmark",
+			"caption": "Original 21GRAMS public site, implemented by an external development team and preserved here through the Internet Archive."
+		},
+		"preserved": [
+			"Essence-and-Craft concept",
+			"Agency identity and copy",
+			"Platonic-solid geometry",
+			"Spatial page structure"
+		],
+		"reworked": [
+			"Continuous route transitions",
+			"Complete global navigation",
+			"Visible directional controls",
+			"Keyboard and reduced-motion support"
+		]
+	},
 	"designSystem": {
 		"name": "21GRAMS Rule of 21",
 		"status": "emerging",
