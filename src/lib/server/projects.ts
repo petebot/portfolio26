@@ -87,6 +87,18 @@ export interface Timeframe {
 	label?: string;
 }
 
+export interface ProjectStartingPoint {
+	sectionHeading: string;
+	eyebrow: string;
+	title: string;
+	description: string;
+	url: string;
+	linkLabel: string;
+	image: ImageObject;
+	preserved: string[];
+	reworked: string[];
+}
+
 export interface ProjectPublic {
 	slug: string;
 	title: string;
@@ -110,6 +122,7 @@ export interface ProjectPublic {
 	canonical?: string;
 	seo?: Record<string, unknown>;
 	designSystem?: DesignSystemSummary;
+	startingPoint?: ProjectStartingPoint;
 }
 
 export interface ProjectInternal {
@@ -175,7 +188,8 @@ const PUBLIC_FIELDS = [
 	'repoUrl',
 	'canonical',
 	'seo',
-	'designSystem'
+	'designSystem',
+	'startingPoint'
 ] as const;
 
 const INTERNAL_FIELDS = [
@@ -348,6 +362,57 @@ function validateRecord(raw: RawProjectRecord, folderName: string): void {
 
 	if (raw.designSystem !== undefined) {
 		validateDesignSystem(raw.designSystem, folderName);
+	}
+
+	if (raw.startingPoint !== undefined) {
+		validateStartingPoint(raw.startingPoint, folderName);
+	}
+}
+
+function validateStartingPoint(value: unknown, folderName: string): void {
+	const startingPoint = expectObject(value, `startingPoint in ${folderName}`);
+	assertOnlyFields(
+		startingPoint,
+		[
+			'sectionHeading',
+			'eyebrow',
+			'title',
+			'description',
+			'url',
+			'linkLabel',
+			'image',
+			'preserved',
+			'reworked'
+		],
+		`startingPoint in ${folderName}`
+	);
+	assertNonEmptyStrings(
+		startingPoint,
+		['sectionHeading', 'eyebrow', 'title', 'description', 'url', 'linkLabel'],
+		`startingPoint in ${folderName}`
+	);
+
+	if (!isValidPublicUrl(startingPoint.url as string)) {
+		throw new Error(`startingPoint.url in ${folderName} must be a public URL or root path`);
+	}
+
+	const image = expectObject(startingPoint.image, `startingPoint.image in ${folderName}`);
+	assertOnlyFields(image, ['url', 'alt', 'caption'], `startingPoint.image in ${folderName}`);
+	assertNonEmptyStrings(image, ['url', 'alt', 'caption'], `startingPoint.image in ${folderName}`);
+	if (!isValidPublicUrl(image.url as string)) {
+		throw new Error(`startingPoint.image.url in ${folderName} must be a public URL or root path`);
+	}
+
+	for (const field of ['preserved', 'reworked']) {
+		const items = expectArray(
+			startingPoint[field],
+			1,
+			8,
+			`startingPoint.${field} in ${folderName}`
+		);
+		if (items.some((item) => typeof item !== 'string' || !item.trim())) {
+			throw new Error(`startingPoint.${field} in ${folderName} must contain non-empty strings`);
+		}
 	}
 }
 
