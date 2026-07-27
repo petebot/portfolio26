@@ -35,8 +35,15 @@ export const load: PageServerLoad = async ({ params }) => {
 		error(404, 'Project not found');
 	}
 
+	const project = projects[projectIndex];
+	const nextProject = projects[(projectIndex + 1) % projects.length];
+	const moreProjects = projects
+		.filter(({ slug }) => slug !== project.slug && slug !== nextProject.slug)
+		.slice(0, 8);
+
 	return {
-		project: projects[projectIndex],
-		nextProject: projects[(projectIndex + 1) % projects.length]
+		project,
+		nextProject,
+		moreProjects
 	};
 };

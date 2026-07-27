@@ -49,12 +49,23 @@
 		return sections;
 	}
 
+	function displayHost(url?: string): string | undefined {
+		if (!url) return undefined;
+
+		try {
+			return new URL(url).hostname.replace(/^www\./, '');
+		} catch {
+			return undefined;
+		}
+	}
+
 	const sections = $derived(parseSections(data.project.body ?? ''));
 	const homeUrl = absoluteUrl('/');
 	const canonicalUrl = $derived(
 		data.project.canonical ?? absoluteUrl(`/projects/${data.project.slug}`)
 	);
 	const pageTitle = $derived(`${data.project.title} — ${SITE.name}`);
+	const liveSiteHost = $derived(displayHost(data.project.liveUrl));
 	const structuredData = $derived({
 		'@context': 'https://schema.org',
 		'@graph': [
@@ -172,9 +183,31 @@
 		</dl>
 	</header>
 
-	<div class="visual-wrap">
-		<ProjectScreenshot slug={data.project.slug} image={data.project.heroImage} />
-	</div>
+	<figure class="visual-wrap">
+		<figcaption class="visual-rail">
+			<div class="visual-caption">
+				<span>Product screenshot</span>
+				<span>Static preview</span>
+			</div>
+			{#if data.project.liveUrl}
+				<a
+					href={data.project.liveUrl}
+					rel="noopener noreferrer"
+					target="_blank"
+					aria-label={`Open the ${data.project.title} live site (opens in a new tab)`}
+				>
+					Open live site <span aria-hidden="true">↗</span>
+				</a>
+			{/if}
+		</figcaption>
+		<ProjectScreenshot
+			slug={data.project.slug}
+			image={data.project.heroImage}
+			frame="browser"
+			frameLabel={liveSiteHost ?? data.project.title}
+			cursorLabel="Static preview"
+		/>
+	</figure>
 
 	<div class="case-study">
 		{#each sections as section, index}
@@ -206,13 +239,35 @@
 		<strong>{data.nextProject.title}</strong>
 		<i aria-hidden="true">↗</i>
 	</a>
+
+	{#if data.moreProjects.length > 0}
+		<section class="more-projects" aria-labelledby="more-projects-title">
+			<header>
+				<h2 id="more-projects-title">More selected work</h2>
+				<p>Elsewhere in the portfolio</p>
+			</header>
+			<div class="more-projects__grid" data-count={Math.min(data.moreProjects.length, 4)}>
+				{#each data.moreProjects as project}
+					<a class="more-project" href={`/projects/${project.slug}`}>
+						<span class="more-project__category">{project.category}</span>
+						<strong>{project.title}</strong>
+						<span class="more-project__footer">
+							<span>{project.timeframe?.label ?? project.sortDate}</span>
+							<i aria-hidden="true">↗</i>
+						</span>
+					</a>
+				{/each}
+			</div>
+		</section>
+	{/if}
 </article>
 
 <style>
 	.project-hero,
 	.visual-wrap,
 	.case-study,
-	.next-project {
+	.next-project,
+	.more-projects {
 		width: min(100% - 2rem, 94rem);
 		margin-inline: auto;
 	}
@@ -360,7 +415,55 @@
 	}
 
 	.visual-wrap {
-		width: min(100%, 110rem);
+		width: min(calc(100% - clamp(2rem, 8vw, 8rem)), 72rem);
+		margin-bottom: 0;
+	}
+
+	.visual-rail {
+		display: flex;
+		min-height: var(--target-size-min);
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
+		border-top: var(--border-width-structure) solid var(--color-border);
+		font-family: var(--font-family-mono);
+		font-size: var(--font-size-label);
+		letter-spacing: var(--letter-spacing-label);
+		text-transform: uppercase;
+	}
+
+	.visual-caption {
+		display: flex;
+		align-items: center;
+		gap: 0.65rem;
+	}
+
+	.visual-caption span:first-child {
+		color: var(--color-accent);
+	}
+
+	.visual-caption span:last-child {
+		color: var(--color-text-muted);
+	}
+
+	.visual-caption span:last-child::before {
+		content: '·';
+		margin-right: 0.65rem;
+	}
+
+	.visual-rail a {
+		display: inline-flex;
+		min-height: var(--target-size-min);
+		align-items: center;
+		gap: 0.4rem;
+		color: var(--color-text);
+		text-decoration: none;
+	}
+
+	.visual-rail a:hover,
+	.visual-rail a:focus-visible {
+		color: var(--color-accent);
+		background: transparent;
 	}
 
 	.case-study {
@@ -459,6 +562,136 @@
 		transform: translate(0.3rem, -0.3rem);
 	}
 
+	.more-projects {
+		padding-bottom: clamp(4rem, 8vw, 7rem);
+	}
+
+	.more-projects > header {
+		display: flex;
+		min-height: var(--target-size-min);
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
+		border-top: var(--border-width-structure) solid var(--color-border);
+		font-family: var(--font-family-mono);
+		font-size: var(--font-size-label);
+		letter-spacing: var(--letter-spacing-label);
+		text-transform: uppercase;
+	}
+
+	.more-projects h2,
+	.more-projects > header p {
+		margin: 0;
+		font: inherit;
+		letter-spacing: inherit;
+		text-transform: inherit;
+	}
+
+	.more-projects h2 {
+		color: var(--color-accent);
+	}
+
+	.more-projects > header p,
+	.more-project__category,
+	.more-project__footer {
+		color: var(--color-text-muted);
+	}
+
+	.more-projects__grid {
+		display: grid;
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+		gap: 1px;
+		border-block: 1px solid var(--color-border);
+		background: var(--color-border);
+	}
+
+	.more-projects__grid[data-count='1'] {
+		grid-template-columns: minmax(0, 32rem);
+	}
+
+	.more-projects__grid[data-count='2'] {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+
+	.more-projects__grid[data-count='3'] {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+
+	.more-project {
+		display: flex;
+		min-height: clamp(10rem, 14vw, 13rem);
+		flex-direction: column;
+		padding: clamp(1rem, 2vw, 1.4rem);
+		background: var(--color-bg);
+		color: var(--color-text);
+		text-decoration: none;
+		transition:
+			background-color 160ms ease,
+			color 160ms ease;
+	}
+
+	.more-project__category,
+	.more-project__footer {
+		font-family: var(--font-family-mono);
+		font-size: var(--font-size-label);
+		letter-spacing: var(--letter-spacing-label);
+		text-transform: uppercase;
+	}
+
+	.more-project strong {
+		margin-top: auto;
+		font-size: clamp(1.5rem, 2.4vw, 2.5rem);
+		line-height: 0.98;
+		letter-spacing: -0.045em;
+	}
+
+	.more-project__footer {
+		display: flex;
+		align-items: flex-end;
+		justify-content: space-between;
+		gap: 1rem;
+		margin-top: 1.5rem;
+	}
+
+	.more-project__footer i {
+		color: var(--color-text);
+		font-size: 1.25rem;
+		font-style: normal;
+		line-height: 1;
+		transition: transform 160ms ease;
+	}
+
+	.more-project:hover,
+	.more-project:focus-visible {
+		background: var(--color-text);
+		color: var(--color-bg);
+	}
+
+	.more-project:hover .more-project__category,
+	.more-project:hover .more-project__footer,
+	.more-project:hover .more-project__footer i,
+	.more-project:focus-visible .more-project__category,
+	.more-project:focus-visible .more-project__footer,
+	.more-project:focus-visible .more-project__footer i {
+		color: var(--color-bg);
+	}
+
+	.more-project:hover .more-project__footer i,
+	.more-project:focus-visible .more-project__footer i {
+		transform: translate(0.2rem, -0.2rem);
+	}
+
+	@media (max-width: 64rem) {
+		.more-projects__grid,
+		.more-projects__grid[data-count='3'] {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+
+		.more-projects__grid[data-count='1'] {
+			grid-template-columns: minmax(0, 32rem);
+		}
+	}
+
 	@media (max-width: 48rem) {
 		.project-actions {
 			grid-template-columns: 1fr;
@@ -485,7 +718,8 @@
 		.project-hero,
 		.visual-wrap,
 		.case-study,
-		.next-project {
+		.next-project,
+		.more-projects {
 			width: min(100% - 1.25rem, 94rem);
 		}
 
@@ -504,6 +738,38 @@
 		.project-action {
 			min-height: 7.5rem;
 		}
+
+		.visual-rail {
+			align-items: flex-start;
+			padding-block: 0.55rem;
+		}
+
+		.visual-caption {
+			min-height: var(--target-size-min);
+			flex-direction: column;
+			align-items: flex-start;
+			justify-content: center;
+			gap: 0.1rem;
+		}
+
+		.visual-caption span:last-child::before {
+			display: none;
+		}
+
+		.more-projects > header {
+			align-items: flex-start;
+			padding-block: 0.8rem;
+		}
+
+		.more-projects > header p {
+			max-width: 11rem;
+			text-align: right;
+		}
+
+		.more-projects__grid,
+		.more-projects__grid[data-count] {
+			grid-template-columns: 1fr;
+		}
 	}
 
 	@media (prefers-reduced-motion: reduce) {
@@ -515,6 +781,11 @@
 		.project-action:hover,
 		.project-action:focus-visible {
 			transform: none;
+		}
+
+		.more-project,
+		.more-project__footer i {
+			transition-duration: 0ms;
 		}
 	}
 </style>
