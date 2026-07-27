@@ -76,7 +76,7 @@
 				},
 				isPartOf: { '@id': `${homeUrl}#website` },
 				mainEntityOfPage: canonicalUrl,
-				sameAs: data.project.liveUrl ?? undefined
+				sameAs: [data.project.liveUrl, data.project.repoUrl].filter(Boolean)
 			},
 			{
 				'@type': 'BreadcrumbList',
@@ -125,6 +125,37 @@
 		<h1>{data.project.title}</h1>
 		<p class="intro">{data.project.intro}</p>
 
+		{#if data.project.liveUrl || data.project.repoUrl}
+			<nav class="project-actions" aria-label={`${data.project.title} project links`}>
+				{#if data.project.liveUrl}
+					<a
+						class="project-action project-action--live"
+						href={data.project.liveUrl}
+						rel="noopener noreferrer"
+						target="_blank"
+						aria-label={`Visit the ${data.project.title} live site (opens in a new tab)`}
+					>
+						<span class="project-action__label">Hosted project</span>
+						<strong>Visit the live site</strong>
+						<i aria-hidden="true">↗</i>
+					</a>
+				{/if}
+				{#if data.project.repoUrl}
+					<a
+						class="project-action project-action--repo"
+						href={data.project.repoUrl}
+						rel="noopener noreferrer"
+						target="_blank"
+						aria-label={`View the ${data.project.title} repository (opens in a new tab)`}
+					>
+						<span class="project-action__label">Source code</span>
+						<strong>View the repository</strong>
+						<i aria-hidden="true">↗</i>
+					</a>
+				{/if}
+			</nav>
+		{/if}
+
 		<dl>
 			<div>
 				<dt>Role</dt>
@@ -170,23 +201,6 @@
 		<DesignSystemStory system={data.project.designSystem} />
 	{/if}
 
-	{#if data.project.liveUrl || data.project.repoUrl}
-		<div class="project-links">
-			{#if data.project.liveUrl}
-				<div>
-					<span>Experience</span>
-					<a href={data.project.liveUrl} rel="noopener" target="_blank">Visit the live project ↗</a>
-				</div>
-			{/if}
-			{#if data.project.repoUrl}
-				<div>
-					<span>Source</span>
-					<a href={data.project.repoUrl} rel="noopener" target="_blank">View the repository ↗</a>
-				</div>
-			{/if}
-		</div>
-	{/if}
-
 	<a class="next-project" href={`/projects/${data.nextProject.slug}`}>
 		<span>Next project</span>
 		<strong>{data.nextProject.title}</strong>
@@ -198,7 +212,6 @@
 	.project-hero,
 	.visual-wrap,
 	.case-study,
-	.project-links,
 	.next-project {
 		width: min(100% - 2rem, 94rem);
 		margin-inline: auto;
@@ -212,7 +225,7 @@
 	.category,
 	dt,
 	.section-index,
-	.project-links span,
+	.project-action__label,
 	.next-project > span {
 		font-family: var(--font-family-mono);
 		font-size: var(--font-size-label);
@@ -252,6 +265,79 @@
 		font-size: clamp(1.3rem, 2.4vw, 2.25rem);
 		line-height: 1.16;
 		letter-spacing: -0.035em;
+	}
+
+	.project-actions {
+		display: grid;
+		grid-template-columns: minmax(0, 1.45fr) minmax(17rem, 0.75fr);
+		gap: clamp(0.75rem, 1.5vw, 1.25rem);
+		margin-block: clamp(2.5rem, 5vw, 4.5rem);
+	}
+
+	.project-actions:has(.project-action:only-child) {
+		grid-template-columns: minmax(0, 1fr);
+	}
+
+	.project-action {
+		position: relative;
+		display: flex;
+		min-height: clamp(8rem, 13vw, 11rem);
+		flex-direction: column;
+		justify-content: space-between;
+		gap: 2rem;
+		padding: clamp(1.25rem, 2.5vw, 2rem);
+		border: var(--border-width-structure) solid var(--color-border);
+		color: var(--color-text);
+		text-decoration: none;
+		transition:
+			background-color 180ms ease,
+			border-color 180ms ease,
+			color 180ms ease,
+			transform 180ms ease;
+	}
+
+	.project-action--live {
+		border-color: var(--color-accent);
+		background: var(--color-accent);
+		color: var(--color-accent-on);
+	}
+
+	.project-action--repo {
+		background: var(--color-surface-muted);
+	}
+
+	.project-action__label {
+		padding-right: 3rem;
+		opacity: 0.78;
+	}
+
+	.project-action strong {
+		max-width: 80%;
+		font-size: clamp(1.55rem, 3.2vw, 2.8rem);
+		line-height: 0.98;
+		letter-spacing: -0.045em;
+	}
+
+	.project-action i {
+		position: absolute;
+		top: clamp(1.15rem, 2.5vw, 1.9rem);
+		right: clamp(1.15rem, 2.5vw, 1.9rem);
+		font-size: clamp(1.4rem, 2.5vw, 2rem);
+		font-style: normal;
+		transition: transform 180ms ease;
+	}
+
+	.project-action:hover,
+	.project-action:focus-visible {
+		background: var(--color-text);
+		border-color: var(--color-text);
+		color: var(--color-bg);
+		transform: translateY(-0.2rem);
+	}
+
+	.project-action:hover i,
+	.project-action:focus-visible i {
+		transform: translate(0.25rem, -0.25rem);
 	}
 
 	dl {
@@ -334,31 +420,6 @@
 		color: var(--color-accent);
 	}
 
-	.project-links {
-		border-top: var(--border-width-structure) solid var(--color-border);
-	}
-
-	.project-links > div {
-		display: flex;
-		align-items: baseline;
-		justify-content: space-between;
-		gap: 2rem;
-		padding-block: 1.25rem;
-		border-bottom: 1px solid var(--color-border);
-	}
-
-	.project-links a {
-		color: var(--color-text);
-		font-size: 1.15rem;
-		text-decoration: none;
-	}
-
-	.project-links a:hover,
-	.project-links a:focus-visible {
-		color: var(--color-accent);
-		background: transparent;
-	}
-
 	.next-project {
 		position: relative;
 		display: block;
@@ -399,6 +460,10 @@
 	}
 
 	@media (max-width: 48rem) {
+		.project-actions {
+			grid-template-columns: 1fr;
+		}
+
 		dl {
 			grid-template-columns: 1fr 1fr;
 		}
@@ -420,7 +485,6 @@
 		.project-hero,
 		.visual-wrap,
 		.case-study,
-		.project-links,
 		.next-project {
 			width: min(100% - 1.25rem, 94rem);
 		}
@@ -437,9 +501,20 @@
 			grid-column: auto;
 		}
 
-		.project-links > div {
-			align-items: flex-start;
-			flex-direction: column;
+		.project-action {
+			min-height: 7.5rem;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.project-action,
+		.project-action i {
+			transition-duration: 0ms;
+		}
+
+		.project-action:hover,
+		.project-action:focus-visible {
+			transform: none;
 		}
 	}
 </style>

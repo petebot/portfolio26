@@ -11,7 +11,7 @@
 	},
 	"status": "published",
 	"createdAt": "2026-07-21T00:00:00.000Z",
-	"updatedAt": "2026-07-24T00:00:00.000Z",
+	"updatedAt": "2026-07-27T00:00:00.000Z",
 	"sortDate": "2026-07-22",
 	"featured": true,
 	"weight": 3,
@@ -20,6 +20,8 @@
 	"tech": ["SvelteKit", "Sanity", "TypeScript", "Playwright"],
 	"role": "Independent research · Digital design · Content system · Engineering",
 	"timeframe": { "label": "2026 · In progress" },
+	"liveUrl": "https://grande-burrito.vercel.app/",
+	"repoUrl": "https://github.com/petebot/grande",
 	"designSystem": {
 		"name": "Grande Burrito Sign & Sheet System",
 		"status": "emerging",
