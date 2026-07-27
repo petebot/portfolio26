@@ -3,25 +3,28 @@
 	"slug": "synchronic-studio",
 	"aliases": ["synchronic-studio-preview"],
 	"title": "Synchronic Studio",
-	"summary": "A local-first creative practice system that helps artists see the thread connecting their daily work.",
-	"intro": "Synchronic brings practice sessions, reflections, excursions, tasks, and gentle guidance into one private workspace built around the rhythms of an artist’s life.",
+	"summary": "A creative-practice system I use daily to connect reflection, inspiration, studio sessions, tasks, and gentle guidance.",
+	"intro": "Synchronic began as a personal response to work and parenting crowding out painting; daily use has helped move my studio practice from rare sessions to a weekly rhythm.",
 	"heroImage": {
 		"url": "/images/projects/synchronic-home.png",
+		"compactUrl": "/images/projects/synchronic-home-mobile.png",
+		"compactAlt": "Synchronic mobile landing page introducing the studio companion for artists",
+		"compactFrame": "phone",
 		"lightUrl": "/images/projects/synchronic-home-light.png",
 		"darkUrl": "/images/projects/synchronic-home-dark.png",
 		"alt": "Synchronic logged-in dashboard showing weekly creative practice summaries and progress modules"
 	},
 	"status": "published",
 	"createdAt": "2025-01-01T00:00:00.000Z",
-	"updatedAt": "2026-07-22T00:00:00.000Z",
+	"updatedAt": "2026-07-24T00:00:00.000Z",
 	"sortDate": "2026-05-17",
 	"featured": true,
 	"weight": 1,
 	"category": "Creative practice system",
-	"tags": ["product-design", "local-first", "creative-tools"],
+	"tags": ["product-design", "creative-practice", "creative-tools"],
 	"tech": ["SvelteKit", "Tauri", "Supabase", "TypeScript"],
 	"role": "Product design · Creative direction · Engineering",
-	"timeframe": { "label": "2025—Now" },
+	"timeframe": { "label": "August 2025—Now" },
 	"designSystem": {
 		"name": "Synchronic Studio",
 		"status": "emerging",
@@ -74,21 +77,30 @@
 			],
 			"components": [
 				{
-					"name": "Button",
-					"description": "Shared actions adapt to theme and optional practice accent while preserving native semantics.",
-					"states": ["Primary", "Secondary", "Ghost", "Danger", "Focus", "Disabled"]
+					"name": "Actions",
+					"description": "Primary, secondary, and quiet actions share one tactile hierarchy while preserving native semantics.",
+					"states": ["Begin reflection", "Save draft", "Unavailable"]
 				},
 				{
-					"name": "Toggle",
-					"description": "Binary preferences pair a native checkbox with a visible state label.",
-					"states": ["Checked", "Unchecked", "Focus", "Disabled"]
+					"name": "Input",
+					"description": "Visible prompts and supporting guidance make open-ended reflection feel inviting and bounded.",
+					"states": ["Default", "Guidance", "Focus"]
 				},
 				{
-					"name": "Image uploader",
-					"description": "A resilient media flow communicates progress and recovery with text as well as color.",
-					"states": ["Empty", "Pending", "Uploading", "Failed", "Complete"]
+					"name": "Status & signal",
+					"description": "Color and explicit text communicate saved, active, and attention states without ambiguity.",
+					"states": ["Synced", "In practice", "Needs attention"]
 				}
 			],
+			"componentSnapshot": {
+				"url": "/images/projects/synchronic-components.webp",
+				"lightUrl": "/images/projects/synchronic-components.webp",
+				"darkUrl": "/images/projects/synchronic-components-dark.webp",
+				"alt": "Synchronic design-system specimens showing action buttons, an editorial input field, and status feedback in the viewer’s system theme",
+				"caption": "Actions, input, and status signals captured from the Synchronic design-system specimen.",
+				"width": 1236,
+				"height": 616
+			},
 			"productProof": {
 				"title": "Five practices, one interaction grammar",
 				"description": "Each practice rebinds the semantic accent to its domain color while shared navigation, controls, forms, and state behavior remain consistent.",
@@ -107,5 +119,6 @@
 		"specimenUrl": null
 	},
 	"repoUrl": "https://github.com/petebot/synchronic",
-	"contentUri": "content/projects/synchronic-studio/content.md"
+	"contentUri": "content/projects/synchronic-studio/content.md",
+	"internalNotes": "Repository began August 5, 2025. Current product data is Supabase-backed; do not frame local-first storage as the defining architecture. Pete is currently the only user, uses the app daily, and reports moving from rarely painting to painting weekly. Broader release depends on more testing and refinement."
 }

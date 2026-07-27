@@ -27,6 +27,16 @@ export interface DesignSystemComponentEvidence {
 	states: string[];
 }
 
+export interface DesignSystemComponentSnapshot {
+	url: string;
+	lightUrl?: string;
+	darkUrl?: string;
+	alt: string;
+	caption?: string;
+	width: number;
+	height: number;
+}
+
 export interface DesignSystemProofPoint {
 	title: string;
 	description: string;
@@ -37,6 +47,7 @@ export interface DesignSystemShowcase {
 	palette: DesignSystemColor[];
 	typography: DesignSystemTypographyRole[];
 	components: DesignSystemComponentEvidence[];
+	componentSnapshot?: DesignSystemComponentSnapshot;
 	productProof: DesignSystemProofPoint;
 	accessibility: DesignSystemProofPoint;
 }
@@ -53,6 +64,11 @@ export interface DesignSystemSummary {
 
 export interface ImageObject {
 	url: string;
+	compactUrl?: string;
+	compactAlt?: string;
+	frame?: 'plain' | 'phone' | 'browser';
+	compactFrame?: 'plain' | 'phone' | 'browser';
+	compactFrameLabel?: string;
 	lightUrl?: string;
 	darkUrl?: string;
 	alt?: string;
@@ -418,7 +434,7 @@ function validateDesignSystemShowcase(value: unknown, folderName: string): void 
 	const showcase = expectObject(value, `designSystem.showcase in ${folderName}`);
 	assertOnlyFields(
 		showcase,
-		['palette', 'typography', 'components', 'productProof', 'accessibility'],
+		['palette', 'typography', 'components', 'componentSnapshot', 'productProof', 'accessibility'],
 		`designSystem.showcase in ${folderName}`
 	);
 
@@ -494,6 +510,51 @@ function validateDesignSystemShowcase(value: unknown, folderName: string): void 
 			throw new Error(
 				`designSystem.showcase.components[${index}].states in ${folderName} must contain non-empty strings`
 			);
+		}
+	}
+
+	if (showcase.componentSnapshot !== undefined) {
+		const image = expectObject(
+			showcase.componentSnapshot,
+			`designSystem.showcase.componentSnapshot in ${folderName}`
+		);
+		assertOnlyFields(
+			image,
+			['url', 'lightUrl', 'darkUrl', 'alt', 'caption', 'width', 'height'],
+			`component snapshot in ${folderName}`
+		);
+		assertNonEmptyStrings(image, ['url', 'alt'], `component snapshot in ${folderName}`);
+		for (const source of ['url', 'lightUrl', 'darkUrl']) {
+			if (image[source] === undefined) continue;
+			if (typeof image[source] !== 'string' || !(image[source] as string).trim()) {
+				throw new Error(
+					`designSystem.showcase.componentSnapshot.${source} in ${folderName} must be a non-empty string when provided`
+				);
+			}
+			if (!isValidPublicUrl(image[source] as string)) {
+				throw new Error(
+					`designSystem.showcase.componentSnapshot.${source} in ${folderName} must be a public URL or root path`
+				);
+			}
+		}
+		if (
+			image.caption !== undefined &&
+			(typeof image.caption !== 'string' || !(image.caption as string).trim())
+		) {
+			throw new Error(
+				`designSystem.showcase.componentSnapshot.caption in ${folderName} must be a non-empty string when provided`
+			);
+		}
+		for (const dimension of ['width', 'height']) {
+			if (
+				typeof image[dimension] !== 'number' ||
+				!Number.isInteger(image[dimension]) ||
+				(image[dimension] as number) <= 0
+			) {
+				throw new Error(
+					`designSystem.showcase.componentSnapshot.${dimension} in ${folderName} must be a positive integer`
+				);
+			}
 		}
 	}
 

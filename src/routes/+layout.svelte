@@ -1,5 +1,6 @@
 <script lang="ts">
-	import favicon from '$lib/assets/favicon.svg';
+	import favicon from '$lib/assets/favicon.png';
+	import { absoluteUrl, SITE } from '$lib/site';
 	import '$lib/styles/tokens.css';
 	import '$lib/styles/base.css';
 	import '$lib/styles/layout.css';
@@ -11,6 +12,24 @@
 
 <svelte:head>
 	<link rel="icon" href={favicon} />
+	<meta name="author" content={SITE.name} />
+	<meta name="creator" content={SITE.name} />
+	<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+	<meta property="og:site_name" content={SITE.name} />
+	<meta property="og:locale" content={SITE.locale} />
+	<meta property="og:image" content={absoluteUrl(SITE.socialImage)} />
+	<meta property="og:image:width" content="1200" />
+	<meta property="og:image:height" content="630" />
+	<meta
+		property="og:image:alt"
+		content="Pete Nawara — Creative Technologist. Concept to working form."
+	/>
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:image" content={absoluteUrl(SITE.socialImage)} />
+	<meta
+		name="twitter:image:alt"
+		content="Pete Nawara — Creative Technologist. Concept to working form."
+	/>
 	<meta name="theme-color" content="#e9e8e2" media="(prefers-color-scheme: light)" />
 	<meta name="theme-color" content="#191918" media="(prefers-color-scheme: dark)" />
 </svelte:head>
@@ -29,7 +48,7 @@
 			<a href="/#practice">Practice</a>
 			<a href="/#about">About</a>
 			<a href="/system">System</a>
-			<a href="mailto:pete@petenawara.com">Contact</a>
+			<a href="mailto:hello@petenawara.com">Contact</a>
 		</nav>
 	</div>
 </header>
@@ -41,7 +60,7 @@
 <footer class="site-footer">
 	<p>Product design · Visual systems · Frontend engineering</p>
 	<div>
-		<a href="mailto:pete@petenawara.com">pete@petenawara.com</a>
+		<a href="mailto:hello@petenawara.com">hello@petenawara.com</a>
 		<a href="/system">View the design system</a>
 		<a href="https://github.com/petebot" rel="me noopener" target="_blank">GitHub ↗</a>
 	</div>

@@ -1,21 +1,23 @@
 # Let’s Worm
 
-## The premise
+## The beginning
 
-Let’s Worm began with a simple exchange: one person makes a prompt through writing or drawing, and the other responds. Sometimes the story leads; sometimes the image does. The constraint keeps the work quick, strange, and open enough to surprise both collaborators.
+Let’s Worm began in 2017 as a creative exchange between writer Dan Murphy and me. Dan had a Tumblr for his stories and would ask me to illustrate them. Over time, the collaboration loosened into a broader way of prompting one another: sometimes a story leads, sometimes an image does, and the work develops by worming around inside an idea until it becomes something neither of us would have made alone.
 
-## The collaboration
+The name also carries a small piece of our history. After staying with Dan in Brooklyn while I was living in Chicago, I drew a group of worms spelling out “thank you.” The worm became both a mascot and a useful verb for the process.
 
-Writer Dan Murphy and I have been building the collection since 2017. Most entries pair flash fiction or very short fiction with sketches and color studies, while longer stories and more involved bodies of artwork occasionally stretch the format.
+## The body of work
 
-## The visual practice
+We have made more than 100 stories, illustrations, and paired experiments together. The work moves between flash fiction, longer stories, drawing, painting, character studies, collage, and sequential images without forcing every piece into one house style.
 
-The project creates room to move between illustration, painting, character work, collage, and sequential images without forcing everything into a single house style. The continuity comes from the exchange itself: image and text operate as companion pieces rather than one simply decorating the other.
+Dan leads the writing and defined most of the collection's editorial categories. I create the illustrations and visual responses, occasionally edit or offer opinions on the writing, and help shape the collaboration as it evolves.
 
-## The platform
+## A home built for the idea
 
-I designed and built the current SvelteKit and Sanity site to turn a long-running archive into a browsable editorial system. Work can be explored by form—including stories, retellings, sets, and musings—while individual entries give the writing and artwork enough space to set their own pace.
+The original Tumblr gave the stories somewhere to live, but it never fully expressed the collaboration as its own project. I designed and built the current SvelteKit and Sanity site to give Let’s Worm a dedicated identity and editorial structure.
+
+The public site is a curated selection from the larger archive—not a migration of all 100-plus works. Its logo, squiggles, paper-like surfaces, and proudly wormy details create continuity while leaving room for each story and image to set its own tone.
 
 ## What I owned
 
-I created the illustrations and visual responses, helped shape the ongoing editorial collaboration, and designed and engineered the current platform. That work spans creative direction, content modeling, interface design, frontend development, and the practical migration of a growing archive into a system that can keep evolving.
+I created the illustrations and visual responses, designed the identity and interface for the current site, and built its frontend and content system. My role also includes the informal editorial conversation that has sustained the collaboration since 2017. Dan Murphy is the project's writer and primary architect of its written categories.

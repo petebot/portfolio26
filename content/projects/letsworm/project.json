@@ -3,22 +3,24 @@
 	"slug": "letsworm",
 	"aliases": ["lets-worm"],
 	"title": "Let’s Worm",
-	"summary": "A prompt-driven literary art platform where short fiction and illustration take turns leading the way.",
-	"intro": "Let’s Worm is an ongoing collaboration with writer Dan Murphy, pairing strange, compact stories with drawings, paintings, and visual experiments made in response.",
+	"summary": "A literary-art collaboration with more than 100 works—and a curated digital home built for its stories, illustrations, and worms.",
+	"intro": "Since 2017, writer Dan Murphy and I have prompted one another through stories and images; the current site gives a selected part of that long-running exchange its own editorial identity.",
 	"heroImage": {
-		"url": "/images/projects/letsworm-home.png",
+		"url": "/images/projects/letsworm-home-light.png",
+		"lightUrl": "/images/projects/letsworm-home-light.png",
+		"darkUrl": "/images/projects/letsworm-home-dark.png",
 		"alt": "Let’s Worm issue landing page featuring the Moon City title and a large sculptural pink worm"
 	},
 	"status": "published",
 	"createdAt": "2026-07-22T00:00:00.000Z",
-	"updatedAt": "2026-07-22T00:00:00.000Z",
+	"updatedAt": "2026-07-24T00:00:00.000Z",
 	"sortDate": "2026-04-08",
 	"featured": true,
 	"weight": 2,
 	"category": "Editorial art platform",
 	"tags": ["illustration", "editorial-design", "creative-collaboration"],
 	"tech": ["SvelteKit", "Sanity", "TypeScript"],
-	"role": "Creative direction · Illustration · Design and engineering",
+	"role": "Illustration · Editorial collaboration · Web design and engineering",
 	"timeframe": { "label": "2017—Now" },
 	"collaborators": [
 		{
@@ -82,26 +84,37 @@
 			],
 			"components": [
 				{
-					"name": "Action controls",
+					"name": "Actions",
 					"description": "Native buttons share one action and focus language across editorial and utility flows.",
-					"states": ["Primary", "Secondary", "Disabled", "Pending", "Focus"]
+					"states": ["Primary", "Secondary", "Disabled"]
 				},
 				{
-					"name": "Field",
+					"name": "Field guidance and error",
 					"description": "Visible labels, associated guidance, and errors keep forms understandable in every state.",
-					"states": ["Default", "Guidance", "Invalid", "Disabled", "Focus"]
+					"states": ["Default", "Guidance", "Invalid"]
 				},
 				{
-					"name": "Story card",
-					"description": "Editorial cards keep text intact across long titles, absent images, and narrow containers.",
-					"states": ["Standard", "Long title", "Missing image", "Narrow", "Empty"]
+					"name": "Empty state",
+					"description": "A quiet editorial fallback explains the absence of stories without turning the page into a dead end.",
+					"states": ["No stories", "Status", "Responsive"]
 				}
 			],
+			"componentSnapshot": {
+				"url": "/images/projects/letsworm-components.webp",
+				"lightUrl": "/images/projects/letsworm-components.webp",
+				"darkUrl": "/images/projects/letsworm-components-dark.webp",
+				"alt": "Let’s Worm design-system specimens showing action states, invalid field guidance, and an empty editorial state",
+				"caption": "Actions, field feedback, and the empty state captured from the Let’s Worm specimen.",
+				"width": 1136,
+				"height": 596
+			},
 			"productProof": {
 				"title": "Editorial character without fragile layouts",
 				"description": "Paper, ink, mauve, Caslon, Futura, and the worm motif adapt across themes while stories, bylines, summaries, and navigation remain structurally clear.",
 				"image": {
-					"url": "/images/projects/letsworm-system.png",
+					"url": "/images/projects/letsworm-system-light.png",
+					"lightUrl": "/images/projects/letsworm-system-light.png",
+					"darkUrl": "/images/projects/letsworm-system-dark.png",
 					"alt": "Let’s Worm story page showing editorial typography, contributor credits, issue context, and long-form reading layout"
 				}
 			},
@@ -115,5 +128,5 @@
 	"liveUrl": "https://www.letsworm.com/",
 	"repoUrl": "https://github.com/petebot/letsworm",
 	"contentUri": "content/projects/letsworm/content.md",
-	"internalNotes": "Pete confirmed ownership of the current site's design and build. Illustration and collaboration credit are also supported by the live site and prior portfolio copy."
+	"internalNotes": "The collaboration contains more than 100 works, but the current site is a curated selection rather than a full archive migration. Dan leads the writing and defined most editorial categories; Pete illustrates, occasionally edits or offers opinions, and designed and built the current site. No audience metrics are currently available."
 }

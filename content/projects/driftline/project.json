@@ -3,10 +3,12 @@
 	"slug": "driftline",
 	"aliases": ["mission-control"],
 	"title": "Driftline",
-	"summary": "An ocean-research decision workspace that makes portfolio bottlenecks, ownership gaps, and next actions visible.",
-	"intro": "Driftline gives research teams a shared view of signals, evaluations, programs, and field operations—then routes attention to the decisions that will move the work forward.",
+	"summary": "An ocean-research decision workspace that makes stalled work, ownership gaps, and opportunities for support visible.",
+	"intro": "Driftline translates lessons from proprietary research-product work into a fictional public demonstration of transparent attention routing and human-centered support.",
 	"heroImage": {
 		"url": "/images/projects/driftline-home-light.png",
+		"compactFrame": "browser",
+		"compactFrameLabel": "driftline.local",
 		"lightUrl": "/images/projects/driftline-home-light.png",
 		"darkUrl": "/images/projects/driftline-home-dark.png",
 		"alt": "Driftline dashboard showing portfolio flow across signals, evaluations, programs, and field operations"
@@ -20,9 +22,8 @@
 	"category": "Research decision workspace",
 	"tags": ["product-design", "decision-support", "data-visualization"],
 	"tech": ["Next.js", "React", "TypeScript"],
-	"role": "Product strategy · Interaction design · Design system · Engineering",
+	"role": "Product strategy · Research synthesis · Interaction design · Design system · Engineering",
 	"timeframe": { "label": "2026" },
-	"clientPublicName": "Aster Bay Institute (fictional)",
 	"liveUrl": "https://mission-control-lime-eta.vercel.app/",
 	"designSystem": {
 		"name": "Driftline",
@@ -72,26 +73,30 @@
 			],
 			"components": [
 				{
-					"name": "Flow stage",
-					"description": "A lifecycle node combines volume, stall count, median age, and filter state without hiding the underlying records.",
-					"states": ["Moving", "Bottleneck", "Selected", "Keyboard focus"]
+					"name": "Actions",
+					"description": "Primary, quiet, and unavailable actions establish hierarchy while preserving native control behavior.",
+					"states": ["Primary", "Quiet", "Disabled"]
 				},
 				{
-					"name": "Attention card",
-					"description": "A decision unit exposes severity, reason, owner, elapsed time, evidence, and one contextual next action.",
-					"states": ["Watch", "Critical", "Selected", "Resolved"]
+					"name": "Status",
+					"description": "Text, icon, and color carry movement, waiting, and blocked meaning together.",
+					"states": ["Moving normally", "Waiting", "Blocked"]
 				},
 				{
-					"name": "Role lens",
-					"description": "The same portfolio reorganizes around four explicit responsibility boundaries without changing the underlying work.",
-					"states": ["Director", "Steward", "Expedition lead", "Research specialist"]
-				},
-				{
-					"name": "Portfolio record",
-					"description": "Signals, evaluations, programs, and operations share one searchable record grammar while retaining stage-specific evidence.",
-					"states": ["Signal", "Evaluation", "Program", "Operation"]
+					"name": "Selection",
+					"description": "Pressed state remains visible and exposed to assistive technology across portfolio filters.",
+					"states": ["Selected", "Unselected", "Keyboard focus"]
 				}
 			],
+			"componentSnapshot": {
+				"url": "/images/projects/driftline-components.webp",
+				"lightUrl": "/images/projects/driftline-components.webp",
+				"darkUrl": "/images/projects/driftline-components-dark.webp",
+				"alt": "Driftline design-system specimens showing action controls, status badges, and selection controls",
+				"caption": "Actions, status, and selection captured from the Driftline system specimen.",
+				"width": 1470,
+				"height": 250
+			},
 			"productProof": {
 				"title": "The handoff becomes the interface",
 				"description": "Lifecycle flow, attention queues, and role lenses connect portfolio state to a specific person, explanation, and next action.",
@@ -110,5 +115,5 @@
 		"specimenUrl": "https://mission-control-lime-eta.vercel.app/system"
 	},
 	"contentUri": "content/projects/driftline/content.md",
-	"internalNotes": "The public demo explicitly identifies its organization, people, and portfolio data as fictional. Confirm a source repository URL before publishing one."
+	"internalNotes": "The public demo is a one-week proof of concept informed by proprietary professional work. Its organization, people, portfolio data, and ocean-research scenario are fictional. Driftline itself has not undergone user testing; do not imply it is a public replica of the work product or attach outcomes from testing conducted at Pete's employer."
 }

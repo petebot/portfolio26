@@ -15,12 +15,12 @@
 		<div class="reel__veil" aria-hidden="true"></div>
 
 		<div class="reel__copy">
-			<div class="reel__tag"><i></i><span>A moving practice</span></div>
+			<div class="reel__tag"><i></i><span>A connected practice</span></div>
 			<div>
-				<h2 id="reel-title">The work changes.<br />The through-line holds.</h2>
+				<h2 id="reel-title">Curious by nature.<br />Hands-on by choice.</h2>
 				<p>
-					A scroll-linked study made from the current project archive. It is ready to become a
-					portrait film when the shoot is ready.
+					I’m most at home moving between product questions, visual ideas, and the code that makes
+					them real—staying close enough to the work to keep the through-line intact.
 				</p>
 			</div>
 		</div>
