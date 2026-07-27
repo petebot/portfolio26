@@ -49,12 +49,23 @@
 		return sections;
 	}
 
+	function displayHost(url?: string): string | undefined {
+		if (!url) return undefined;
+
+		try {
+			return new URL(url).hostname.replace(/^www\./, '');
+		} catch {
+			return undefined;
+		}
+	}
+
 	const sections = $derived(parseSections(data.project.body ?? ''));
 	const homeUrl = absoluteUrl('/');
 	const canonicalUrl = $derived(
 		data.project.canonical ?? absoluteUrl(`/projects/${data.project.slug}`)
 	);
 	const pageTitle = $derived(`${data.project.title} — ${SITE.name}`);
+	const liveSiteHost = $derived(displayHost(data.project.liveUrl));
 	const structuredData = $derived({
 		'@context': 'https://schema.org',
 		'@graph': [
@@ -172,9 +183,31 @@
 		</dl>
 	</header>
 
-	<div class="visual-wrap">
-		<ProjectScreenshot slug={data.project.slug} image={data.project.heroImage} />
-	</div>
+	<figure class="visual-wrap">
+		<figcaption class="visual-rail">
+			<div class="visual-caption">
+				<span>Product screenshot</span>
+				<span>Static preview</span>
+			</div>
+			{#if data.project.liveUrl}
+				<a
+					href={data.project.liveUrl}
+					rel="noopener noreferrer"
+					target="_blank"
+					aria-label={`Open the ${data.project.title} live site (opens in a new tab)`}
+				>
+					Open live site <span aria-hidden="true">↗</span>
+				</a>
+			{/if}
+		</figcaption>
+		<ProjectScreenshot
+			slug={data.project.slug}
+			image={data.project.heroImage}
+			frame="browser"
+			frameLabel={liveSiteHost ?? data.project.title}
+			cursorLabel="Static preview"
+		/>
+	</figure>
 
 	<div class="case-study">
 		{#each sections as section, index}
@@ -360,7 +393,55 @@
 	}
 
 	.visual-wrap {
-		width: min(100%, 110rem);
+		width: min(calc(100% - clamp(2rem, 8vw, 8rem)), 72rem);
+		margin-bottom: 0;
+	}
+
+	.visual-rail {
+		display: flex;
+		min-height: var(--target-size-min);
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
+		border-top: var(--border-width-structure) solid var(--color-border);
+		font-family: var(--font-family-mono);
+		font-size: var(--font-size-label);
+		letter-spacing: var(--letter-spacing-label);
+		text-transform: uppercase;
+	}
+
+	.visual-caption {
+		display: flex;
+		align-items: center;
+		gap: 0.65rem;
+	}
+
+	.visual-caption span:first-child {
+		color: var(--color-accent);
+	}
+
+	.visual-caption span:last-child {
+		color: var(--color-text-muted);
+	}
+
+	.visual-caption span:last-child::before {
+		content: '·';
+		margin-right: 0.65rem;
+	}
+
+	.visual-rail a {
+		display: inline-flex;
+		min-height: var(--target-size-min);
+		align-items: center;
+		gap: 0.4rem;
+		color: var(--color-text);
+		text-decoration: none;
+	}
+
+	.visual-rail a:hover,
+	.visual-rail a:focus-visible {
+		color: var(--color-accent);
+		background: transparent;
 	}
 
 	.case-study {
@@ -503,6 +584,23 @@
 
 		.project-action {
 			min-height: 7.5rem;
+		}
+
+		.visual-rail {
+			align-items: flex-start;
+			padding-block: 0.55rem;
+		}
+
+		.visual-caption {
+			min-height: var(--target-size-min);
+			flex-direction: column;
+			align-items: flex-start;
+			justify-content: center;
+			gap: 0.1rem;
+		}
+
+		.visual-caption span:last-child::before {
+			display: none;
 		}
 	}
 

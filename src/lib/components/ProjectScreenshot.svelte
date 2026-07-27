@@ -14,8 +14,37 @@
 	let {
 		slug,
 		image,
-		compact = false
-	}: { slug: string; image?: ProjectImage; compact?: boolean } = $props();
+		compact = false,
+		frame: frameOverride,
+		frameLabel: frameLabelOverride,
+		cursorLabel
+	}: {
+		slug: string;
+		image?: ProjectImage;
+		compact?: boolean;
+		frame?: 'plain' | 'phone' | 'browser';
+		frameLabel?: string;
+		cursorLabel?: string;
+	} = $props();
+
+	let cursorLabelVisible = $state(false);
+	let cursorLabelX = $state(0);
+	let cursorLabelY = $state(0);
+
+	function positionCursorLabel(event: PointerEvent) {
+		if (!cursorLabel || event.pointerType === 'touch') return;
+
+		const visual = event.currentTarget as HTMLElement;
+		const bounds = visual.getBoundingClientRect();
+		const pointerX = event.clientX - bounds.left;
+		const pointerY = event.clientY - bounds.top;
+		const placeLeft = pointerX > bounds.width - 10 * 16;
+		const placeAbove = pointerY > bounds.height - 3.5 * 16;
+
+		cursorLabelX = pointerX + (placeLeft ? -7.25 * 16 : 1 * 16);
+		cursorLabelY = pointerY + (placeAbove ? -2.5 * 16 : 1 * 16);
+		cursorLabelVisible = true;
+	}
 
 	const usesCompactSource = $derived(Boolean(compact && image?.compactUrl));
 	const versionedSource = $derived(
@@ -35,9 +64,12 @@
 		usesCompactSource ? (image?.compactAlt ?? image?.alt ?? '') : (image?.alt ?? '')
 	);
 	const frame = $derived(
-		compact ? (image?.compactFrame ?? image?.frame ?? 'plain') : (image?.frame ?? 'plain')
+		frameOverride ??
+			(compact ? (image?.compactFrame ?? image?.frame ?? 'plain') : (image?.frame ?? 'plain'))
 	);
-	const frameLabel = $derived(image?.compactFrameLabel ?? slug.replaceAll('-', ' '));
+	const frameLabel = $derived(
+		frameLabelOverride ?? image?.compactFrameLabel ?? slug.replaceAll('-', ' ')
+	);
 	const frameBackground = $derived(
 		versionedSource ? `--frame-image: url("${versionedSource}")` : undefined
 	);
@@ -55,7 +87,15 @@
 	</picture>
 {/snippet}
 
-<div class:compact class="visual" data-project={slug} data-frame={frame} style={frameBackground}>
+<div
+	class:compact
+	class="visual"
+	data-project={slug}
+	data-frame={frame}
+	style={frameBackground}
+	onpointermove={positionCursorLabel}
+	onpointerleave={() => (cursorLabelVisible = false)}
+>
 	{#if image && versionedSource}
 		{#if frame === 'phone'}
 			<div class="device device--phone">
@@ -77,6 +117,14 @@
 		{/if}
 	{:else}
 		<div class="fallback" aria-hidden="true">{slug.replaceAll('-', ' ')}</div>
+	{/if}
+	{#if cursorLabel}
+		<span
+			class:visible={cursorLabelVisible}
+			class="cursor-label"
+			style={`--cursor-label-x: ${cursorLabelX}px; --cursor-label-y: ${cursorLabelY}px;`}
+			aria-hidden="true">{cursorLabel}</span
+		>
 	{/if}
 </div>
 
@@ -206,6 +254,23 @@
 			var(--color-surface-muted);
 	}
 
+	.visual:not(.compact)[data-frame='browser'] {
+		aspect-ratio: auto;
+		overflow: visible;
+		padding: clamp(1.25rem, 3vw, 2rem);
+		background: transparent;
+		cursor: default;
+	}
+
+	.visual:not(.compact)[data-frame='browser'] .device--browser {
+		width: 100%;
+		height: auto;
+	}
+
+	.visual:not(.compact)[data-frame='browser'] .device__screen {
+		aspect-ratio: 16 / 9;
+	}
+
 	.device--browser {
 		display: grid;
 		grid-template-rows: auto minmax(0, 1fr);
@@ -279,6 +344,31 @@
 		object-fit: cover;
 		object-position: center top;
 		transition: transform 500ms var(--transition-ease-standard);
+	}
+
+	.cursor-label {
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: 2;
+		padding: 0.35rem 0.5rem;
+		border: 1px solid var(--color-border-strong);
+		background: var(--color-text);
+		box-shadow: var(--shadow-elevation-2);
+		color: var(--color-bg);
+		font-family: var(--font-family-mono);
+		font-size: 0.6875rem;
+		letter-spacing: var(--letter-spacing-label);
+		line-height: 1;
+		opacity: 0;
+		pointer-events: none;
+		text-transform: uppercase;
+		transform: translate(var(--cursor-label-x), var(--cursor-label-y));
+		white-space: nowrap;
+	}
+
+	.cursor-label.visible {
+		opacity: 1;
 	}
 
 	:global(.project-card:hover) .visual img,
@@ -377,6 +467,16 @@
 	@media (prefers-reduced-motion: reduce) {
 		.visual img {
 			transition: none;
+		}
+
+		.cursor-label {
+			display: none;
+		}
+	}
+
+	@media (hover: none), (pointer: coarse) {
+		.cursor-label {
+			display: none;
 		}
 	}
 
