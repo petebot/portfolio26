@@ -3,8 +3,8 @@
 	"slug": "21grams",
 	"aliases": ["21grams-preview"],
 	"title": "21GRAMS",
-	"summary": "An immersive digital agency experience built around the character and philosophy of 21GRAMS.",
-	"intro": "The previous 21GRAMS site used typography, spatial interaction, and a light-and-dark visual world to introduce the healthcare agency as an experience rather than a conventional corporate site.",
+	"summary": "A self-directed rebuild of the 21GRAMS agency site, created to make its light-and-dark world feel fluid, spatial, and accessible.",
+	"intro": "This personal 2023 remake revisits a 21GRAMS concept I helped shape as Director of Experience, pairing its Essence-and-Craft story with smoother transitions, complete navigation, and keyboard interaction.",
 	"heroImage": {
 		"url": "/images/projects/21grams-home.png",
 		"alt": "21GRAMS landing experience split into light and dark fields around oversized typography and a wireframe head"
@@ -12,14 +12,14 @@
 	"status": "published",
 	"createdAt": "2025-01-01T00:00:00.000Z",
 	"updatedAt": "2026-07-24T00:00:00.000Z",
-	"sortDate": "2025-01-10",
+	"sortDate": "2024-01-12",
 	"featured": false,
 	"weight": 4,
 	"category": "Agency experience",
 	"tags": ["immersive-web", "agency", "interaction-design"],
-	"tech": ["Svelte", "WebGL"],
-	"role": "Director of Experience · UX direction · Creative development",
-	"timeframe": { "label": "2018—2019" },
+	"tech": ["SvelteKit", "Rive", "TypeScript"],
+	"role": "Director of Experience (original concept) · Independent design and engineering (remake)",
+	"timeframe": { "label": "2023—2024 remake" },
 	"liveUrl": "https://21grams.vercel.app/",
 	"designSystem": {
 		"name": "21GRAMS Rule of 21",
@@ -79,24 +79,28 @@
 				{
 					"name": "KeyArrow",
 					"description": "A directional control makes spatial movement visible while retaining a conventional interaction contract.",
-					"states": ["Rest", "Hover", "Focus visible", "Active", "Disabled"]
+					"states": ["Rest", "Focus visible", "Active"]
 				},
 				{
 					"name": "Nav",
 					"description": "The shared navigation maps routes to cardinal directions and remains operable by keyboard.",
-					"states": ["Closed", "Open", "Directional", "Keyboard", "Reduced motion"]
+					"states": ["Closed", "Open", "Keyboard"]
 				},
 				{
 					"name": "TextAnimated",
 					"description": "Staged editorial copy supports cinematic pacing without withholding content when motion is reduced.",
 					"states": ["Reveal", "Complete", "Reduced motion"]
-				},
-				{
-					"name": "Error pattern",
-					"description": "A status-aware dead end removes transition delay and offers one clear route back.",
-					"states": ["404", "Immediate", "Return home"]
 				}
 			],
+			"componentSnapshot": {
+				"url": "/images/projects/21grams-components.webp",
+				"lightUrl": "/images/projects/21grams-components.webp",
+				"darkUrl": "/images/projects/21grams-components-dark.webp",
+				"alt": "21GRAMS specimens showing crisp directional KeyArrow controls, closed and open navigation, and editorial typography in the viewer’s system theme",
+				"caption": "KeyArrow, navigation, and animated type rendered from the 21GRAMS component system.",
+				"width": 1178,
+				"height": 568
+			},
 			"productProof": {
 				"title": "One system moves between two realms",
 				"description": "The same seven-pixel cadence, condensed voice, and spatial navigation hold together the dark Craft experience and the light Essence experience.",
@@ -115,5 +119,5 @@
 		"specimenUrl": null
 	},
 	"contentUri": "content/projects/21grams/content.md",
-	"internalNotes": "Role and dates are supported by Pete's resume. The original site was later replaced by https://21gramsworld.com/. Confirm collaborator credits before adding names or original production assets."
+	"internalNotes": "Pete helped shape the original concept as Director of Experience, then independently designed and built this remake in 2023 with a 2024 update. It was never adopted as the agency's public site. Agency copy and original Illustrator geometry were created by other 21GRAMS team members; keep collaborator credit collective unless exact names are confirmed."
 }

@@ -1,9 +1,22 @@
+<script lang="ts">
+	import { absoluteUrl, SITE } from '$lib/site';
+
+	const pageTitle = `Design System — ${SITE.name}`;
+	const pageDescription =
+		'The accessible visual, interaction, content, and machine-readable system behind Pete Nawara’s portfolio.';
+	const pageUrl = absoluteUrl('/system');
+</script>
+
 <svelte:head>
-	<title>Design System — Pete Nawara</title>
-	<meta
-		name="description"
-		content="The accessible visual and interaction system behind Pete Nawara’s portfolio."
-	/>
+	<title>{pageTitle}</title>
+	<meta name="description" content={pageDescription} />
+	<link rel="canonical" href={pageUrl} />
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content={pageTitle} />
+	<meta property="og:description" content={pageDescription} />
+	<meta property="og:url" content={pageUrl} />
+	<meta name="twitter:title" content={pageTitle} />
+	<meta name="twitter:description" content={pageDescription} />
 </svelte:head>
 
 <article class="system-page">
@@ -23,6 +36,7 @@
 		<a href="#space">Spacing</a>
 		<a href="#components">Components</a>
 		<a href="#accessibility">Accessibility</a>
+		<a href="#machine-readability">Machine readability</a>
 	</nav>
 
 	<section id="principles" class="system-section">
@@ -161,6 +175,48 @@
 				<strong>Readable scale</strong><span
 					>Interface labels never fall below 13px, and long-form copy maintains a controlled
 					measure.</span
+				>
+			</li>
+		</ul>
+	</section>
+
+	<section id="machine-readability" class="system-section machine-section">
+		<header class="section-head">
+			<span>Discovery</span>
+			<h2>Clear to people, search engines, and agents.</h2>
+			<p>
+				The same claims appear in semantic HTML, descriptive metadata, structured data, and
+				plain-text discovery files. The goal is consistent meaning across interfaces—not a hidden
+				layer of keywords.
+			</p>
+		</header>
+		<ul class="machine-list">
+			<li>
+				<strong>Semantic source</strong>
+				<span
+					>Landmarks, heading order, lists, definitions, and case-study sections remain readable
+					without client-side motion.</span
+				>
+			</li>
+			<li>
+				<strong>Structured identity</strong>
+				<span
+					>Schema.org data connects Pete’s profile, expertise, selected work, and canonical project
+					pages.</span
+				>
+			</li>
+			<li>
+				<strong>Crawl map</strong>
+				<span
+					><a href="/sitemap.xml">sitemap.xml</a> and <a href="/robots.txt">robots.txt</a> make the public
+					surface explicit.</span
+				>
+			</li>
+			<li>
+				<strong>Agent context</strong>
+				<span
+					><a href="/llms.txt">llms.txt</a> offers a concise, proposed AI-readable index;
+					<a href="/llms-full.txt">llms-full.txt</a> provides the public case-study text in one place.</span
 				>
 			</li>
 		</ul>
@@ -450,6 +506,40 @@
 		color: var(--color-text-muted);
 	}
 
+	.machine-list {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 1px;
+		margin: 0;
+		padding: 1px;
+		list-style: none;
+		background: var(--color-border);
+	}
+	.machine-list li {
+		display: grid;
+		align-content: space-between;
+		min-height: 13rem;
+		margin: 0;
+		padding: 1.5rem;
+		background: var(--color-bg);
+	}
+	.machine-list strong {
+		font-size: 1.5rem;
+	}
+	.machine-list span {
+		max-width: 40rem;
+		color: var(--color-text-muted);
+	}
+	.machine-list a {
+		color: var(--color-text);
+		text-underline-offset: 0.2em;
+	}
+	.machine-list a:hover,
+	.machine-list a:focus-visible {
+		color: var(--color-accent);
+		background: transparent;
+	}
+
 	@media (max-width: 52rem) {
 		.section-head,
 		.type-specimens > div,
@@ -484,7 +574,8 @@
 		}
 		.principle-grid,
 		.swatch-grid,
-		.component-grid {
+		.component-grid,
+		.machine-list {
 			grid-template-columns: 1fr;
 		}
 		.principle-grid li {

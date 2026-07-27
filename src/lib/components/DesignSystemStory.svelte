@@ -90,19 +90,49 @@
 						<h4 id="components-title">Representative components</h4>
 					</div>
 				</div>
-				<ul class="component-evidence">
-					{#each system.showcase.components as component}
-						<li>
-							<h5>{component.name}</h5>
-							<p>{component.description}</p>
-							<ul aria-label={`${component.name} demonstrated states`}>
-								{#each component.states as state}
-									<li>{state}</li>
-								{/each}
-							</ul>
-						</li>
-					{/each}
-				</ul>
+				<div class="component-story">
+					{#if system.showcase.componentSnapshot}
+						<figure class="component-snapshot">
+							<picture>
+								{#if system.showcase.componentSnapshot.darkUrl}
+									<source
+										srcset={`${system.showcase.componentSnapshot.darkUrl}?v=20260726-components-3`}
+										media="(prefers-color-scheme: dark)"
+									/>
+								{/if}
+								{#if system.showcase.componentSnapshot.lightUrl}
+									<source
+										srcset={`${system.showcase.componentSnapshot.lightUrl}?v=20260726-components-3`}
+										media="(prefers-color-scheme: light)"
+									/>
+								{/if}
+								<img
+									src={`${system.showcase.componentSnapshot.url}?v=20260726-components-3`}
+									alt={system.showcase.componentSnapshot.alt ?? ''}
+									width={system.showcase.componentSnapshot.width}
+									height={system.showcase.componentSnapshot.height}
+									loading="lazy"
+								/>
+							</picture>
+							{#if system.showcase.componentSnapshot.caption}
+								<figcaption>{system.showcase.componentSnapshot.caption}</figcaption>
+							{/if}
+						</figure>
+					{/if}
+					<ul class="component-evidence">
+						{#each system.showcase.components as component}
+							<li>
+								<h5>{component.name}</h5>
+								<p>{component.description}</p>
+								<ul aria-label={`${component.name} demonstrated states`}>
+									{#each component.states as state}
+										<li>{state}</li>
+									{/each}
+								</ul>
+							</li>
+						{/each}
+					</ul>
+				</div>
 			</section>
 
 			<section class="evidence-section proof-section" aria-labelledby="proof-title">
@@ -431,10 +461,44 @@
 		border: 1px solid var(--color-border);
 	}
 
+	.component-story {
+		display: grid;
+		gap: clamp(1rem, 2vw, 1.5rem);
+		min-width: 0;
+	}
+
+	.component-snapshot {
+		margin: 0;
+		padding: clamp(1.25rem, 2.5vw, 2.25rem);
+		background: var(--color-bg-subtle);
+		border: 1px solid var(--color-border);
+	}
+
+	.component-snapshot img {
+		display: block;
+		width: 100%;
+		height: auto;
+		border: 1px solid color-mix(in srgb, var(--color-border) 65%, transparent);
+	}
+
+	.component-snapshot picture {
+		display: block;
+	}
+
+	.component-snapshot figcaption {
+		margin-top: 1rem;
+		color: var(--color-text-muted);
+		font-family: var(--font-family-mono);
+		font-size: 0.68rem;
+		letter-spacing: 0.04em;
+		line-height: 1.4;
+		text-transform: uppercase;
+	}
+
 	.component-evidence > li {
 		display: flex;
 		min-width: 0;
-		min-height: 20rem;
+		min-height: 15rem;
 		flex-direction: column;
 		padding: clamp(1rem, 2vw, 1.5rem);
 		background: var(--color-bg-subtle);

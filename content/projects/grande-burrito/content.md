@@ -2,23 +2,30 @@
 
 ## The premise
 
-A restaurant website has a very practical first job: help someone decide whether to visit. Grande’s existing web presence fragments the details people need most—current hours, menu choices, prices, a phone number, and directions.
+Grande Burrito is a restaurant in my town whose food I already enjoy. Its web presence lives primarily on social media, and I saw an opportunity to give the business a more professional home while making its most important piece of information—the current menu—much easier to find.
 
-## The product
+This is a self-initiated concept. It was not commissioned by Grande Burrito and has not been presented to or approved by the restaurant.
 
-The mobile-first site places today’s status, menu access, and visit actions in the first page context. Behind it, a focused Sanity studio lets the owner manage menus, sold-out states, regular and exceptional hours, announcements, photography, and small copy changes without touching the layout.
+## Researching the existing voice
 
-## Brand with operational value
+I reviewed the restaurant's Facebook presence, the way it communicates with customers, its posted menus, and public Google reviews. Rather than inventing a replacement identity, I treated the existing logo and printed-menu style as the source material for the site.
 
-The visual system draws from the storefront, signage, food, and personality of the real place rather than a generic restaurant template. Every expressive choice must still support fast scanning, resilient content, visible focus, reduced motion, and essential information when scripting is delayed.
+The digital expression adds a stretched Grande wordmark, a motion-led logo treatment, clearer hierarchy, and a dedicated structure that social posts cannot provide. The animated logo is the detail I am proudest of in the current build.
 
-## The system
+## A site the owner could run
 
-- Structured menu and hours data drive both visible content and machine-readable business information.
-- Scheduled exceptions override regular hours and expire automatically.
-- A content snapshot keeps core public information available during a CMS outage.
-- Constrained editing protects the design while making routine updates approachable.
+The public experience is paired with a Sanity studio for maintaining menu categories, items, prices, sold-out states, regular hours, exceptions, announcements, imagery, and supporting copy. The expressive homepage hero remains locked so routine content editing cannot accidentally dismantle the central brand moment.
+
+A generated content snapshot can preserve essential public information during a CMS outage. For this speculative build, that resilience is proof of the feature and of the production thinking behind the concept—not a requirement supplied by the restaurant.
+
+## Honest placeholders
+
+The burrito image in the current hero was generated with ChatGPT as a temporary visual placeholder. It is not presented as a photograph of a real Grande Burrito menu item. An official version would replace it with photography of the restaurant's actual food.
+
+## Current status
+
+I researched, designed, and built the working frontend, content model, Sanity studio, validation rules, and resilience layer. Before presenting it as a real proposal, I would simplify the administrative interface, continue refining the motion, add a printable menu for customers who want to keep a copy at home, and replace the placeholder hero image with original photography.
 
 ## What I owned
 
-I defined the product requirements, content model, design-system contract, frontend and studio architecture, validation rules, testing strategy, and ownership-transfer plan. The project is currently moving from functional foundation into the full brand expression.
+This was an independent end-to-end exercise spanning research, product strategy, content modeling, visual and interaction design, animation, frontend engineering, CMS architecture, and testing. The restaurant retains ownership of its existing identity; my contribution is the digital system built around it.

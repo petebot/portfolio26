@@ -1,55 +1,34 @@
-<script lang="ts">
-	const frames = [
-		{
-			src: '/images/projects/synchronic-home.png?v=20260724-motion',
-			label: 'Synchronic Studio'
-		},
-		{
-			src: '/images/projects/letsworm-home.png?v=20260724-motion',
-			label: 'Let’s Worm'
-		},
-		{
-			src: '/images/projects/grande-burrito-home.png?v=20260724-motion',
-			label: 'Grande Burrito'
-		},
-		{
-			src: '/images/projects/21grams-home.png?v=20260724-motion',
-			label: '21GRAMS'
-		}
-	];
-</script>
-
 <section class="reel" data-scroll-reel aria-labelledby="reel-title">
 	<div class="reel__stage">
-		<div class="reel__frames" aria-hidden="true">
-			{#each frames as frame, index}
-				<figure class="reel__frame" data-reel-frame>
-					<img src={frame.src} alt="" loading="lazy" decoding="async" />
-					<figcaption>
-						<span>0{index + 1}</span>
-						<span>{frame.label}</span>
-					</figcaption>
-				</figure>
-			{/each}
+		<div class="reel__media" aria-hidden="true">
+			<video
+				data-portrait-video
+				muted
+				playsinline
+				preload="auto"
+				poster="/video/portrait/pete-portrait-poster.jpg"
+			>
+				<source src="/video/portrait/pete-portrait.mp4" type="video/mp4" />
+			</video>
 		</div>
 
 		<div class="reel__veil" aria-hidden="true"></div>
 
 		<div class="reel__copy">
-			<div class="reel__tag"><i></i><span>A moving practice</span></div>
+			<div class="reel__tag"><i></i><span>A connected practice</span></div>
 			<div>
-				<h2 id="reel-title">The work changes.<br />The through-line holds.</h2>
+				<h2 id="reel-title">Curious by nature.<br />Hands-on by choice.</h2>
 				<p>
-					A scroll-linked study made from the current project archive. It is ready to become a
-					portrait film when the shoot is ready.
+					I’m most at home moving between product questions, visual ideas, and the code that makes
+					them real—staying close enough to the work to keep the through-line intact.
 				</p>
 			</div>
 		</div>
 
 		<div class="reel__progress" aria-hidden="true">
-			<span>Scroll to move through the work</span>
+			<span>Scroll through the portrait</span>
 			<i><b data-reel-progress></b></i>
-			<span>04</span>
+			<span>05 sec</span>
 		</div>
 	</div>
 </section>
@@ -70,45 +49,25 @@
 		isolation: isolate;
 	}
 
-	.reel__frames,
-	.reel__frame,
+	.reel__media,
 	.reel__veil {
 		position: absolute;
 		inset: 0;
 	}
 
-	.reel__frame {
-		margin: 0;
-		opacity: 0;
-		background: var(--color-accent);
+	.reel__media {
+		background: var(--color-punch-ink);
 	}
 
-	.reel__frame:first-child {
-		opacity: 1;
-	}
-
-	.reel__frame img {
+	.reel__media video {
+		display: block;
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
-		object-position: center top;
-		filter: saturate(0.82) contrast(1.03);
+		object-position: center center;
+		filter: saturate(0.8) contrast(1.04) brightness(0.76);
+		opacity: 0;
 		transform: scale(1.055);
-	}
-
-	.reel__frame figcaption {
-		position: absolute;
-		top: 5.8rem;
-		right: max(1rem, calc((100vw - 94rem) / 2));
-		display: flex;
-		gap: 0.7rem;
-		padding: 0.55rem 0.7rem;
-		background: var(--color-accent);
-		color: var(--color-accent-on);
-		font-family: var(--font-family-mono);
-		font-size: var(--font-size-label);
-		letter-spacing: var(--letter-spacing-label);
-		text-transform: uppercase;
 	}
 
 	.reel__veil {
@@ -116,9 +75,9 @@
 		background:
 			linear-gradient(
 				90deg,
-				rgb(10 10 10 / 88%) 0%,
-				rgb(10 10 10 / 58%) 62%,
-				rgb(10 10 10 / 22%) 100%
+				rgb(10 10 10 / 92%) 0%,
+				rgb(10 10 10 / 66%) 52%,
+				rgb(10 10 10 / 16%) 100%
 			),
 			linear-gradient(0deg, rgb(10 10 10 / 62%) 0%, transparent 48%);
 		pointer-events: none;
@@ -221,13 +180,12 @@
 
 		.reel__veil {
 			background:
-				linear-gradient(90deg, rgb(10 10 10 / 72%) 0%, rgb(10 10 10 / 28%) 100%),
+				linear-gradient(90deg, rgb(10 10 10 / 86%) 0%, rgb(10 10 10 / 24%) 100%),
 				linear-gradient(0deg, rgb(10 10 10 / 72%) 0%, transparent 60%);
 		}
 
-		.reel__frame figcaption {
-			top: 7rem;
-			right: 0.625rem;
+		.reel__media video {
+			object-position: 66% center;
 		}
 
 		.reel__progress span:first-child {
@@ -250,12 +208,12 @@
 			height: max(42rem, 100svh);
 		}
 
-		.reel__frame:not(:first-child),
 		.reel__progress {
 			display: none;
 		}
 
-		.reel__frame img {
+		.reel__media video {
+			opacity: 1;
 			transform: none;
 		}
 	}
@@ -270,12 +228,12 @@
 		height: max(42rem, 100svh);
 	}
 
-	:global([data-home-motion][data-motion='reduced']) .reel__frame:not(:first-child),
 	:global([data-home-motion][data-motion='reduced']) .reel__progress {
 		display: none;
 	}
 
-	:global([data-home-motion][data-motion='reduced']) .reel__frame img {
+	:global([data-home-motion][data-motion='reduced']) .reel__media video {
+		opacity: 1;
 		transform: none;
 	}
 </style>

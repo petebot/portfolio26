@@ -3,8 +3,8 @@
 	"slug": "grande-burrito",
 	"aliases": ["grande"],
 	"title": "Grande Burrito",
-	"summary": "A brand-led restaurant site designed to make hours, menu decisions, and the trip to Freeport immediately clear.",
-	"intro": "Grande Burrito pairs a vivid public experience with a constrained Sanity studio that lets an owner update the information customers rely on every day.",
+	"summary": "A motion-led restaurant site that gives Grande Burrito's identity and frequently changing menu a dedicated digital home.",
+	"intro": "The concept translates Grande Burrito's logo and printed-menu style into a motion-led SvelteKit site with a practical Sanity editing system.",
 	"heroImage": {
 		"url": "/images/projects/grande-burrito-home.png",
 		"alt": "Grande Burrito landing hero with a foil-wrapped burrito positioned over the oversized Grande wordmark"
@@ -18,7 +18,7 @@
 	"category": "Brand and web system",
 	"tags": ["brand", "content-design", "small-business"],
 	"tech": ["SvelteKit", "Sanity", "TypeScript", "Playwright"],
-	"role": "Strategy · Design system · Engineering",
+	"role": "Independent research · Digital design · Content system · Engineering",
 	"timeframe": { "label": "2026 · In progress" },
 	"designSystem": {
 		"name": "Grande Burrito Sign & Sheet System",
@@ -79,14 +79,23 @@
 				{
 					"name": "MenuItem",
 					"description": "Menu rows preserve pricing and availability detail without recreating the printed menu’s density.",
-					"states": ["Fixed price", "Market price", "Sold out", "Dietary", "Heat"]
+					"states": ["Available", "Sold out", "Long content"]
 				},
 				{
 					"name": "HoursStatus",
 					"description": "Current status, next transition, today’s hours, and exceptions stay answerable together.",
-					"states": ["Open", "Closed", "Exception", "Live update"]
+					"states": ["Open", "Closed", "Exception"]
 				}
 			],
+			"componentSnapshot": {
+				"url": "/images/projects/grande-burrito-components.webp",
+				"lightUrl": "/images/projects/grande-burrito-components.webp",
+				"darkUrl": "/images/projects/grande-burrito-components-dark.webp",
+				"alt": "Grande Burrito design-system specimens showing the BrandMark, an available MenuItem, and the current HoursStatus panel in the viewer’s system theme",
+				"caption": "BrandMark, MenuItem, and HoursStatus captured from the Grande Burrito system specimen.",
+				"width": 1488,
+				"height": 328
+			},
 			"productProof": {
 				"title": "Printed-menu rhythm becomes a scannable system",
 				"description": "Food categories, descriptions, and prices use a consistent editorial hierarchy that keeps a long made-to-order menu easy to scan.",
@@ -102,5 +111,6 @@
 		},
 		"specimenUrl": null
 	},
-	"contentUri": "content/projects/grande-burrito/content.md"
+	"contentUri": "content/projects/grande-burrito/content.md",
+	"internalNotes": "Self-initiated concept; not commissioned, reviewed, or approved by Grande Burrito. The current hero burrito is an AI-generated placeholder and must not be described as real restaurant photography. Before presenting: simplify the admin, replace hero imagery with original food photography, consider more motion, and add menu printing."
 }
