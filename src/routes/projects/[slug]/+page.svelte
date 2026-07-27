@@ -1,6 +1,7 @@
 <script lang="ts">
 	import ProjectScreenshot from '$lib/components/ProjectScreenshot.svelte';
 	import DesignSystemStory from '$lib/components/DesignSystemStory.svelte';
+	import { absoluteUrl, SITE } from '$lib/site';
 	import type { PageData } from './$types';
 
 	let { data }: { data: PageData } = $props();
@@ -49,11 +50,72 @@
 	}
 
 	const sections = $derived(parseSections(data.project.body ?? ''));
+	const homeUrl = absoluteUrl('/');
+	const canonicalUrl = $derived(
+		data.project.canonical ?? absoluteUrl(`/projects/${data.project.slug}`)
+	);
+	const pageTitle = $derived(`${data.project.title} — ${SITE.name}`);
+	const structuredData = $derived({
+		'@context': 'https://schema.org',
+		'@graph': [
+			{
+				'@type': 'CreativeWork',
+				'@id': `${canonicalUrl}#project`,
+				url: canonicalUrl,
+				name: data.project.title,
+				description: data.project.summary,
+				abstract: data.project.intro,
+				genre: data.project.category,
+				keywords: [...(data.project.tags ?? []), ...(data.project.tech ?? [])],
+				image: data.project.heroImage?.url ? absoluteUrl(data.project.heroImage.url) : undefined,
+				creator: {
+					'@type': 'Person',
+					'@id': `${homeUrl}#pete-nawara`,
+					name: SITE.name,
+					url: homeUrl
+				},
+				isPartOf: { '@id': `${homeUrl}#website` },
+				mainEntityOfPage: canonicalUrl,
+				sameAs: data.project.liveUrl ?? undefined
+			},
+			{
+				'@type': 'BreadcrumbList',
+				itemListElement: [
+					{
+						'@type': 'ListItem',
+						position: 1,
+						name: 'Selected work',
+						item: `${homeUrl}#work`
+					},
+					{
+						'@type': 'ListItem',
+						position: 2,
+						name: data.project.title,
+						item: canonicalUrl
+					}
+				]
+			}
+		]
+	});
+	const structuredDataHtml = $derived(
+		'<script type="application/ld+json">' +
+			JSON.stringify(structuredData).replace(/</g, '\\u003c') +
+			'<' +
+			'/script>'
+	);
 </script>
 
 <svelte:head>
-	<title>{data.project.title} — Pete Nawara</title>
+	<title>{pageTitle}</title>
 	<meta name="description" content={data.project.summary} />
+	<link rel="canonical" href={canonicalUrl} />
+	<meta property="og:type" content="article" />
+	<meta property="og:title" content={pageTitle} />
+	<meta property="og:description" content={data.project.summary} />
+	<meta property="og:url" content={canonicalUrl} />
+	<meta name="twitter:title" content={pageTitle} />
+	<meta name="twitter:description" content={data.project.summary} />
+	{@html structuredDataHtml}
 </svelte:head>
 
 <article>

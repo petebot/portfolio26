@@ -2,6 +2,7 @@
 	import HomeMotion from '$lib/components/HomeMotion.svelte';
 	import ProjectScreenshot from '$lib/components/ProjectScreenshot.svelte';
 	import ScrollReel from '$lib/components/ScrollReel.svelte';
+	import { absoluteUrl, SITE } from '$lib/site';
 	import type { PageData } from './$types';
 
 	let { data }: { data: PageData } = $props();
@@ -12,14 +13,77 @@
 		{ rotation: -0.22 },
 		{ rotation: 0.26 }
 	];
+
+	const homeUrl = absoluteUrl('/');
+	const personId = `${homeUrl}#pete-nawara`;
+	const websiteId = `${homeUrl}#website`;
+	const structuredData = $derived({
+		'@context': 'https://schema.org',
+		'@graph': [
+			{
+				'@type': 'WebSite',
+				'@id': websiteId,
+				url: homeUrl,
+				name: SITE.name,
+				description: SITE.description,
+				inLanguage: SITE.language
+			},
+			{
+				'@type': 'ProfilePage',
+				'@id': `${homeUrl}#profile`,
+				url: homeUrl,
+				name: SITE.title,
+				description: SITE.description,
+				inLanguage: SITE.language,
+				isPartOf: { '@id': websiteId },
+				mainEntity: {
+					'@type': 'Person',
+					'@id': personId,
+					name: SITE.name,
+					url: homeUrl,
+					email: `mailto:${SITE.email}`,
+					jobTitle: 'Creative Technologist',
+					description: SITE.description,
+					sameAs: [SITE.github],
+					knowsAbout: [
+						'Product strategy',
+						'Interaction design',
+						'Visual systems',
+						'Frontend engineering',
+						'Accessible web development',
+						'Content and data systems'
+					]
+				},
+				hasPart: data.projects.map((project) => ({
+					'@type': 'CreativeWork',
+					'@id': `${absoluteUrl(`/projects/${project.slug}`)}#project`,
+					url: absoluteUrl(`/projects/${project.slug}`),
+					name: project.title,
+					abstract: project.summary,
+					creator: { '@id': personId }
+				}))
+			}
+		]
+	});
+	const structuredDataHtml = $derived(
+		'<script type="application/ld+json">' +
+			JSON.stringify(structuredData).replace(/</g, '\\u003c') +
+			'<' +
+			'/script>'
+	);
 </script>
 
 <svelte:head>
-	<title>Pete Nawara — Creative Technologist</title>
-	<meta
-		name="description"
-		content="Pete Nawara is a creative technologist who designs and builds digital products, interfaces, and systems."
-	/>
+	<title>{SITE.title}</title>
+	<meta name="description" content={SITE.description} />
+	<link rel="canonical" href={homeUrl} />
+	<meta property="og:type" content="profile" />
+	<meta property="og:title" content={SITE.title} />
+	<meta property="og:description" content={SITE.description} />
+	<meta property="og:url" content={homeUrl} />
+	<meta name="twitter:title" content={SITE.title} />
+	<meta name="twitter:description" content={SITE.description} />
+	{@html structuredDataHtml}
 </svelte:head>
 
 <div data-home-motion>
@@ -40,7 +104,7 @@
 		</p>
 		<div class="hero-meta">
 			<p><i></i> Creative Technologist <span class="hero-marker" aria-hidden="true"></span></p>
-			<a href="mailto:pete@petenawara.com">Email Pete <span aria-hidden="true">↗</span></a>
+			<a href="mailto:hello@petenawara.com">Email Pete <span aria-hidden="true">↗</span></a>
 		</div>
 	</section>
 
@@ -134,10 +198,7 @@
 			<li>
 				<span>04</span>
 				<h3>Durable systems</h3>
-				<p>
-					Designing content, data, and component structures that can evolve without losing
-					coherence.
-				</p>
+				<p>Structuring content, data, and components so the whole system can evolve coherently.</p>
 			</li>
 		</ol>
 	</section>
@@ -168,7 +229,7 @@
 			<h2 id="contact-title" data-reveal data-rest-rotation="0.36">
 				Have something interesting to make?
 			</h2>
-			<a href="mailto:pete@petenawara.com">Email Pete <span aria-hidden="true">↗</span></a>
+			<a href="mailto:hello@petenawara.com">Email Pete <span aria-hidden="true">↗</span></a>
 		</div>
 	</section>
 </div>
