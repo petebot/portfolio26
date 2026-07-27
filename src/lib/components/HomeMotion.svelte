@@ -143,10 +143,29 @@
 						.fromTo(
 							portraitVideo,
 							{ opacity: 0 },
-							{ opacity: 1, duration: 0.08, ease: 'power2.out' },
+							{ opacity: 1, duration: 0.15, ease: 'power2.out' },
 							0
 						)
-						.to(portraitVideo, { opacity: 0, duration: 0.08, ease: 'power2.in' }, 0.92);
+						.fromTo(
+							portraitVideo,
+							{ filter: 'saturate(0.12) contrast(1.04) brightness(0.7)' },
+							{
+								filter: 'saturate(0.82) contrast(1.04) brightness(0.76)',
+								duration: 0.4,
+								ease: 'power1.inOut'
+							},
+							0.08
+						)
+						.to(
+							portraitVideo,
+							{
+								filter: 'saturate(0.38) contrast(1.04) brightness(0.7)',
+								duration: 0.3,
+								ease: 'power1.inOut'
+							},
+							0.7
+						)
+						.to(portraitVideo, { opacity: 0, duration: 0.15, ease: 'power2.in' }, 0.85);
 				}
 
 				const blinds = gsap.utils.toArray<HTMLElement>('.color-bridge__blind');

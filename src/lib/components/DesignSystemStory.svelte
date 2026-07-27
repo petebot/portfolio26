@@ -96,18 +96,18 @@
 							<picture>
 								{#if system.showcase.componentSnapshot.darkUrl}
 									<source
-										srcset={`${system.showcase.componentSnapshot.darkUrl}?v=20260726-components-3`}
+										srcset={`${system.showcase.componentSnapshot.darkUrl}?v=20260726-synchronic-live`}
 										media="(prefers-color-scheme: dark)"
 									/>
 								{/if}
 								{#if system.showcase.componentSnapshot.lightUrl}
 									<source
-										srcset={`${system.showcase.componentSnapshot.lightUrl}?v=20260726-components-3`}
+										srcset={`${system.showcase.componentSnapshot.lightUrl}?v=20260726-synchronic-live`}
 										media="(prefers-color-scheme: light)"
 									/>
 								{/if}
 								<img
-									src={`${system.showcase.componentSnapshot.url}?v=20260726-components-3`}
+									src={`${system.showcase.componentSnapshot.url}?v=20260726-synchronic-live`}
 									alt={system.showcase.componentSnapshot.alt ?? ''}
 									width={system.showcase.componentSnapshot.width}
 									height={system.showcase.componentSnapshot.height}
@@ -149,18 +149,18 @@
 							<picture>
 								{#if system.showcase.productProof.image.darkUrl}
 									<source
-										srcset={`${system.showcase.productProof.image.darkUrl}?v=20260724-screenshots-4`}
+										srcset={`${system.showcase.productProof.image.darkUrl}?v=20260726-synchronic-live`}
 										media="(prefers-color-scheme: dark)"
 									/>
 								{/if}
 								{#if system.showcase.productProof.image.lightUrl}
 									<source
-										srcset={`${system.showcase.productProof.image.lightUrl}?v=20260724-screenshots-4`}
+										srcset={`${system.showcase.productProof.image.lightUrl}?v=20260726-synchronic-live`}
 										media="(prefers-color-scheme: light)"
 									/>
 								{/if}
 								<img
-									src={`${system.showcase.productProof.image.url}?v=20260724-screenshots-4`}
+									src={`${system.showcase.productProof.image.url}?v=20260726-synchronic-live`}
 									alt={system.showcase.productProof.image.alt ??
 										`${system.name} shown in the product`}
 									loading="lazy"

@@ -7,16 +7,13 @@
 	"intro": "Synchronic began as a personal response to work and parenting crowding out painting; daily use has helped move my studio practice from rare sessions to a weekly rhythm.",
 	"heroImage": {
 		"url": "/images/projects/synchronic-home.png",
-		"compactUrl": "/images/projects/synchronic-home-mobile.png",
-		"compactAlt": "Synchronic mobile landing page introducing the studio companion for artists",
-		"compactFrame": "phone",
 		"lightUrl": "/images/projects/synchronic-home-light.png",
 		"darkUrl": "/images/projects/synchronic-home-dark.png",
-		"alt": "Synchronic logged-in dashboard showing weekly creative practice summaries and progress modules"
+		"alt": "Synchronic Studio Overview showing quick actions, the Weekly Thread, and current creative-care tasks"
 	},
 	"status": "published",
 	"createdAt": "2025-01-01T00:00:00.000Z",
-	"updatedAt": "2026-07-24T00:00:00.000Z",
+	"updatedAt": "2026-07-26T00:00:00.000Z",
 	"sortDate": "2026-05-17",
 	"featured": true,
 	"weight": 1,
@@ -79,12 +76,12 @@
 				{
 					"name": "Actions",
 					"description": "Primary, secondary, and quiet actions share one tactile hierarchy while preserving native semantics.",
-					"states": ["Begin reflection", "Save draft", "Unavailable"]
+					"states": ["Primary", "Secondary", "Ghost", "Disabled"]
 				},
 				{
 					"name": "Input",
 					"description": "Visible prompts and supporting guidance make open-ended reflection feel inviting and bounded.",
-					"states": ["Default", "Guidance", "Focus"]
+					"states": ["Prompt", "Guidance", "Focus-visible"]
 				},
 				{
 					"name": "Status & signal",
@@ -96,10 +93,10 @@
 				"url": "/images/projects/synchronic-components.webp",
 				"lightUrl": "/images/projects/synchronic-components.webp",
 				"darkUrl": "/images/projects/synchronic-components-dark.webp",
-				"alt": "Synchronic design-system specimens showing action buttons, an editorial input field, and status feedback in the viewer’s system theme",
-				"caption": "Actions, input, and status signals captured from the Synchronic design-system specimen.",
-				"width": 1236,
-				"height": 616
+				"alt": "Synchronic design-system specimens showing four button states, a focused editorial input, and status feedback in the viewer’s system theme",
+				"caption": "Current action states, visible keyboard focus, and status signals from the live Synchronic specimen.",
+				"width": 914,
+				"height": 519
 			},
 			"productProof": {
 				"title": "Five practices, one interaction grammar",
@@ -108,7 +105,7 @@
 					"url": "/images/projects/synchronic-system.png",
 					"lightUrl": "/images/projects/synchronic-system-light.png",
 					"darkUrl": "/images/projects/synchronic-system-dark.png",
-					"alt": "Synchronic logged-in Practice view showing session history, notes, and actions"
+					"alt": "Synchronic Practice view showing its session-first action panel and visual session archive"
 				}
 			},
 			"accessibility": {
@@ -116,7 +113,7 @@
 				"description": "Light and dark roles, three-pixel focus treatment, text-backed status, reduced motion, and 44px minimum targets are encoded as system foundations."
 			}
 		},
-		"specimenUrl": null
+		"specimenUrl": "https://synchronic.studio/open/design-system"
 	},
 	"repoUrl": "https://github.com/petebot/synchronic",
 	"contentUri": "content/projects/synchronic-studio/content.md",

@@ -20,16 +20,16 @@
 	const usesCompactSource = $derived(Boolean(compact && image?.compactUrl));
 	const versionedSource = $derived(
 		image
-			? `${usesCompactSource ? image.compactUrl : image.url}?v=20260726-vercel-comments`
+			? `${usesCompactSource ? image.compactUrl : image.url}?v=20260726-synchronic-live`
 			: undefined
 	);
 	const versionedLightSource = $derived(
 		!usesCompactSource && image?.lightUrl
-			? `${image.lightUrl}?v=20260726-vercel-comments`
+			? `${image.lightUrl}?v=20260726-synchronic-live`
 			: undefined
 	);
 	const versionedDarkSource = $derived(
-		!usesCompactSource && image?.darkUrl ? `${image.darkUrl}?v=20260726-vercel-comments` : undefined
+		!usesCompactSource && image?.darkUrl ? `${image.darkUrl}?v=20260726-synchronic-live` : undefined
 	);
 	const imageAlt = $derived(
 		usesCompactSource ? (image?.compactAlt ?? image?.alt ?? '') : (image?.alt ?? '')
