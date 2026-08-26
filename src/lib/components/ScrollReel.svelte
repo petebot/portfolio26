@@ -20,7 +20,7 @@
 				<h2 id="reel-title">Curious by nature.<br />Hands-on by choice.</h2>
 				<p>
 					I’m most at home moving between product questions, visual ideas, and the code that makes
-					them real—staying close enough to the work to keep the through-line intact.
+					them real—staying close enough to keep the final experience coherent.
 				</p>
 			</div>
 		</div>
@@ -28,7 +28,7 @@
 		<div class="reel__progress" aria-hidden="true">
 			<span>Scroll through the portrait</span>
 			<i><b data-reel-progress></b></i>
-			<span>05 sec</span>
+			<span data-reel-progress-label>0%</span>
 		</div>
 	</div>
 </section>
