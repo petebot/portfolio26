@@ -1,0 +1,154 @@
+{
+	"id": "proj-brown-dog-inn",
+	"slug": "brown-dog-inn",
+	"aliases": ["bdi-redesign"],
+	"title": "Brown Dog Inn",
+	"summary": "An independent redesign that reframes a nature-based dog retreat as a calm hospitality brand with clearer first-stay and returning-guest journeys.",
+	"intro": "The concept brings Brown Dog Inn’s strongest real qualities—ten private acres, small groups, overnight care, and a warm point of view—forward through a responsive site and guarded content system.",
+	"heroImage": {
+		"url": "/images/projects/brown-dog-inn-home.png",
+		"compactFrame": "browser",
+		"compactFrameLabel": "browndoginn.local",
+		"lightUrl": "/images/projects/brown-dog-inn-home.png",
+		"darkUrl": "/images/projects/brown-dog-inn-home-dark.png",
+		"alt": "Brown Dog Inn redesign homepage pairing the Slow down, sniff around positioning with authentic trail photography and separate first-stay and returning-guest actions"
+	},
+	"heroLabel": "My redesign concept",
+	"status": "published",
+	"createdAt": "2026-08-10T00:00:00.000Z",
+	"updatedAt": "2026-08-25T00:00:00.000Z",
+	"sortDate": "2026-08-12",
+	"featured": true,
+	"weight": 5,
+	"category": "Hospitality web system",
+	"tags": ["service-design", "brand", "content-strategy"],
+	"tech": ["Astro", "Keystatic", "TypeScript"],
+	"role": "Independent audit · Positioning · Content strategy · Digital design · Engineering",
+	"timeframe": { "label": "August 2026 · Independent concept" },
+	"repoUrl": "https://github.com/petebot/brown-dog-inn-redesign",
+	"startingPoint": {
+		"sectionHeading": "Before and after",
+		"eyebrow": "Before and after · independent redesign concept",
+		"ownershipLabel": "Not designed or built by me",
+		"title": "From legacy website to hospitality experience",
+		"description": "The comparison below shows how I translated Brown Dog Inn’s existing public site into a calmer, mobile-first hospitality experience. The redesign preserves its nature-based philosophy, authentic property photography, and warm founder voice while creating clearer hierarchy and distinct paths for first-stay and returning guests.",
+		"url": "https://www.browndoginn.com/index.html",
+		"linkLabel": "Visit the existing public site",
+		"image": {
+			"url": "/images/projects/brown-dog-inn-original.png",
+			"alt": "Existing Brown Dog Inn homepage with a fixed-width lime green header, centered logo, navigation, and a dense image gallery",
+			"caption": "Before: Brown Dog Inn’s existing public homepage, observed in August 2026. After: my independent redesign concept."
+		},
+		"preserved": [
+			"Stay in Nature point of view",
+			"Authentic property photography",
+			"Warm, candid business voice",
+			"Specific care and fit criteria"
+		],
+		"reworked": [
+			"Mobile-first information architecture",
+			"Distinct new and returning guest paths",
+			"Hospitality-led visual hierarchy",
+			"Structured content and accessible forms"
+		]
+	},
+	"designSystem": {
+		"name": "Brown Dog Inn Hospitality System",
+		"status": "emerging",
+		"contractVersion": "1.0.0",
+		"summary": "A warm Maine-inn system that uses editorial type, restrained structure, authentic photography, and protected content roles to make care feel both premium and reassuring.",
+		"principles": [
+			{
+				"name": "An inn that happens to be for dogs",
+				"description": "Hospitality, landscape, rest, and reassurance lead the experience before conventional pet-care graphics."
+			},
+			{
+				"name": "Warm, not rustic",
+				"description": "Editorial typography and natural color create place without drifting into novelty, nostalgia, or preciousness."
+			},
+			{
+				"name": "One hierarchy across changing content",
+				"description": "The CMS can change approved words and images while page rhythm, type roles, actions, and component anatomy remain protected."
+			},
+			{
+				"name": "Trust before conversion",
+				"description": "Fit criteria, health requirements, overnight care, and the first-stay process become clear before a visitor is asked to register."
+			}
+		],
+		"showcase": {
+			"palette": [
+				{
+					"name": "Inn brown",
+					"value": "#4a302a",
+					"role": "Wordmark, display type, and primary action"
+				},
+				{ "name": "Deep pine", "value": "#23372f", "role": "Environmental surface and body text" },
+				{ "name": "Warm cream", "value": "#f4f0e7", "role": "Primary hospitality surface" },
+				{ "name": "Paper", "value": "#fbf8f1", "role": "Alternate and elevated surface" },
+				{ "name": "Moss", "value": "#7a846a", "role": "Natural supporting accent" },
+				{
+					"name": "Pool blue",
+					"value": "#3e6c77",
+					"role": "Focus on light surfaces and water context"
+				},
+				{ "name": "Night umber", "value": "#15110f", "role": "Dark-appearance canvas" }
+			],
+			"typography": [
+				{
+					"family": "Newsreader",
+					"role": "Display and editorial",
+					"description": "A generous serif voice positions the retreat like a calm Maine inn and gives the strongest promises room to breathe."
+				},
+				{
+					"family": "Source Sans 3",
+					"role": "Navigation, body, and actions",
+					"description": "A restrained sans serif keeps requirements, rates, forms, and operating information direct and scannable."
+				}
+			],
+			"components": [
+				{
+					"name": "Guest pathways",
+					"description": "Parallel actions distinguish families planning a first stay from returning guests making another reservation.",
+					"states": ["First stay", "Returning guest", "Photographic surface"]
+				},
+				{
+					"name": "Content collection",
+					"description": "One content anatomy supports editorial columns, requirement rows, and image-led experience grids without a page-builder free-for-all.",
+					"states": ["Columns", "Rows", "Media grid", "Dark surface"]
+				},
+				{
+					"name": "Form shell",
+					"description": "Long registration work is divided into focused steps with stable guidance, validation, review, and explicit concept boundaries.",
+					"states": ["Routing", "In progress", "Validation", "Review"]
+				},
+				{
+					"name": "Account section",
+					"description": "The fictional returning-family portal carries the same hospitality language into dogs, records, stays, and attention states.",
+					"states": ["Current", "Needs attention", "Pending", "Neutral"]
+				}
+			],
+			"componentSnapshot": {
+				"url": "/images/projects/brown-dog-inn-first-stay.png",
+				"alt": "Brown Dog Inn First Stay page showing the editorial hero, registration and health-record pathways, and an aligned requirements strip",
+				"caption": "Interior hero, action hierarchy, and requirements reuse the same type and spacing roles as the homepage.",
+				"width": 1440,
+				"height": 900
+			},
+			"productProof": {
+				"title": "The hospitality language continues into operations",
+				"description": "The same hierarchy, actions, status language, and content roles extend from discovery into the fictional returning-family account, showing how a public redesign could grow into a coherent service product.",
+				"image": {
+					"url": "/images/projects/brown-dog-inn-account.png",
+					"alt": "Fictional Brown Dog Inn returning-family account showing an upcoming stay and an item needing attention"
+				}
+			},
+			"accessibility": {
+				"title": "A calm experience at every size and mode",
+				"description": "Semantic landmarks, logical headings, visible focus, 44px targets, reduced motion, responsive reflow, descriptive image text, and system-led dark appearance are encoded across every route."
+			}
+		},
+		"specimenUrl": null
+	},
+	"contentUri": "content/projects/brown-dog-inn/content.md",
+	"internalNotes": "Self-initiated concept; not commissioned, reviewed, or approved by Brown Dog Inn. The public account and forms use fictional data and do not authenticate, persist, upload, or send customer information. Confirm source-image usage rights and all operational details before any business-facing launch."
+}

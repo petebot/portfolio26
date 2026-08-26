@@ -92,22 +92,27 @@
 				</div>
 				<div class="component-story">
 					{#if system.showcase.componentSnapshot}
-						<figure class="component-snapshot">
+						<figure
+							class="component-snapshot"
+							class:component-snapshot--fritz={system.showcase.componentSnapshot.url.includes(
+								'fritz-components-clay'
+							)}
+						>
 							<picture>
 								{#if system.showcase.componentSnapshot.darkUrl}
 									<source
-										srcset={`${system.showcase.componentSnapshot.darkUrl}?v=20260726-synchronic-live`}
+										srcset={`${system.showcase.componentSnapshot.darkUrl}?v=20260826-fritz-clay-four-up`}
 										media="(prefers-color-scheme: dark)"
 									/>
 								{/if}
 								{#if system.showcase.componentSnapshot.lightUrl}
 									<source
-										srcset={`${system.showcase.componentSnapshot.lightUrl}?v=20260726-synchronic-live`}
+										srcset={`${system.showcase.componentSnapshot.lightUrl}?v=20260826-fritz-clay-four-up`}
 										media="(prefers-color-scheme: light)"
 									/>
 								{/if}
 								<img
-									src={`${system.showcase.componentSnapshot.url}?v=20260726-synchronic-live`}
+									src={`${system.showcase.componentSnapshot.url}?v=20260826-fritz-clay-four-up`}
 									alt={system.showcase.componentSnapshot.alt ?? ''}
 									width={system.showcase.componentSnapshot.width}
 									height={system.showcase.componentSnapshot.height}
@@ -145,22 +150,30 @@
 				</div>
 				<div class="proof-grid">
 					{#if system.showcase.productProof.image}
-						<div class="proof-image">
+						<div
+							class="proof-image"
+							class:proof-image--full-bleed={system.showcase.productProof.image.url.includes(
+								'-clay.'
+							)}
+							class:proof-image--fritz={system.showcase.productProof.image.url.includes(
+								'fritz-system-at-work-clay'
+							)}
+						>
 							<picture>
 								{#if system.showcase.productProof.image.darkUrl}
 									<source
-										srcset={`${system.showcase.productProof.image.darkUrl}?v=20260726-synchronic-live`}
+										srcset={`${system.showcase.productProof.image.darkUrl}?v=20260826-fritz-clay-system`}
 										media="(prefers-color-scheme: dark)"
 									/>
 								{/if}
 								{#if system.showcase.productProof.image.lightUrl}
 									<source
-										srcset={`${system.showcase.productProof.image.lightUrl}?v=20260726-synchronic-live`}
+										srcset={`${system.showcase.productProof.image.lightUrl}?v=20260826-fritz-clay-system`}
 										media="(prefers-color-scheme: light)"
 									/>
 								{/if}
 								<img
-									src={`${system.showcase.productProof.image.url}?v=20260726-synchronic-live`}
+									src={`${system.showcase.productProof.image.url}?v=20260826-fritz-clay-system`}
 									alt={system.showcase.productProof.image.alt ??
 										`${system.name} shown in the product`}
 									loading="lazy"
@@ -485,6 +498,15 @@
 		display: block;
 	}
 
+	.component-snapshot--fritz picture {
+		overflow: hidden;
+	}
+
+	.component-snapshot--fritz img {
+		transform: translateY(-8.5%) scale(1.04);
+		transform-origin: center;
+	}
+
 	.component-snapshot figcaption {
 		margin-top: 1rem;
 		color: var(--color-text-muted);
@@ -545,6 +567,7 @@
 
 	.proof-image {
 		min-height: 28rem;
+		overflow: hidden;
 		background: var(--color-bg-subtle);
 	}
 
@@ -564,7 +587,18 @@
 		height: auto;
 		aspect-ratio: 16 / 9;
 		object-fit: contain;
-		object-position: top;
+		object-position: center;
+	}
+
+	.proof-image--full-bleed img {
+		height: 100%;
+		aspect-ratio: auto;
+		object-fit: cover;
+	}
+
+	.proof-image--fritz img {
+		transform: translateX(3%) scale(1.25);
+		transform-origin: center;
 	}
 
 	.proof-copy {

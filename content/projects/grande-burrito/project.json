@@ -14,7 +14,7 @@
 	"updatedAt": "2026-07-27T00:00:00.000Z",
 	"sortDate": "2026-07-22",
 	"featured": true,
-	"weight": 3,
+	"weight": 7,
 	"category": "Brand and web system",
 	"tags": ["brand", "content-design", "small-business"],
 	"tech": ["SvelteKit", "Sanity", "TypeScript", "Playwright"],

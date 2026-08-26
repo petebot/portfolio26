@@ -90,6 +90,7 @@ export interface Timeframe {
 export interface ProjectStartingPoint {
 	sectionHeading: string;
 	eyebrow: string;
+	ownershipLabel?: string;
 	title: string;
 	description: string;
 	url: string;
@@ -106,6 +107,7 @@ export interface ProjectPublic {
 	intro?: string;
 	body?: string;
 	heroImage?: ImageObject;
+	heroLabel?: string;
 	gallery?: ImageObject[];
 	tags?: string[];
 	category?: string;
@@ -173,6 +175,7 @@ const PUBLIC_FIELDS = [
 	'intro',
 	'body',
 	'heroImage',
+	'heroLabel',
 	'gallery',
 	'tags',
 	'category',
@@ -376,6 +379,7 @@ function validateStartingPoint(value: unknown, folderName: string): void {
 		[
 			'sectionHeading',
 			'eyebrow',
+			'ownershipLabel',
 			'title',
 			'description',
 			'url',
@@ -391,6 +395,14 @@ function validateStartingPoint(value: unknown, folderName: string): void {
 		['sectionHeading', 'eyebrow', 'title', 'description', 'url', 'linkLabel'],
 		`startingPoint in ${folderName}`
 	);
+	if (
+		startingPoint.ownershipLabel !== undefined &&
+		(typeof startingPoint.ownershipLabel !== 'string' || !startingPoint.ownershipLabel.trim())
+	) {
+		throw new Error(
+			`startingPoint.ownershipLabel in ${folderName} must be a non-empty string when provided`
+		);
+	}
 
 	if (!isValidPublicUrl(startingPoint.url as string)) {
 		throw new Error(`startingPoint.url in ${folderName} must be a public URL or root path`);

@@ -24,8 +24,8 @@
 		<p class="eyebrow">Portfolio design system · v1.0</p>
 		<h1>A quiet system for showing expressive work.</h1>
 		<p class="lede">
-			The portfolio uses a small set of durable rules: legible type, structural spacing, functional
-			color, and enough restraint for each project to keep its own voice.
+			This page makes the system behind the portfolio visible: legible type, structural spacing,
+			functional color, and enough restraint for each project to keep its own voice.
 		</p>
 	</header>
 

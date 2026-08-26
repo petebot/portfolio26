@@ -1,0 +1,123 @@
+{
+	"id": "proj-fritz",
+	"slug": "fritz",
+	"aliases": ["fritz-app"],
+	"title": "Fritz",
+	"summary": "A private iPhone care companion that turns fast household logging into a trustworthy shared memory, explainable patterns, and calm next steps.",
+	"intro": "Fritz is a native household pilot for recording a puppy’s care in seconds, coordinating handoffs, and learning from evidence without turning uncertainty into false precision.",
+	"heroImage": {
+		"url": "/images/projects/fritz-clay-showcase.png",
+		"frame": "plain",
+		"alt": "Three white clay iPhones showing Fritz Timeline, Today, and Patterns screens"
+	},
+	"status": "published",
+	"createdAt": "2026-08-10T00:00:00.000Z",
+	"updatedAt": "2026-08-25T00:00:00.000Z",
+	"sortDate": "2026-08-11",
+	"featured": true,
+	"weight": 1,
+	"category": "Native care product",
+	"tags": ["product-design", "ios", "data-integrity"],
+	"tech": ["SwiftUI", "ActivityKit", "XCTest"],
+	"role": "Product strategy · Research synthesis · Interaction design · Brand system · iOS engineering",
+	"timeframe": { "label": "August 2026—Now · Private pilot" },
+	"designSystem": {
+		"name": "Fritz Bright Steadiness",
+		"status": "living",
+		"contractVersion": "1.0.0",
+		"summary": "A native care system that combines warm consumer character with explicit evidence, stable capture, and calm next-step guidance.",
+		"principles": [
+			{
+				"name": "Current truth comes first",
+				"description": "The product leads with what is happening now, what confirmed it, and the next useful action—not a dashboard of abstract metrics."
+			},
+			{
+				"name": "Preserve uncertainty",
+				"description": "Possible, inferred, approximate, corrected, and confirmed events remain distinct throughout capture, history, and analysis."
+			},
+			{
+				"name": "Every inference explains itself",
+				"description": "Patterns disclose their evidence, exclusions, time window, confidence, and limits instead of hiding behind a score."
+			},
+			{
+				"name": "Native means situational",
+				"description": "The app, notifications, dictation, and Live Activity each carry only the information appropriate to that moment."
+			},
+			{
+				"name": "Encourage without judgment",
+				"description": "Language confirms the observation, explains its meaning, and preserves agency without streaks, guilt, or exaggerated praise."
+			}
+		],
+		"showcase": {
+			"palette": [
+				{
+					"name": "Fritz charcoal",
+					"value": "#312c24",
+					"role": "Primary structure and high-priority state"
+				},
+				{
+					"name": "Action rose",
+					"value": "#9e4653",
+					"role": "Primary interaction in light appearance"
+				},
+				{ "name": "Silver", "value": "#dcdcd6", "role": "Quiet graphic field" },
+				{ "name": "Taupe", "value": "#c2b69e", "role": "Planning and next-step field" },
+				{ "name": "Field rose", "value": "#d5969a", "role": "Warm comparative field" },
+				{ "name": "Cream", "value": "#e6ddcd", "role": "Warm canvas and supporting field" }
+			],
+			"typography": [
+				{
+					"family": "Londrina Solid",
+					"role": "Identity and feature display",
+					"description": "A friendly, sturdy voice gives the product character while remaining limited to the wordmark and major feature hierarchy."
+				},
+				{
+					"family": "Apple system",
+					"role": "Interface and data",
+					"description": "Dynamic Type-aware system text keeps controls, timestamps, evidence, and everyday reading native and dependable."
+				}
+			],
+			"components": [
+				{
+					"name": "Capture launcher",
+					"description": "Stable quick actions and natural-language capture record common or compound events without making the caregiver reorganize the interface first.",
+					"states": ["Quick action", "Compound report", "Undo", "Duplicate warning"]
+				},
+				{
+					"name": "Evidence status",
+					"description": "Compact labels preserve confirmation, uncertainty, approximation, and changing confidence in both Timeline and Patterns.",
+					"states": ["Confirmed", "Uncertain", "Approximate", "Changing"]
+				},
+				{
+					"name": "Potty outlook",
+					"description": "Independent pee and poop readings pair qualitative guidance with the observations, exclusions, and triggers behind it.",
+					"states": ["Learning", "Possible", "Elevated", "Evidence detail"]
+				}
+			],
+			"componentSnapshot": {
+				"url": "/images/projects/fritz-components-clay.png",
+				"alt": "Current Fritz Log, Today, Timeline, and Patterns screens presented in white clay iPhones on a warm stone background",
+				"caption": "Current truth, event provenance, and explainable patterns share one native visual and semantic system.",
+				"width": 1600,
+				"height": 900
+			},
+			"productProof": {
+				"title": "One observation changes state, guidance, and evidence together",
+				"description": "Today, Timeline, Patterns, notifications, and the Live Activity all derive from the same effective history, so a correction changes every downstream view without erasing what happened.",
+				"image": {
+					"url": "/images/projects/fritz-system-at-work-clay.png",
+					"lightUrl": "/images/projects/fritz-system-at-work-clay.png",
+					"darkUrl": "/images/projects/fritz-system-at-work-clay.png",
+					"alt": "A single white clay iPhone showing the current Fritz Today screen on a warm stone background"
+				}
+			},
+			"accessibility": {
+				"title": "Native behavior carries the expressive system",
+				"description": "Dynamic Type, VoiceOver order, 44-point targets, semantic status text, Reduce Motion, high contrast, light and dark appearance, and complete file protection are treated as product foundations."
+			}
+		},
+		"specimenUrl": null
+	},
+	"contentUri": "content/projects/fritz/content.md",
+	"internalNotes": "Private household pilot and private repository. Public presentation must use synthetic scenarios and omit exported event data, family care details, veterinary information, licensed source-asset bundles, and breeder documents."
+}

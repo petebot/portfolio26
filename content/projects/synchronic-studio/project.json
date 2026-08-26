@@ -16,7 +16,7 @@
 	"updatedAt": "2026-07-26T00:00:00.000Z",
 	"sortDate": "2026-05-17",
 	"featured": true,
-	"weight": 1,
+	"weight": 2,
 	"category": "Creative practice system",
 	"tags": ["product-design", "creative-practice", "creative-tools"],
 	"tech": ["SvelteKit", "Tauri", "Supabase", "TypeScript"],

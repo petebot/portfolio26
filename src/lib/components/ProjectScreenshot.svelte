@@ -48,17 +48,13 @@
 
 	const usesCompactSource = $derived(Boolean(compact && image?.compactUrl));
 	const versionedSource = $derived(
-		image
-			? `${usesCompactSource ? image.compactUrl : image.url}?v=20260726-synchronic-live`
-			: undefined
+		image ? `${usesCompactSource ? image.compactUrl : image.url}?v=20260826-display-fit` : undefined
 	);
 	const versionedLightSource = $derived(
-		!usesCompactSource && image?.lightUrl
-			? `${image.lightUrl}?v=20260726-synchronic-live`
-			: undefined
+		!usesCompactSource && image?.lightUrl ? `${image.lightUrl}?v=20260826-display-fit` : undefined
 	);
 	const versionedDarkSource = $derived(
-		!usesCompactSource && image?.darkUrl ? `${image.darkUrl}?v=20260726-synchronic-live` : undefined
+		!usesCompactSource && image?.darkUrl ? `${image.darkUrl}?v=20260826-display-fit` : undefined
 	);
 	const imageAlt = $derived(
 		usesCompactSource ? (image?.compactAlt ?? image?.alt ?? '') : (image?.alt ?? '')
@@ -344,6 +340,10 @@
 		object-fit: cover;
 		object-position: center top;
 		transition: transform 500ms var(--transition-ease-standard);
+	}
+
+	.visual[data-project='fritz'] img {
+		object-position: center 58%;
 	}
 
 	.cursor-label {
