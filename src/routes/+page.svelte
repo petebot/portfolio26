@@ -90,68 +90,75 @@
 <div data-home-motion>
 	<HomeMotion />
 
-	<section class="hero" aria-labelledby="hero-title">
+	<div class="landing-field">
 		<HeroField />
-		<div class="section-tag"><i></i><span>Creative technology practice</span></div>
-		<h1 id="hero-title" aria-label="I design and build digital products, interfaces, and systems.">
-			<span class="hero-line" data-hero-line><span>I design + build</span></span>
-			<span class="hero-line hero-line--offset" data-hero-line><span>digital products,</span></span>
-			<span class="hero-line" data-hero-line><span>interfaces + systems.</span></span>
-		</h1>
-		<p class="hero-intro">
-			<span>
-				A creative technology practice connecting product thinking, visual direction, and technical
-				execution—from first idea to working form.
-			</span>
-		</p>
-		<div class="hero-meta">
-			<p><i></i> Creative Technologist <span class="hero-marker" aria-hidden="true"></span></p>
-			<a href="mailto:hello@petenawara.com">Email Pete <span aria-hidden="true">↗</span></a>
-		</div>
-	</section>
-
-	<section class="work" id="work" aria-labelledby="work-title">
-		<header class="section-heading">
-			<div class="section-tag"><i></i><span>Selected work</span></div>
-			<div>
-				<h2 id="work-title" data-reveal data-rest-rotation="-0.35">
-					Useful systems with a distinct character.
-				</h2>
-				<p>Selected work across creative practice, culture, service, and place.</p>
+		<section class="hero" aria-labelledby="hero-title">
+			<div class="section-tag"><i></i><span>Creative technology practice</span></div>
+			<h1
+				id="hero-title"
+				aria-label="I design and build digital products, interfaces, and systems."
+			>
+				<span class="hero-line" data-hero-line><span>I design + build</span></span>
+				<span class="hero-line hero-line--offset" data-hero-line
+					><span>digital products,</span></span
+				>
+				<span class="hero-line" data-hero-line><span>interfaces + systems.</span></span>
+			</h1>
+			<p class="hero-intro">
+				<span>
+					A creative technology practice connecting product thinking, visual direction, and
+					technical execution—from first idea to working form.
+				</span>
+			</p>
+			<div class="hero-meta">
+				<p><i></i> Creative Technologist <span class="hero-marker" aria-hidden="true"></span></p>
+				<a href="mailto:hello@petenawara.com">Email Pete <span aria-hidden="true">↗</span></a>
 			</div>
-		</header>
+		</section>
 
-		<ol class="project-list">
-			{#each data.projects as project, index}
-				{@const card = projectCards[index % projectCards.length]}
-				<li style={`--card-index: ${index};`}>
-					<a
-						class="project-card"
-						href={`/projects/${project.slug}`}
-						aria-label={`View ${project.title}`}
-						data-project-card
-						data-rest-rotation={card.rotation}
-					>
-						<div class="project-copy">
-							<span class="project-number">0{index + 1}</span>
-							<div>
-								<p class="project-category">{project.category}</p>
-								<h3>{project.title}</h3>
-								<p class="project-summary">{project.summary}</p>
+		<section class="work" id="work" aria-labelledby="work-title">
+			<header class="section-heading">
+				<div class="section-tag"><i></i><span>Selected work</span></div>
+				<div>
+					<h2 id="work-title" data-reveal data-rest-rotation="-0.35">
+						Useful systems with a distinct character.
+					</h2>
+					<p>Selected work across creative practice, culture, service, and place.</p>
+				</div>
+			</header>
+
+			<ol class="project-list">
+				{#each data.projects as project, index}
+					{@const card = projectCards[index % projectCards.length]}
+					<li style={`--card-index: ${index};`}>
+						<a
+							class="project-card"
+							href={`/projects/${project.slug}`}
+							aria-label={`View ${project.title}`}
+							data-project-card
+							data-rest-rotation={card.rotation}
+						>
+							<div class="project-copy">
+								<span class="project-number">0{index + 1}</span>
+								<div>
+									<p class="project-category">{project.category}</p>
+									<h3>{project.title}</h3>
+									<p class="project-summary">{project.summary}</p>
+								</div>
+								<span class="project-arrow" aria-hidden="true">↗</span>
 							</div>
-							<span class="project-arrow" aria-hidden="true">↗</span>
-						</div>
-						<ProjectScreenshot slug={project.slug} image={project.heroImage} compact />
-						<div class="project-meta">
-							<span>{project.timeframe?.label ?? project.sortDate}</span>
-							<span>{project.role}</span>
-							<span>{project.tech?.slice(0, 3).join(' · ')}</span>
-						</div>
-					</a>
-				</li>
-			{/each}
-		</ol>
-	</section>
+							<ProjectScreenshot slug={project.slug} image={project.heroImage} compact />
+							<div class="project-meta">
+								<span>{project.timeframe?.label ?? project.sortDate}</span>
+								<span>{project.role}</span>
+								<span>{project.tech?.slice(0, 3).join(' · ')}</span>
+							</div>
+						</a>
+					</li>
+				{/each}
+			</ol>
+		</section>
+	</div>
 
 	<ScrollReel />
 
@@ -248,14 +255,22 @@
 		margin-inline: auto;
 	}
 
-	.hero {
+	.landing-field {
 		position: relative;
+		isolation: isolate;
+	}
+
+	.landing-field > .hero,
+	.landing-field > .work {
+		position: relative;
+		z-index: 1;
+	}
+
+	.hero {
 		min-height: calc(100svh - 5rem);
 		display: grid;
 		grid-template-rows: auto 1fr auto auto;
 		padding-block: clamp(3rem, 6vw, 5rem) 1.5rem;
-		isolation: isolate;
-		overflow: hidden;
 	}
 
 	.hero > .section-tag,
