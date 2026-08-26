@@ -94,8 +94,9 @@
 				const reel = root.querySelector<HTMLElement>('[data-scroll-reel]');
 				const portraitVideo = root.querySelector<HTMLVideoElement>('[data-portrait-video]');
 				const reelProgress = root.querySelector<HTMLElement>('[data-reel-progress]');
+				const reelProgressLabel = root.querySelector<HTMLElement>('[data-reel-progress-label]');
 
-				if (reel && portraitVideo && reelProgress) {
+				if (reel && portraitVideo && reelProgress && reelProgressLabel) {
 					const portraitFps = 30;
 					let portraitProgress = 0;
 
@@ -103,6 +104,7 @@
 
 					const syncPortraitFrame = (progress: number) => {
 						portraitProgress = progress;
+						reelProgressLabel.textContent = `${Math.round(progress * 100)}%`;
 
 						if (!Number.isFinite(portraitVideo.duration) || portraitVideo.duration <= 0) return;
 

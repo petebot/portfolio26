@@ -1,5 +1,6 @@
 <script lang="ts">
 	import HomeMotion from '$lib/components/HomeMotion.svelte';
+	import HeroField from '$lib/components/HeroField.svelte';
 	import ProjectScreenshot from '$lib/components/ProjectScreenshot.svelte';
 	import ScrollReel from '$lib/components/ScrollReel.svelte';
 	import { absoluteUrl, SITE } from '$lib/site';
@@ -90,6 +91,7 @@
 	<HomeMotion />
 
 	<section class="hero" aria-labelledby="hero-title">
+		<HeroField />
 		<div class="section-tag"><i></i><span>Creative technology practice</span></div>
 		<h1 id="hero-title" aria-label="I design and build digital products, interfaces, and systems.">
 			<span class="hero-line" data-hero-line><span>I design + build</span></span>
@@ -160,9 +162,12 @@
 			{/each}
 		</div>
 		<div class="color-bridge__content">
-			<div class="section-tag section-tag--dark"><i></i><span>The through-line</span></div>
+			<div class="section-tag section-tag--dark"><i></i><span>From question to release</span></div>
 			<h2 id="bridge-title"><span>Concept</span><span>→ working form</span></h2>
-			<p>The idea, the interface, and the machinery behind it—held as one continuous thing.</p>
+			<p>
+				Product thinking, visual direction, and technical execution stay connected as the work
+				becomes real.
+			</p>
 		</div>
 	</section>
 
@@ -207,7 +212,7 @@
 		<div class="section-tag"><i></i><span>Profile</span></div>
 		<div>
 			<h2 id="about-title" data-reveal data-rest-rotation="-0.3">
-				One continuous line from concept to code.
+				Strategy, expression, and execution—held together.
 			</h2>
 			<div class="about-copy">
 				<p>
@@ -244,10 +249,21 @@
 	}
 
 	.hero {
+		position: relative;
 		min-height: calc(100svh - 5rem);
 		display: grid;
 		grid-template-rows: auto 1fr auto auto;
 		padding-block: clamp(3rem, 6vw, 5rem) 1.5rem;
+		isolation: isolate;
+		overflow: hidden;
+	}
+
+	.hero > .section-tag,
+	.hero > h1,
+	.hero > .hero-intro,
+	.hero > .hero-meta {
+		position: relative;
+		z-index: 1;
 	}
 
 	.section-tag {
@@ -387,32 +403,29 @@
 
 	.project-list {
 		--card-lock-height: clamp(32rem, 66svh, 44rem);
+		--card-gap: clamp(3.5rem, 9vh, 6.5rem);
 	}
 
 	.project-list::after {
 		content: '';
 		display: block;
-		height: clamp(28rem, 75svh, 56rem);
+		height: clamp(3rem, 9svh, 5rem);
 		pointer-events: none;
 	}
 
 	.project-list > li {
 		position: sticky;
-		top: calc((100svh - var(--card-lock-height)) / 2 + var(--card-index) * 0.35rem);
+		top: calc((100svh - var(--card-lock-height)) / 2);
+		z-index: calc(var(--card-index) + 1);
 		display: flex;
 		height: var(--card-lock-height);
-		margin: 0 0 clamp(3.5rem, 9vh, 6.5rem);
+		margin: 0 0 var(--card-gap);
 		overflow: hidden;
 		background: var(--color-accent);
 		border: 0.125rem solid var(--color-accent-on);
 		border-radius: 0.7rem;
-		box-shadow:
-			0 0.6rem 0 var(--color-accent-on),
-			0 1.35rem 2.8rem rgb(24 24 23 / 28%);
-	}
-
-	.project-list > li:last-child {
-		margin-bottom: 0;
+		box-shadow: 0 0.8rem 2.2rem rgb(24 24 23 / 24%);
+		transform: translateY(calc(var(--card-index) * 0.35rem));
 	}
 
 	.project-card {
@@ -592,7 +605,7 @@
 	.practice-grid {
 		display: grid;
 		grid-template-columns: repeat(4, 1fr);
-		border-top: var(--border-width-structure) solid rgb(244 240 230 / 58%);
+		border-top: 1px solid rgb(244 240 230 / 24%);
 	}
 
 	.practice-grid li {
