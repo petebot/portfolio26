@@ -18,7 +18,7 @@
 	"updatedAt": "2026-07-27T00:00:00.000Z",
 	"sortDate": "2026-07-24",
 	"featured": true,
-	"weight": 1,
+	"weight": 3,
 	"category": "Research decision workspace",
 	"tags": ["product-design", "decision-support", "data-visualization"],
 	"tech": ["Next.js", "React", "TypeScript"],

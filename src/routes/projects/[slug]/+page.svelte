@@ -59,6 +59,20 @@
 		}
 	}
 
+	function displaySourceHost(url: string): string {
+		try {
+			const parsed = new URL(url);
+			if (parsed.hostname === 'web.archive.org') {
+				const archivedHost = parsed.pathname.match(/\/https?:\/\/([^/]+)/)?.[1];
+				if (archivedHost) return `${archivedHost.replace(/^www\./, '')} · archive`;
+			}
+
+			return parsed.hostname.replace(/^www\./, '');
+		} catch {
+			return 'Original source';
+		}
+	}
+
 	const sections = $derived(parseSections(data.project.body ?? ''));
 	const homeUrl = absoluteUrl('/');
 	const canonicalUrl = $derived(
@@ -186,7 +200,7 @@
 	<figure class="visual-wrap">
 		<figcaption class="visual-rail">
 			<div class="visual-caption">
-				<span>Product screenshot</span>
+				<span>{data.project.heroLabel ?? 'Product screenshot'}</span>
 				<span>Static preview</span>
 			</div>
 			{#if data.project.liveUrl}
@@ -203,7 +217,7 @@
 		<ProjectScreenshot
 			slug={data.project.slug}
 			image={data.project.heroImage}
-			frame="browser"
+			frame={data.project.heroImage?.frame ?? 'browser'}
 			frameLabel={liveSiteHost ?? data.project.title}
 			cursorLabel="Static preview"
 		/>
@@ -244,19 +258,51 @@
 					</header>
 
 					<div class="starting-point__intro">
-						<span>Starting point</span>
+						<span>Before / after</span>
 						<h3 id={`starting-point-${data.project.slug}`}>{startingPoint.title}</h3>
 						<p>{startingPoint.description}</p>
 					</div>
 
 					<figure class="starting-point__visual">
-						<ProjectScreenshot
-							slug={`${data.project.slug}-original`}
-							image={startingPoint.image}
-							frame="browser"
-							frameLabel="21gramsny.com · April 2023"
-							cursorLabel="Archived original"
-						/>
+						{#if startingPoint.ownershipLabel && data.project.heroImage}
+							<div class="starting-point__split">
+								<div class="starting-point__panel starting-point__panel--before">
+									<div class="starting-point__ownership">
+										<span>Before · existing site</span>
+										<strong>{startingPoint.ownershipLabel}</strong>
+									</div>
+									<ProjectScreenshot
+										slug={`${data.project.slug}-original`}
+										image={startingPoint.image}
+										frame="browser"
+										frameLabel={displaySourceHost(startingPoint.url)}
+										cursorLabel="Existing site · not my work"
+									/>
+								</div>
+
+								<div class="starting-point__panel starting-point__panel--after">
+									<div class="starting-point__ownership">
+										<span>After · independent concept</span>
+										<strong>{data.project.heroLabel ?? 'My redesign'}</strong>
+									</div>
+									<ProjectScreenshot
+										slug={`${data.project.slug}-comparison`}
+										image={data.project.heroImage}
+										frame={data.project.heroImage.frame ?? 'browser'}
+										frameLabel={liveSiteHost ?? data.project.title}
+										cursorLabel="My redesign concept"
+									/>
+								</div>
+							</div>
+						{:else}
+							<ProjectScreenshot
+								slug={`${data.project.slug}-original`}
+								image={startingPoint.image}
+								frame="browser"
+								frameLabel={displaySourceHost(startingPoint.url)}
+								cursorLabel="Original source"
+							/>
+						{/if}
 						<figcaption>{startingPoint.image.caption}</figcaption>
 					</figure>
 
@@ -299,7 +345,7 @@
 				<h2 id="more-projects-title">More selected work</h2>
 				<p>Elsewhere in the portfolio</p>
 			</header>
-			<div class="more-projects__grid" data-count={Math.min(data.moreProjects.length, 4)}>
+			<div class="more-projects__grid" data-count={data.moreProjects.length}>
 				{#each data.moreProjects as project}
 					<a class="more-project" href={`/projects/${project.slug}`}>
 						<span class="more-project__category">{project.category}</span>
@@ -646,8 +692,45 @@
 	}
 
 	.starting-point__visual {
-		width: min(calc(100% - clamp(2rem, 5vw, 4.5rem)), 72rem);
+		width: calc(100% - clamp(2rem, 5vw, 4.5rem));
 		margin: 0 auto;
+	}
+
+	.starting-point__split {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: clamp(0.75rem, 2vw, 1.5rem);
+	}
+
+	.starting-point__panel {
+		min-width: 0;
+	}
+
+	.starting-point__ownership {
+		display: flex;
+		min-height: var(--target-size-min);
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
+		padding: 0.7rem clamp(0.85rem, 2vw, 1.25rem);
+		background: var(--color-text);
+		color: var(--color-bg);
+		font-family: var(--font-family-mono);
+		font-size: var(--font-size-label);
+		letter-spacing: var(--letter-spacing-label);
+		text-transform: uppercase;
+	}
+
+	.starting-point__ownership strong {
+		font: inherit;
+		font-weight: var(--font-weight-bold);
+		letter-spacing: inherit;
+		text-align: right;
+	}
+
+	.starting-point__panel--after .starting-point__ownership {
+		background: var(--color-accent);
+		color: var(--color-accent-on);
 	}
 
 	.starting-point__visual figcaption {
@@ -798,6 +881,18 @@
 		grid-template-columns: repeat(3, minmax(0, 1fr));
 	}
 
+	.more-projects__grid[data-count='5'] {
+		grid-template-columns: repeat(6, minmax(0, 1fr));
+	}
+
+	.more-projects__grid[data-count='5'] .more-project {
+		grid-column: span 2;
+	}
+
+	.more-projects__grid[data-count='5'] .more-project:nth-last-child(-n + 2) {
+		grid-column: span 3;
+	}
+
 	.more-project {
 		display: flex;
 		min-height: clamp(10rem, 14vw, 13rem);
@@ -864,8 +959,18 @@
 
 	@media (max-width: 64rem) {
 		.more-projects__grid,
-		.more-projects__grid[data-count='3'] {
+		.more-projects__grid[data-count='3'],
+		.more-projects__grid[data-count='5'] {
 			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+
+		.more-projects__grid[data-count='5'] .more-project,
+		.more-projects__grid[data-count='5'] .more-project:nth-last-child(-n + 2) {
+			grid-column: auto;
+		}
+
+		.more-projects__grid[data-count='5'] .more-project:last-child {
+			grid-column: 1 / -1;
 		}
 
 		.more-projects__grid[data-count='1'] {
@@ -900,6 +1005,10 @@
 
 		.starting-point__intro p {
 			grid-column: 2;
+		}
+
+		.starting-point__split {
+			grid-template-columns: 1fr;
 		}
 	}
 
@@ -945,6 +1054,16 @@
 
 		.starting-point__intro p {
 			grid-column: auto;
+		}
+
+		.starting-point__ownership {
+			align-items: flex-start;
+			flex-direction: column;
+			gap: 0.15rem;
+		}
+
+		.starting-point__ownership strong {
+			text-align: left;
 		}
 
 		.starting-point__comparison {

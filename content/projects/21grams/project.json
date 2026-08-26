@@ -14,7 +14,7 @@
 	"updatedAt": "2026-07-27T00:00:00.000Z",
 	"sortDate": "2024-01-12",
 	"featured": false,
-	"weight": 4,
+	"weight": 6,
 	"category": "Agency experience",
 	"tags": ["immersive-web", "agency", "interaction-design"],
 	"tech": ["SvelteKit", "Rive", "TypeScript"],
