@@ -6,6 +6,7 @@ The site is built with SvelteKit and uses a lightweight local content system: st
 
 ## Selected work
 
+- **Hot Springs Distilling** — identity, packaging, merchandise, and a digital home for an Arkansas distillery
 - **Synchronic Studio** — local-first creative practice system
 - **Let’s Worm** — prompt-driven literary art platform created with writer Dan Murphy
 - **Grande Burrito** — brand-led restaurant and content system

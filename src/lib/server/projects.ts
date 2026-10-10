@@ -81,6 +81,12 @@ export interface Collaborator {
 	url?: string;
 }
 
+export interface ProjectGalleryImage extends ImageObject {
+	sectionHeading?: string;
+	width: number;
+	height: number;
+}
+
 export interface Timeframe {
 	start?: string;
 	end?: string;
@@ -108,7 +114,7 @@ export interface ProjectPublic {
 	body?: string;
 	heroImage?: ImageObject;
 	heroLabel?: string;
-	gallery?: ImageObject[];
+	gallery?: ProjectGalleryImage[];
 	tags?: string[];
 	category?: string;
 	tech?: string[];
@@ -120,6 +126,7 @@ export interface ProjectPublic {
 	collaborators?: Collaborator[];
 	clientPublicName?: string;
 	liveUrl?: string;
+	liveLabel?: string;
 	repoUrl?: string;
 	canonical?: string;
 	seo?: Record<string, unknown>;
@@ -188,6 +195,7 @@ const PUBLIC_FIELDS = [
 	'collaborators',
 	'clientPublicName',
 	'liveUrl',
+	'liveLabel',
 	'repoUrl',
 	'canonical',
 	'seo',
@@ -369,6 +377,26 @@ function validateRecord(raw: RawProjectRecord, folderName: string): void {
 
 	if (raw.startingPoint !== undefined) {
 		validateStartingPoint(raw.startingPoint, folderName);
+	}
+
+	if (raw.gallery !== undefined) {
+		const gallery = expectArray(raw.gallery, 1, 16, `gallery in ${folderName}`);
+		for (const [index, value] of gallery.entries()) {
+			const label = `gallery[${index}] in ${folderName}`;
+			const image = expectObject(value, label);
+			assertNonEmptyStrings(image, ['url', 'alt', 'caption'], label);
+			if (!isValidPublicUrl(image.url as string)) {
+				throw new Error(`${label}.url must be a public URL or root path`);
+			}
+			for (const dimension of ['width', 'height']) {
+				if (!Number.isInteger(image[dimension]) || (image[dimension] as number) <= 0) {
+					throw new Error(`${label}.${dimension} must be a positive integer`);
+				}
+			}
+			if (image.sectionHeading !== undefined) {
+				assertNonEmptyStrings(image, ['sectionHeading'], label);
+			}
+		}
 	}
 }
 
@@ -761,12 +789,6 @@ function derivePublicData(raw: RawProjectRecord, markdown: string): ProjectPubli
 
 	if (typeof result.heroImage === 'string') {
 		result.heroImage = { url: result.heroImage };
-	}
-
-	if (Array.isArray(result.gallery)) {
-		result.gallery = result.gallery.map((item) =>
-			typeof item === 'string' ? { url: item } : (item as ImageObject)
-		);
 	}
 
 	return result as ProjectPublic;
