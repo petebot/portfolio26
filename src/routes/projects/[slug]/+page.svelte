@@ -1,5 +1,6 @@
 <script lang="ts">
 	import ProjectScreenshot from '$lib/components/ProjectScreenshot.svelte';
+	import ProjectGallery from '$lib/components/ProjectGallery.svelte';
 	import DesignSystemStory from '$lib/components/DesignSystemStory.svelte';
 	import { absoluteUrl, SITE } from '$lib/site';
 	import type { PageData } from './$types';
@@ -80,6 +81,12 @@
 	);
 	const pageTitle = $derived(`${data.project.title} — ${SITE.name}`);
 	const liveSiteHost = $derived(displayHost(data.project.liveUrl));
+	const liveLabel = $derived(data.project.liveLabel ?? 'Visit the live site');
+	const remainingGallery = $derived(
+		(data.project.gallery ?? []).filter(
+			(image) => !sections.some((section) => section.heading === image.sectionHeading)
+		)
+	);
 	const structuredData = $derived({
 		'@context': 'https://schema.org',
 		'@graph': [
@@ -158,10 +165,10 @@
 						href={data.project.liveUrl}
 						rel="noopener noreferrer"
 						target="_blank"
-						aria-label={`Visit the ${data.project.title} live site (opens in a new tab)`}
+						aria-label={`${liveLabel} for ${data.project.title} (opens in a new tab)`}
 					>
 						<span class="project-action__label">Hosted project</span>
-						<strong>Visit the live site</strong>
+						<strong>{liveLabel}</strong>
 						<i aria-hidden="true">↗</i>
 					</a>
 				{/if}
@@ -208,9 +215,9 @@
 					href={data.project.liveUrl}
 					rel="noopener noreferrer"
 					target="_blank"
-					aria-label={`Open the ${data.project.title} live site (opens in a new tab)`}
+					aria-label={`${liveLabel} for ${data.project.title} (opens in a new tab)`}
 				>
-					Open live site <span aria-hidden="true">↗</span>
+					{data.project.liveLabel ?? 'Open live site'} <span aria-hidden="true">↗</span>
 				</a>
 			{/if}
 		</figcaption>
@@ -221,10 +228,16 @@
 			frameLabel={liveSiteHost ?? data.project.title}
 			cursorLabel="Static preview"
 		/>
+		{#if data.project.heroImage?.caption}
+			<p class="hero-image-caption">{data.project.heroImage.caption}</p>
+		{/if}
 	</figure>
 
 	<div class="case-study">
 		{#each sections as section, index}
+			{@const sectionGallery = (data.project.gallery ?? []).filter(
+				(image) => image.sectionHeading === section.heading
+			)}
 			<section>
 				<div class="section-index">0{index + 1}</div>
 				<h2>{section.heading}</h2>
@@ -241,6 +254,10 @@
 					{/if}
 				</div>
 			</section>
+
+			{#if sectionGallery.length > 0}
+				<ProjectGallery images={sectionGallery} />
+			{/if}
 
 			{#if data.project.startingPoint?.sectionHeading === section.heading}
 				{@const startingPoint = data.project.startingPoint}
@@ -327,6 +344,9 @@
 				</aside>
 			{/if}
 		{/each}
+		{#if remainingGallery.length > 0}
+			<ProjectGallery images={remainingGallery} />
+		{/if}
 	</div>
 
 	{#if data.project.designSystem}
@@ -373,6 +393,14 @@
 
 	.project-hero {
 		padding-block: clamp(3rem, 8vw, 7rem) 2rem;
+	}
+
+	.hero-image-caption {
+		max-width: 65ch;
+		margin-top: 1rem;
+		color: var(--color-text-muted);
+		font-size: 0.875rem;
+		line-height: 1.6;
 	}
 
 	.back-link,

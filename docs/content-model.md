@@ -151,6 +151,17 @@ When present, `showcase` contains:
 This is a case-study fingerprint, not a replacement for the source project’s
 specimen or design-system documentation.
 
+### Case-study imagery and preview links
+
+`heroImage.caption` appears beneath the lead visual and can identify mockups or concept imagery.
+Gallery entries require `url`, descriptive `alt`, `caption`, and positive integer `width` / `height`
+values. An optional `sectionHeading` places an image immediately after the matching Markdown
+`##` section. Unassigned images, including entries whose section no longer exists, appear after the
+narrative. Two images assigned to the same section share a desktop row and stack on smaller screens.
+
+Use `liveLabel` with `liveUrl` when the linked experience needs a more specific action, such as
+“Explore the website preview.” Omit it to retain the standard live-site label.
+
 ---
 
 ## Discovery & Organization

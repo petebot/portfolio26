@@ -1,0 +1,83 @@
+{
+	"id": "proj-hot-springs-distilling",
+	"slug": "hot-springs-distilling",
+	"aliases": ["hsd"],
+	"title": "Hot Springs Distilling",
+	"summary": "A place-driven identity connecting illustrated spirit labels, copper-foil editions, merchandise, and a working digital home for an Arkansas distillery.",
+	"intro": "One family of spirits, many expressions. A connected brand, packaging, and web system that carries the character of Hot Springs from the bottle to the browser.",
+	"heroLabel": "Packaging system",
+	"heroImage": {
+		"url": "/images/projects/hot-springs-distilling/falls-creek-bottles.webp",
+		"frame": "plain",
+		"alt": "Falls Creek white whiskey packaging study showing an illustrated 750 mL bottle and a compact typographic 375 mL bottle with iron-red labels",
+		"caption": "Falls Creek, House collection. AI-generated packaging visualization using the designed label system; not production bottle photography."
+	},
+	"gallery": [
+		{
+			"sectionHeading": "One family, three expressions",
+			"url": "/images/projects/hot-springs-distilling/river-duck-sourced.webp",
+			"alt": "River Duck Sourced edition bottle mockups with charcoal lettering and copper-foil duck illustrations in two sizes",
+			"caption": "Sourced / River Duck. Charcoal and copper foil distinguish the edition while preserving the family’s label structure. AI-generated packaging visualization.",
+			"width": 1672,
+			"height": 941
+		},
+		{
+			"sectionHeading": "One family, three expressions",
+			"url": "/images/projects/hot-springs-distilling/spring-works.webp",
+			"alt": "Spring Works Woodland Gin concept packaging with slate typography, hot-spring illustration, and experiment labels on 750 mL and 375 mL bottles",
+			"caption": "Experimental / Spring Works. A numbered release system gives each new idea a place. AI-generated concept mockup; specifications and tasting copy are illustrative.",
+			"width": 1280,
+			"height": 720
+		},
+		{
+			"sectionHeading": "An identity people can take home",
+			"url": "/images/projects/hot-springs-distilling/valley-merch.webp",
+			"alt": "Valley of the Vapors merchandise study with a forest-green T-shirt, light sweatshirt, and green cap carrying the Hot Springs identity",
+			"caption": "Valley of the Vapors carries its green palette and bathing-bird illustration into apparel and embroidery. AI-generated merchandise visualization.",
+			"width": 1536,
+			"height": 1024
+		},
+		{
+			"sectionHeading": "An identity people can take home",
+			"url": "/images/projects/hot-springs-distilling/print-series.webp",
+			"alt": "Falls Creek, Spa City, and Valley of the Vapors illustrated souvenir prints laid out in iron red, blue, and green",
+			"caption": "The keepsake print series gives the illustrations a life beyond the bottle. AI-generated print presentation.",
+			"width": 1672,
+			"height": 941
+		},
+		{
+			"sectionHeading": "From the label to the browser",
+			"url": "/images/projects/hot-springs-distilling/website.webp",
+			"alt": "Hot Springs Distilling website preview with the headline Good spirits. Curious nature. and oversized iron-red Bear Clap artwork on a Polar White background",
+			"caption": "The working website preview, captured October 9, 2026. The homepage uses the current native Bear Clap illustration and the approved Houschka letterforms.",
+			"width": 1440,
+			"height": 955
+		}
+	],
+	"status": "published",
+	"createdAt": "2026-10-10T00:00:00.000Z",
+	"updatedAt": "2026-10-10T00:00:00.000Z",
+	"sortDate": "2026-10-10",
+	"featured": true,
+	"weight": 0,
+	"category": "Brand, packaging & digital",
+	"tags": ["brand-system", "packaging", "art-direction", "web-design"],
+	"tech": ["Adobe Illustrator", "SvelteKit", "TypeScript"],
+	"role": "Art direction · Identity & packaging · Web design · Engineering",
+	"timeframe": { "label": "2026 · In progress" },
+	"clientPublicName": "Hot Springs Distilling",
+	"liveUrl": "https://hsd-website-preview-pete-nawaras-projects.vercel.app/",
+	"liveLabel": "Explore the website preview",
+	"contentUri": "content/projects/hot-springs-distilling/content.md",
+	"internalNotes": "Portfolio entry based on the October 2026 HSD artwork, presentation, and isolated website preview. The website is not a production-domain launch. Packaging, merchandise, and print scenes are existing AI-generated visualizations, captioned as such. Bear Clap bottle studies were omitted because they predate the October 9 artwork revision; the website capture shows the updated native hero artwork. Spring Works fictional release data remains concept material. No portable design-system contract adoption or measured business outcomes are claimed.",
+	"metadata": {
+		"assetSources": {
+			"falls-creek-bottles.webp": "HSD/output/presentations/hsd-series-mockups/assets/series-final/falls-creek-bottles.png",
+			"river-duck-sourced.webp": "HSD/output/presentations/hsd-series-mockups/assets/series-final/river-duck-sourced-bottles-foil.png",
+			"spring-works.webp": "HSD/hsd-website/static/media/spring-works-ex0003-v1-1280.webp",
+			"valley-merch.webp": "HSD/output/presentations/hsd-series-mockups/assets/series-final/valley-of-the-vapors-merch.png",
+			"print-series.webp": "HSD/output/mono-direction/merch-lockup-v10/prints-flatlay.png",
+			"website.webp": "HSD/hsd-website/research/deployed-home-1440.png, top 1440 × 955 px"
+		}
+	}
+}
